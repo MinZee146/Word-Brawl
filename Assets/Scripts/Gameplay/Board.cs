@@ -10,12 +10,11 @@ public class Board : Singleton<Board>
 {
     [SerializeField] private GameObject _tilePrefab, _linePrefab;
 
+    public const int ColsEven = 6, ColsOdd = 5, Rows = 10;
     public List<Tile> TileList = new();
 
     private GameDictionary _dictionary;
     private RectTransform _board;
-    private EventSystem _eventSystem;
-    private GraphicRaycaster _graphicRaycaster;
     private List<Tile> _selectingTiles = new(), _lastSelectedTiles;
     private List<GameObject> _lineList = new();
     private TileConfigManager _configManager = new();
@@ -23,7 +22,8 @@ public class Board : Singleton<Board>
     private bool _isDragging;
     private string _currentWord, _selectedWord;
 
-    private const int ColsEven = 6, ColsOdd = 5, Rows = 10;
+    private EventSystem _eventSystem;
+    private GraphicRaycaster _graphicRaycaster;
 
     public void Initialize()
     {
@@ -147,6 +147,7 @@ public class Board : Singleton<Board>
             {
                 HandleTileSelection(tile);
             }
+
             break;
         }
     }
