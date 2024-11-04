@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Board : Singleton<Board>
 {
     [SerializeField] private GameObject _tilePrefab, _linePrefab;
 
+    public const int ColsEven = 6, ColsOdd = 5, Rows = 10;
     public List<Tile> TileList = new();
 
     private GameDictionary _dictionary;
@@ -20,8 +19,6 @@ public class Board : Singleton<Board>
 
     private bool _isDragging;
     private string _currentWord, _selectedWord;
-
-    private const int ColsEven = 6, ColsOdd = 5, Rows = 10;
 
     public void Initialize()
     {
