@@ -19,6 +19,9 @@ public class Tile : MonoBehaviour
     public int Score { get; private set; }
     public Color Color { get; private set; }
 
+    private Color _dark = new(0.2f, 0.2f, 0.2f, 1f);
+    private Color _light = Color.white;
+
     public bool IsAdjacent(Tile tile)
     {
         if (IsRowEven)
@@ -48,9 +51,9 @@ public class Tile : MonoBehaviour
     public void Select()
     {
         _innerCircle.sprite = _selectingSprite;
-        _innerCircle.color = Color.white;
-        _letterText.color = Color.white;
-        _scoreText.color = Color.white;
+        _innerCircle.color = _light;
+        _letterText.color = _light;
+        _scoreText.color = _light;
         _background.color = new Color(1f, 1f, 1f, 0f);
 
         _innerCircle.transform.DOComplete();
@@ -61,15 +64,15 @@ public class Tile : MonoBehaviour
     public void ValidateWord()
     {
         _innerCircle.sprite = _validSprite;
-        _letterText.color = Color.black;
-        _scoreText.color = Color.black;
+        _letterText.color = _dark;
+        _scoreText.color = _dark;
     }
 
     public void InvalidateWord()
     {
         _innerCircle.sprite = _selectingSprite;
-        _letterText.color = Color.white;
-        _scoreText.color = Color.white;
+        _letterText.color = _light;
+        _scoreText.color = _light;
     }
 
     public Tween Hint()
@@ -85,9 +88,9 @@ public class Tile : MonoBehaviour
     {
         _innerCircle.sprite = _idleSprite;
         _innerCircle.color = Color;
-        _letterText.color = Color.black;
-        _scoreText.color = Color.black;
-        _background.color = Color.white;
+        _letterText.color = _dark;
+        _scoreText.color = _dark;
+        _background.color = _light;
 
         _innerCircle.transform.DOComplete();
         _innerCircle.transform.DOShakePosition(0.5f, 10f, 10, 75, false, true, ShakeRandomnessMode.Harmonic);
