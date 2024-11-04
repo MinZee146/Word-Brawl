@@ -32,18 +32,18 @@ public class Tile : MonoBehaviour
                (tile.Column == Column + 1 && tile.Row >= Row - 1 && tile.Row <= Row + 1);
     }
 
-    // public void SetTileConfig(TileConfig config)
-    // {
-    //     //Get config
-    //     Letter = config.Letter;
-    //     Score = config.Score;
-    //     Color = config.Color;
+    public void SetTileConfig(TileConfig config)
+    {
+        //Get config
+        Letter = config.Letter;
+        Score = config.Score;
+        Color = config.Color;
 
-    //     //Apply config
-    //     _scoreText.text = Score.ToString();
-    //     _letterText.text = Letter.ToString();
-    //     _innerCircle.color = Color;
-    // }
+        //Apply config
+        _scoreText.text = Score.ToString();
+        _letterText.text = Letter.ToString();
+        _innerCircle.color = Color;
+    }
 
     public void Select()
     {
