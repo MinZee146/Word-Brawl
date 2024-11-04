@@ -10,9 +10,12 @@ public class Board : Singleton<Board>
 
     private GameDictionary _dictionary;
     private RectTransform _board;
+    private EventSystem _eventSystem;
+    private GraphicRaycaster _graphicRaycaster;
     private List<Tile> _tileList = new(), _selectingTiles = new(), _lastSelectedTiles;
     private List<GameObject> _lineList = new();
     private TileConfigManager _configManager = new();
+
 
     private bool _isDragging;
     private string _currentWord, _selectedWord;
@@ -24,6 +27,8 @@ public class Board : Singleton<Board>
         _dictionary = new GameDictionary();
         _configManager.LoadConfigs();
         _board = GetComponent<RectTransform>();
+        _graphicRaycaster = GetComponentInParent<GraphicRaycaster>();
+        _eventSystem = FindObjectOfType<EventSystem>();
     }
 
     private void Start()
@@ -121,24 +126,25 @@ public class Board : Singleton<Board>
 
     private void HandleDragging()
     {
-        var mousePosition = Input.mousePosition;
-
-        foreach (var tile in _tileList)
+        var pointerEventData = new PointerEventData(_eventSystem)
         {
-            var tileRectTransform = tile.GetComponent<RectTransform>();
+            position = Input.mousePosition
+        };
 
-            if (RectTransformUtility.RectangleContainsScreenPoint(tileRectTransform, mousePosition))
+        var results = new List<RaycastResult>();
+        _graphicRaycaster.Raycast(pointerEventData, results);
+
+        foreach (var tile in results.Select(result => result.gameObject.GetComponent<Tile>()).Where(tile => tile))
+        {
+            if (_selectingTiles.Count == 0)
             {
-                if (_selectingTiles.Count == 0)
-                {
-                    SelectTile(tile);
-                }
-                else if (_selectingTiles[^1].IsAdjacent(tile))
-                {
-                    HandleTileSelection(tile);
-                }
-                break;
+                SelectTile(tile);
             }
+            else if (_selectingTiles[^1].IsAdjacent(tile))
+            {
+                HandleTileSelection(tile);
+            }
+            break;
         }
     }
 
