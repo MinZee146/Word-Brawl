@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Board : Singleton<Board>
@@ -11,14 +13,15 @@ public class Board : Singleton<Board>
 
     private GameDictionary _dictionary;
     private RectTransform _board;
-    private EventSystem _eventSystem;
-    private GraphicRaycaster _graphicRaycaster;
     private List<Tile> _selectingTiles = new(), _lastSelectedTiles;
     private List<GameObject> _lineList = new();
     private TileConfigManager _configManager = new();
 
     private bool _isDragging;
     private string _currentWord, _selectedWord;
+
+    private EventSystem _eventSystem;
+    private GraphicRaycaster _graphicRaycaster;
 
     public void Initialize()
     {
@@ -142,6 +145,7 @@ public class Board : Singleton<Board>
             {
                 HandleTileSelection(tile);
             }
+
             break;
         }
     }
