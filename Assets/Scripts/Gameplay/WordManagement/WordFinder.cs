@@ -91,9 +91,9 @@ public class WordFinder : Singleton<WordFinder>
 
             sequence.Append(subSequence);
 
-            // sequence.OnComplete(() =>
-            //     AudioManager.Instance.PlaySFX("HintCompleted")
-            // );
+            sequence.OnComplete(() =>
+                AudioManager.Instance.PlaySFX("HintCompleted")
+            );
         }
 
         sequence.Play();
