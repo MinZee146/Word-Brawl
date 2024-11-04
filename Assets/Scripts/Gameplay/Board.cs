@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
+using MEC;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -160,7 +162,7 @@ public class Board : Singleton<Board>
 
             DisconnectLastLine();
             _currentWord = _currentWord?[..^1];
-            UpdateWordState(tile);
+            UpdateWordState();
         }
         else
         {
@@ -169,7 +171,7 @@ public class Board : Singleton<Board>
             _selectingTiles.Add(tile);
 
             _currentWord += tile.Letter;
-            UpdateWordState(tile);
+            UpdateWordState();
         }
     }
 
@@ -179,7 +181,7 @@ public class Board : Singleton<Board>
         _selectingTiles.Add(tile);
         _currentWord += tile.Letter;
 
-        UpdateWordState(tile);
+        UpdateWordState();
     }
 
     private void DeselectAll()
@@ -244,7 +246,7 @@ public class Board : Singleton<Board>
         }
     }
 
-    private void UpdateWordState(Tile tile)
+    private void UpdateWordState()
     {
         if (_currentWord.Length > 1)
         {
@@ -262,4 +264,67 @@ public class Board : Singleton<Board>
             Invalidate();
         }
     }
+
+    #region TilesPop
+    public void ConfirmSelection()
+    {
+        _isDragging = false;
+
+        if (!_dictionary.CheckWord(_selectedWord)) return;
+
+        Timing.RunCoroutine(PopAndRefresh());
+    }
+
+    private IEnumerator<float> PopAndRefresh()
+    {
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
+    }
+
+    private IEnumerator<float> PopSelectedTiles()
+    {
+        foreach (var tile in _lastSelectedTiles)
+        {
+            TileList.Remove(tile);
+            yield return Timing.WaitUntilDone(Timing.RunCoroutine(tile.PopAndDestroy()));
+
+            Pop(tile);
+        }
+    }
+
+    private void Pop(Tile tile)
+    {
+        if (tile.IsRowEven)
+        {
+            if (!FallAndReplace(tile, tile.Column - 1, tile.Row + 1))
+            {
+                FallAndReplace(tile, tile.Column, tile.Row + 1);
+            }
+        }
+        else
+        {
+            if (!FallAndReplace(tile, tile.Column, tile.Row + 1))
+            {
+                FallAndReplace(tile, tile.Column + 1, tile.Row + 1);
+            }
+        }
+    }
+
+    private bool FallAndReplace(Tile tile, int targetColumn, int targetRow)
+    {
+        //Recursively move the tiles above if they exist
+        var targetTile = TileList.FirstOrDefault(t => t.Column == targetColumn && t.Row == targetRow);
+
+        if (!targetTile) return false;
+
+        Pop(targetTile);
+
+        targetTile.transform.DOMove(tile.transform.position, 0.1f, false);
+        targetTile.Row = tile.Row;
+        targetTile.Column = tile.Column;
+        targetTile.IsRowEven = tile.IsRowEven;
+        targetTile.name = $"({tile.Row},{tile.Column})";
+
+        return true;
+    }
+    #endregion
 }

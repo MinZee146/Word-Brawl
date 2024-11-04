@@ -104,11 +104,11 @@ public class Tile : MonoBehaviour
 
         if (random > 0.5f)
         {
-            AudioManager.Instance.PlaySFX("Pop1");
+            // AudioManager.Instance.PlaySFX("Pop1");
         }
         else
         {
-            AudioManager.Instance.PlaySFX("Pop2");
+            // AudioManager.Instance.PlaySFX("Pop2");
         }
 
         Destroy(gameObject);
