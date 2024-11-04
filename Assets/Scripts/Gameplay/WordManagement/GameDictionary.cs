@@ -2,25 +2,15 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class GameDictionary
+public class GameDictionary : SingletonPersistent<GameDictionary>
 {
     private HashSet<string> _words = new();
     private Trie _wordTrie = new();
     private TextAsset _dictText;
 
-    public GameDictionary()
+    public void Initialize()
     {
-        InitializeDictionary("ospd");
-    }
-
-    public GameDictionary(string filename)
-    {
-        InitializeDictionary(filename);
-    }
-
-    public void InitializeDictionary(string filename)
-    {
-        _dictText = (TextAsset)Resources.Load(filename, typeof(TextAsset));
+        _dictText = (TextAsset)Resources.Load("ospd", typeof(TextAsset));
         using var reader = new StringReader(_dictText.text);
 
         while (reader.ReadLine() is { } line)

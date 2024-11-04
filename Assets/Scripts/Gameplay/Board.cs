@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -9,11 +10,11 @@ using UnityEngine.UI;
 public class Board : Singleton<Board>
 {
     [SerializeField] private GameObject _tilePrefab, _linePrefab;
+    [NonSerialized] public List<Tile> TileList = new();
+    [NonSerialized] public Dictionary<string, List<Vector2Int>> FoundWords = new();
 
     public const int ColsEven = 6, ColsOdd = 5, Rows = 10;
-    public List<Tile> TileList = new();
 
-    private GameDictionary _dictionary;
     private RectTransform _board;
     private List<Tile> _selectingTiles = new(), _lastSelectedTiles;
     private List<GameObject> _lineList = new();
@@ -27,17 +28,18 @@ public class Board : Singleton<Board>
 
     public void Initialize()
     {
-        _dictionary = new GameDictionary();
         _configManager.LoadConfigs();
         _board = GetComponent<RectTransform>();
         _graphicRaycaster = GetComponentInParent<GraphicRaycaster>();
         _eventSystem = FindObjectOfType<EventSystem>();
+        GameDictionary.Instance.Initialize();
     }
 
     private void Start()
     {
         Initialize();
         GenerateBoard();
+        WordFinder.Instance.FindAllWords();
     }
 
     private void Update()
@@ -251,7 +253,7 @@ public class Board : Singleton<Board>
     {
         if (_currentWord.Length > 1)
         {
-            if (_dictionary.CheckWord(_currentWord))
+            if (GameDictionary.Instance.CheckWord(_currentWord))
             {
                 Validate();
             }
@@ -271,7 +273,7 @@ public class Board : Singleton<Board>
     {
         _isDragging = false;
 
-        if (!_dictionary.CheckWord(_selectedWord)) return;
+        if (!GameDictionary.Instance.CheckWord(_selectedWord)) return;
 
         Timing.RunCoroutine(PopAndRefresh());
     }
@@ -279,6 +281,8 @@ public class Board : Singleton<Board>
     private IEnumerator<float> PopAndRefresh()
     {
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
+
+        WordFinder.Instance.FindAllWords();
     }
 
     private IEnumerator<float> PopSelectedTiles()
@@ -312,7 +316,6 @@ public class Board : Singleton<Board>
 
     private bool FallAndReplace(Tile tile, int targetColumn, int targetRow)
     {
-        //Recursively move the tiles above if they exist
         var targetTile = TileList.FirstOrDefault(t => t.Column == targetColumn && t.Row == targetRow);
 
         if (!targetTile) return false;
