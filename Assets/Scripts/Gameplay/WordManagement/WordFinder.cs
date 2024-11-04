@@ -36,7 +36,6 @@ public class WordFinder : Singleton<WordFinder>
         if (GameDictionary.Instance.CheckWord(currentWord))
         {
             Board.Instance.FoundWords[currentWord] = new List<Vector2Int>(currentPath);
-            Debug.Log(currentWord);
         }
 
         _visited[tile.Row, tile.Column] = true;
