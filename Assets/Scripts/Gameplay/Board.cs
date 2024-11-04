@@ -22,6 +22,7 @@ public class Board : Singleton<Board>
 
     private bool _isDragging;
     private string _currentWord, _selectedWord;
+    private int _currentScore;
 
     private EventSystem _eventSystem;
     private GraphicRaycaster _graphicRaycaster;
@@ -32,6 +33,7 @@ public class Board : Singleton<Board>
         _board = GetComponent<RectTransform>();
         _graphicRaycaster = GetComponentInParent<GraphicRaycaster>();
         _eventSystem = FindObjectOfType<EventSystem>();
+        //
         GameDictionary.Instance.Initialize();
     }
 
@@ -39,6 +41,7 @@ public class Board : Singleton<Board>
     {
         Initialize();
         GenerateBoard();
+        //
         WordFinder.Instance.FindAllWords();
     }
 
@@ -47,6 +50,7 @@ public class Board : Singleton<Board>
         HandleTouchInput();
     }
 
+    #region GenerateBoard
     private void GenerateBoard()
     {
         TileList.Clear();
@@ -97,6 +101,7 @@ public class Board : Singleton<Board>
             }
         }
     }
+    #endregion
 
     #region InputHandle
     private void HandleTouchInput()
@@ -117,6 +122,8 @@ public class Board : Singleton<Board>
 
                 _selectedWord = _currentWord;
                 _currentWord = null;
+
+                WordDisplay.Instance.UndisplayWordAndScore();
             }
             else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
@@ -165,7 +172,7 @@ public class Board : Singleton<Board>
 
             DisconnectLastLine();
             _currentWord = _currentWord?[..^1];
-            UpdateWordState();
+            WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
         }
         else
         {
@@ -174,7 +181,7 @@ public class Board : Singleton<Board>
             _selectingTiles.Add(tile);
 
             _currentWord += tile.Letter;
-            UpdateWordState();
+            WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
         }
     }
 
@@ -184,7 +191,9 @@ public class Board : Singleton<Board>
         _selectingTiles.Add(tile);
         _currentWord += tile.Letter;
 
-        UpdateWordState();
+        //TODO
+
+        WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
     }
 
     private void DeselectAll()
@@ -222,51 +231,6 @@ public class Board : Singleton<Board>
         _lineList.Clear();
     }
     #endregion
-
-    private void Validate()
-    {
-        foreach (var tile in _selectingTiles)
-        {
-            tile.ValidateWord();
-        }
-
-        foreach (var line in _lineList)
-        {
-            line.GetComponent<Image>().color = new Color(78 / 255f, 200 / 255f, 75 / 255f);
-        }
-    }
-
-    private void Invalidate()
-    {
-        foreach (var tile in _selectingTiles)
-        {
-            tile.InvalidateWord();
-        }
-
-        foreach (var line in _lineList)
-        {
-            line.GetComponent<Image>().color = new Color(110 / 255f, 110 / 255f, 110 / 255f);
-        }
-    }
-
-    private void UpdateWordState()
-    {
-        if (_currentWord.Length > 1)
-        {
-            if (GameDictionary.Instance.CheckWord(_currentWord))
-            {
-                Validate();
-            }
-            else
-            {
-                Invalidate();
-            }
-        }
-        else
-        {
-            Invalidate();
-        }
-    }
 
     #region TilesPop
     public void ConfirmSelection()
