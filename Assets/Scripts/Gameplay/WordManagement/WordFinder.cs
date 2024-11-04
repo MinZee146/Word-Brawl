@@ -3,18 +3,16 @@ using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
-public class WordFinder : MonoBehaviour
+public class WordFinder : Singleton<WordFinder>
 {
-    private GameDictionary _dictionary;
     private bool[,] _visited;
     private int _hintIndex;
     private List<Vector2Int> _currentHint;
-    private readonly Dictionary<string, List<Vector2Int>> _foundWords = new();
 
     #region WordManagement
-    private void FindAllWords()
+    public void FindAllWords()
     {
-        _foundWords.Clear();
+        Board.Instance.FoundWords.Clear();
         _visited = new bool[Board.Rows, Board.ColsEven];
 
         foreach (var tile in Board.Instance.TileList)
@@ -29,16 +27,16 @@ public class WordFinder : MonoBehaviour
     {
         currentWord += tile.Letter;
         currentPath.Add(new Vector2Int(tile.Row, tile.Column));
-
-        if (!_dictionary.IsPrefix(currentWord))
+        if (!GameDictionary.Instance.IsPrefix(currentWord))
         {
             currentPath.RemoveAt(currentPath.Count - 1);
             return;
         }
 
-        if (_dictionary.CheckWord(currentWord))
+        if (GameDictionary.Instance.CheckWord(currentWord))
         {
-            _foundWords[currentWord] = new List<Vector2Int>(currentPath);
+            Board.Instance.FoundWords[currentWord] = new List<Vector2Int>(currentPath);
+            Debug.Log(currentWord);
         }
 
         _visited[tile.Row, tile.Column] = true;
@@ -64,8 +62,8 @@ public class WordFinder : MonoBehaviour
         if (_currentHint == null || !CheckIfHintIsLost())
         {
             _hintIndex = 0;
-            _currentHint = _foundWords.Values.FirstOrDefault(word => word.Count >= 5) ?? _foundWords.Values.FirstOrDefault();
-            _foundWords.Keys.FirstOrDefault(word => _foundWords[word] == _currentHint);
+            _currentHint = Board.Instance.FoundWords.Values.FirstOrDefault(word => word.Count >= 5) ?? Board.Instance.FoundWords.Values.FirstOrDefault();
+            Board.Instance.FoundWords.Keys.FirstOrDefault(word => Board.Instance.FoundWords[word] == _currentHint);
         }
 
         if (_hintIndex < _currentHint.Count)
@@ -94,9 +92,9 @@ public class WordFinder : MonoBehaviour
 
             sequence.Append(subSequence);
 
-            sequence.OnComplete(() =>
-                AudioManager.Instance.PlaySFX("HintCompleted")
-            );
+            // sequence.OnComplete(() =>
+            //     AudioManager.Instance.PlaySFX("HintCompleted")
+            // );
         }
 
         sequence.Play();
@@ -104,7 +102,7 @@ public class WordFinder : MonoBehaviour
 
     private bool CheckIfHintIsLost()
     {
-        return _foundWords.Values.Any(array => array == _currentHint);
+        return Board.Instance.FoundWords.Values.Any(array => array == _currentHint);
     }
     #endregion
 }
