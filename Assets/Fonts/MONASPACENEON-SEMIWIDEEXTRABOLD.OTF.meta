@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1fb2c84b2c27d8e4b8115f359a186afb
+guid: a2d46175c3db05e468b6de9434865b9c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - SuperCapability
+  - Monaspace Neon
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

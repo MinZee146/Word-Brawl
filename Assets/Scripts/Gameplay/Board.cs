@@ -6,16 +6,22 @@ using UnityEngine.UI;
 
 public class Board : Singleton<Board>
 {
-    [SerializeField] private GameObject _tilePrefab;
+    [SerializeField] private GameObject _tilePrefab, _linePrefab;
 
+    private GameDictionary _dictionary;
     private RectTransform _board;
     private List<Tile> _tileList = new(), _selectingTiles = new(), _lastSelectedTiles;
+    private List<GameObject> _lineList = new();
     private TileConfigManager _configManager = new();
+
     private bool _isDragging;
+    private string _currentWord, _selectedWord;
+
     private const int ColsEven = 6, ColsOdd = 5, Rows = 10;
 
     public void Initialize()
     {
+        _dictionary = new GameDictionary();
         _configManager.LoadConfigs();
         _board = GetComponent<RectTransform>();
     }
@@ -94,8 +100,13 @@ public class Board : Singleton<Board>
                 _isDragging = true;
 
                 DeselectAll();
+                DisconnectAll();
+
                 _lastSelectedTiles = new List<Tile>(_selectingTiles);
                 _selectingTiles.Clear();
+
+                _selectedWord = _currentWord;
+                _currentWord = null;
             }
             else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
@@ -139,10 +150,19 @@ public class Board : Singleton<Board>
 
             _selectingTiles[^1].Deselect();
             _selectingTiles.Remove(_selectingTiles[^1]);
+
+            DisconnectLastLine();
+            _currentWord = _currentWord?[..^1];
+            UpdateWordState(tile);
         }
         else
         {
-            SelectTile(tile);
+            tile.Select();
+            Connect(tile);
+            _selectingTiles.Add(tile);
+
+            _currentWord += tile.Letter;
+            UpdateWordState(tile);
         }
     }
 
@@ -150,6 +170,9 @@ public class Board : Singleton<Board>
     {
         tile.Select();
         _selectingTiles.Add(tile);
+        _currentWord += tile.Letter;
+
+        UpdateWordState(tile);
     }
 
     private void DeselectAll()
@@ -159,5 +182,77 @@ public class Board : Singleton<Board>
             tile.Deselect();
         }
     }
+
+    private void Connect(Tile tile)
+    {
+        if (_selectingTiles.Contains(tile)) return;
+
+        var line = Instantiate(_linePrefab, _board);
+        line.transform.SetSiblingIndex(0);
+        line.GetComponent<UILine>().CreateLine(_selectingTiles[^1].transform.position, tile.transform.position);
+
+        _lineList.Add(line);
+    }
+
+    private void DisconnectLastLine()
+    {
+        Destroy(_lineList[^1]);
+        _lineList.Remove(_lineList[^1]);
+    }
+
+    private void DisconnectAll()
+    {
+        foreach (var line in _lineList)
+        {
+            Destroy(line.gameObject);
+        }
+
+        _lineList.Clear();
+    }
     #endregion
+
+    private void Validate()
+    {
+        foreach (var tile in _selectingTiles)
+        {
+            tile.ValidateWord();
+        }
+
+        foreach (var line in _lineList)
+        {
+            line.GetComponent<Image>().color = new Color(78 / 255f, 200 / 255f, 75 / 255f);
+        }
+    }
+
+    private void Invalidate()
+    {
+        foreach (var tile in _selectingTiles)
+        {
+            tile.InvalidateWord();
+        }
+
+        foreach (var line in _lineList)
+        {
+            line.GetComponent<Image>().color = new Color(110 / 255f, 110 / 255f, 110 / 255f);
+        }
+    }
+
+    private void UpdateWordState(Tile tile)
+    {
+        if (_currentWord.Length > 1)
+        {
+            if (_dictionary.CheckWord(_currentWord))
+            {
+                Validate();
+            }
+            else
+            {
+                Invalidate();
+            }
+        }
+        else
+        {
+            Invalidate();
+        }
+    }
 }
