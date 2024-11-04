@@ -58,7 +58,7 @@ public class Tile : MonoBehaviour
 
         _innerCircle.transform.DOComplete();
         _innerCircle.transform.DOShakePosition(0.5f, 10f, 10, 75, false, true, ShakeRandomnessMode.Harmonic);
-        AudioManager.Instance.PlaySFX("TileSelect");
+        // AudioManager.Instance.PlaySFX("TileSelect");
     }
 
     public void ValidateWord()
@@ -80,7 +80,7 @@ public class Tile : MonoBehaviour
         return _innerCircle.DOGradientColor(_gradient, 0.4f).OnComplete(() =>
         {
             Deselect();
-            AudioManager.Instance.PlaySFX("Hint");
+            // AudioManager.Instance.PlaySFX("Hint");
         });
     }
 
