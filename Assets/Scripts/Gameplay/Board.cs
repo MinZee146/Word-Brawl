@@ -8,14 +8,15 @@ public class Board : Singleton<Board>
 {
     [SerializeField] private GameObject _tilePrefab, _linePrefab;
 
+    public List<Tile> TileList = new();
+
     private GameDictionary _dictionary;
     private RectTransform _board;
     private EventSystem _eventSystem;
     private GraphicRaycaster _graphicRaycaster;
-    private List<Tile> _tileList = new(), _selectingTiles = new(), _lastSelectedTiles;
+    private List<Tile> _selectingTiles = new(), _lastSelectedTiles;
     private List<GameObject> _lineList = new();
     private TileConfigManager _configManager = new();
-
 
     private bool _isDragging;
     private string _currentWord, _selectedWord;
@@ -44,7 +45,7 @@ public class Board : Singleton<Board>
 
     private void GenerateBoard()
     {
-        _tileList.Clear();
+        TileList.Clear();
 
         foreach (RectTransform child in _board)
         {
@@ -88,7 +89,7 @@ public class Board : Singleton<Board>
 
                 component.Deselect();
                 component.SetTileConfig(_configManager.GetRandomLetter());
-                _tileList.Add(component);
+                TileList.Add(component);
             }
         }
     }
