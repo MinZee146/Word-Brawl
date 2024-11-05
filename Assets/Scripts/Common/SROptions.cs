@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using MEC;
 using UnityEngine;
 
 public partial class SROptions
@@ -7,5 +8,11 @@ public partial class SROptions
     public void ClearAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    [Category("Debug")]
+    public void AIPlay()
+    {
+        Timing.RunCoroutine(AI.Instance.AITurn());
     }
 }

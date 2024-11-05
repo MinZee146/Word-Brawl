@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
-    [SerializeField] private GameObject _gameOverScreen, _loadingScreen;
+    [SerializeField] private GameObject _gameOverScreen, _loadingScreen, _powerupsPanel;
     [SerializeField] private TMP_InputField _replaceLetter;
 
     private TextMeshProUGUI _playerName;
@@ -29,5 +29,10 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToUpper()
     {
         _replaceLetter.text = _replaceLetter.text.ToUpper();
+    }
+
+    public void TogglePowerupsPanel()
+    {
+        _powerupsPanel.SetActive(!_powerupsPanel.activeSelf);
     }
 }

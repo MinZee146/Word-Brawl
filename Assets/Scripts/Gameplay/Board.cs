@@ -195,12 +195,10 @@ public class Board : Singleton<Board>
         _selectingTiles.Add(tile);
         _currentWord += tile.Letter;
 
-        //TODO
-
         WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
     }
 
-    private void DeselectAll()
+    public void DeselectAll()
     {
         foreach (var tile in _selectingTiles)
         {
@@ -219,13 +217,22 @@ public class Board : Singleton<Board>
         _lineList.Add(line);
     }
 
+    private void Connect(Tile firstTile, Tile secondTile)
+    {
+        var line = Instantiate(_linePrefab, _board);
+        line.transform.SetSiblingIndex(0);
+        line.GetComponent<UILine>().CreateLine(firstTile.transform.position, secondTile.transform.position);
+
+        _lineList.Add(line);
+    }
+
     private void DisconnectLastLine()
     {
         Destroy(_lineList[^1]);
         _lineList.Remove(_lineList[^1]);
     }
 
-    private void DisconnectAll()
+    public void DisconnectAll()
     {
         foreach (var line in _lineList)
         {
@@ -246,11 +253,20 @@ public class Board : Singleton<Board>
         Timing.RunCoroutine(PopAndRefresh());
     }
 
-    private IEnumerator<float> PopAndRefresh()
+    public IEnumerator<float> PopAndRefresh()
     {
         UIController.Instance.ToggleHintAndConfirm(display: false);
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
+
         GameManager.Instance.CheckForGameOver();
+        if (GameManager.Instance.IsPlayerTurn)
+        {
+            PlayerStatsManager.Instance.UpdatePlayerStats(_currentWord, _currentScore);
+        }
+        else
+        {
+            PlayerStatsManager.Instance.UpdateOpponentStats(_currentWord, _currentScore);
+        }
     }
 
     private IEnumerator<float> PopSelectedTiles()
@@ -297,6 +313,37 @@ public class Board : Singleton<Board>
         targetTile.name = $"({tile.Row},{tile.Column})";
 
         return true;
+    }
+    #endregion
+
+    #region OpponentSelect
+    public IEnumerator<float> OpponentSelect(string word)
+    {
+        var firstPos = FoundWords[word].First();
+        var previousTile = TileList.FirstOrDefault(t => t.Row == firstPos.x && t.Column == firstPos.y);
+
+        previousTile.Select();
+        _selectingTiles.Add(previousTile);
+        _currentWord += previousTile.Letter;
+
+        foreach (var tile in from pos in FoundWords[word]
+                             where pos != firstPos
+                             select TileList.FirstOrDefault(t => t.Row == pos.x && t.Column == pos.y))
+        {
+            yield return Timing.WaitForSeconds(0.3f);
+
+            tile.Select();
+            Connect(tile, previousTile);
+            _selectingTiles.Add(tile);
+            previousTile = tile;
+
+            _currentWord += tile.Letter;
+            WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
+        }
+
+        _lastSelectedTiles = new List<Tile>(_selectingTiles);
+
+        Debug.Log($"Opponent selected: {word}({_currentScore})");
     }
     #endregion
 }
