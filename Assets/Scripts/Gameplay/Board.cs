@@ -260,6 +260,8 @@ public class Board : Singleton<Board>
 
         _selectingTiles.Clear();
         _currentWord = null;
+        _currentScore = 0;
+
         GameManager.Instance.CheckForGameOver();
 
         if (GameManager.Instance.IsPlayerTurn)
