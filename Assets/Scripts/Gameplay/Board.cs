@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class Board : Singleton<Board>
 {
-    [SerializeField] private GameObject _tilePrefab, _linePrefab, _playerScoreBoard, _opponentScoreBoard;
+    [SerializeField] private GameObject _tilePrefab, _linePrefab;
 
     [NonSerialized] public List<Tile> TileList = new();
     [NonSerialized] public Dictionary<string, List<Vector2Int>> FoundWords = new();
@@ -299,14 +299,4 @@ public class Board : Singleton<Board>
         return true;
     }
     #endregion
-
-    public GameObject GetPlayerScoreBoard()
-    {
-        return _playerScoreBoard;
-    }
-
-    public GameObject GetOpponentScoreBoard()
-    {
-        return _opponentScoreBoard;
-    }
 }

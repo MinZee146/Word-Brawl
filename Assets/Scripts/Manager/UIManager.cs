@@ -13,7 +13,7 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         ToggleLoadingScreen();
         var asyncLoad = SceneManager.LoadSceneAsync("Gameplay");
-        asyncLoad.completed += (operation) => LoadNames();
+        asyncLoad.completed += (operation) => PlayerStatsManager.Instance.LoadNames();
     }
 
     public void ToggleGameOverScreen()
@@ -29,13 +29,5 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToUpper()
     {
         _replaceLetter.text = _replaceLetter.text.ToUpper();
-    }
-
-    public void LoadNames()
-    {
-        _playerName = Board.Instance.GetPlayerScoreBoard().transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _playerName.text = PlayerPrefs.GetString("Username");
-
-        //TODO: Load opponent name
     }
 }

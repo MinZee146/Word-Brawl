@@ -18,9 +18,12 @@ public class GameManager : Singleton<GameManager>
         NameRegister.Instance.Initialize();
     }
 
-    public bool CheckForGameOver()
+    public void CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
-        return Board.Instance.FoundWords.Count > 0;
+        if (Board.Instance.FoundWords.Count == 0)
+        {
+            UIManager.Instance.ToggleGameOverScreen();
+        }
     }
 }

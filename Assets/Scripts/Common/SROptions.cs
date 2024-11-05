@@ -3,7 +3,7 @@ using UnityEngine;
 
 public partial class SROptions
 {
-    [Category("Cheats")]
+    [Category("Debug")]
     public void ClearAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
