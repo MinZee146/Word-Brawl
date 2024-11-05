@@ -7,9 +7,16 @@ public class GameManager : Singleton<GameManager>
 {
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        GameDictionary.Instance.Initialize();
+        AudioManager.Instance.Initialize();
         PowerupsManager.Instance.InitializePowerUps();
     }
-    
+
     public bool CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
