@@ -11,14 +11,9 @@ public class NameRegister : SingletonPersistent<NameRegister>
     {
         if (!PlayerPrefs.HasKey("Username"))
         {
-            PlayerPrefs.DeleteAll();
             _nameRegisterPanel.SetActive(true);
-            _nameRegisterPanel.GetComponent<RectTransform>().DOScale(Vector3.one, 0.5f)
+            _nameRegisterPanel.transform.GetChild(0).GetComponent<RectTransform>().DOScale(Vector3.one, 0.5f)
             .SetEase(Ease.OutBack);
-        }
-        else
-        {
-            Debug.Log("hehe");
         }
     }
 
@@ -30,14 +25,6 @@ public class NameRegister : SingletonPersistent<NameRegister>
             PlayerPrefs.Save();
 
             _nameRegisterPanel.SetActive(false);
-        }
-    }
-
-    public void OnValueChanged()
-    {
-        if (_usernameInput.text.Length > 9)
-        {
-            _usernameInput.text = _usernameInput.text.Substring(0, 8);
         }
     }
 }

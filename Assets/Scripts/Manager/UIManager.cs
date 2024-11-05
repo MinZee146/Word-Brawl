@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
     [SerializeField] private GameObject _gameOverScreen, _loadingScreen;
+    [SerializeField] private TMP_InputField _replaceLetter;
 
     public void LoadGame()
     {
@@ -19,5 +21,10 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToggleLoadingScreen()
     {
         _loadingScreen.SetActive(!_loadingScreen.activeSelf);
+        }
+        
+    public void ToUpper()
+    {
+        _replaceLetter.text = _replaceLetter.text.ToUpper();
     }
 }
