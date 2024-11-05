@@ -13,7 +13,6 @@ public class AI : Singleton<AI>
         var randomValue = Random.Range(0f, 1f);
         List<string> selectedList;
 
-
         if (randomValue <= 0.35f && longWords.Count > 0)
         {
             selectedList = longWords;
@@ -30,7 +29,6 @@ public class AI : Singleton<AI>
 
         Board.Instance.DisconnectAll();
         Board.Instance.DeselectAll();
-
         WordDisplay.Instance.UndisplayWordAndScore();
 
         Timing.RunCoroutine(Board.Instance.PopAndRefresh());

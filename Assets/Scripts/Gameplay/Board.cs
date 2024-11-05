@@ -258,7 +258,10 @@ public class Board : Singleton<Board>
         UIController.Instance.ToggleHintAndConfirm(display: false);
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
 
+        _selectingTiles.Clear();
+        _currentWord = null;
         GameManager.Instance.CheckForGameOver();
+
         if (GameManager.Instance.IsPlayerTurn)
         {
             PlayerStatsManager.Instance.UpdatePlayerStats(_currentWord, _currentScore);
