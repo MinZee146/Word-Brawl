@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using MEC;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Board : Singleton<Board>
 {
-    [SerializeField] private GameObject _tilePrefab, _linePrefab;
+    [SerializeField] private GameObject _tilePrefab, _linePrefab, _playerScoreBoard, _opponentScoreBoard;
 
     [NonSerialized] public List<Tile> TileList = new();
     [NonSerialized] public Dictionary<string, List<Vector2Int>> FoundWords = new();
@@ -298,4 +299,14 @@ public class Board : Singleton<Board>
         return true;
     }
     #endregion
+
+    public GameObject GetPlayerScoreBoard()
+    {
+        return _playerScoreBoard;
+    }
+
+    public GameObject GetOpponentScoreBoard()
+    {
+        return _opponentScoreBoard;
+    }
 }

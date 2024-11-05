@@ -5793,7 +5793,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1292717605}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: LoadGame
+        m_MethodName: LoadGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5875,8 +5875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOverScreen: {fileID: 1988901250}
-  _replaceLetter: {fileID: 795406335}
   _loadingScreen: {fileID: 1286227008}
+  _replaceLetter: {fileID: 795406335}
 --- !u!114 &1292717606
 MonoBehaviour:
   m_ObjectHideFlags: 0

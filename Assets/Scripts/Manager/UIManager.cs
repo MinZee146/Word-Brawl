@@ -7,10 +7,13 @@ public class UIManager : SingletonPersistent<UIManager>
     [SerializeField] private GameObject _gameOverScreen, _loadingScreen;
     [SerializeField] private TMP_InputField _replaceLetter;
 
-    public void LoadGame()
+    private TextMeshProUGUI _playerName;
+
+    public void LoadGameScene()
     {
-        SceneManager.LoadScene("Gameplay");
         ToggleLoadingScreen();
+        var asyncLoad = SceneManager.LoadSceneAsync("Gameplay");
+        asyncLoad.completed += (operation) => LoadNames();
     }
 
     public void ToggleGameOverScreen()
@@ -21,10 +24,18 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToggleLoadingScreen()
     {
         _loadingScreen.SetActive(!_loadingScreen.activeSelf);
-        }
-        
+    }
+
     public void ToUpper()
     {
         _replaceLetter.text = _replaceLetter.text.ToUpper();
+    }
+
+    public void LoadNames()
+    {
+        _playerName = Board.Instance.GetPlayerScoreBoard().transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        _playerName.text = PlayerPrefs.GetString("Username");
+
+        //TODO: Load opponent name
     }
 }
