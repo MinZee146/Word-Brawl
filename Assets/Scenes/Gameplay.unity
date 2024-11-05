@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 994355433}
   - component: {fileID: 994355432}
   m_Layer: 5
-  m_Name: Hint
+  m_Name: HintButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1365,11 +1365,11 @@ RectTransform:
   m_Children:
   - {fileID: 1996059036}
   - {fileID: 959541681}
-  - {fileID: 50140456}
-  - {fileID: 1830543613}
-  - {fileID: 572221402}
   - {fileID: 1879986614}
   - {fileID: 994355431}
+  - {fileID: 572221402}
+  - {fileID: 50140456}
+  - {fileID: 1830543613}
   - {fileID: 1478865208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1804,7 +1804,7 @@ GameObject:
   - component: {fileID: 1879986616}
   - component: {fileID: 1879986615}
   m_Layer: 5
-  m_Name: Confirm
+  m_Name: ConfirmButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

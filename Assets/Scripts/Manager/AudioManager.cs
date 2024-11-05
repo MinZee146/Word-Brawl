@@ -18,7 +18,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
     private int _currentMusicIndex;
     private CoroutineHandle _musicCoroutine;
 
-    private void Start()
+    public void Initialize()
     {
         LoadAudioPrefs();
         PlayMusic();

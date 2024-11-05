@@ -8,11 +8,6 @@ public class GameDictionary : SingletonPersistent<GameDictionary>
     private Trie _wordTrie = new();
     private TextAsset _dictText;
 
-    private void Start()
-    {
-        Initialize();
-    }
-
     public void Initialize()
     {
         _dictText = (TextAsset)Resources.Load("ospd", typeof(TextAsset));
