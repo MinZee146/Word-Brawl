@@ -49,20 +49,20 @@ public class WordDisplay : Singleton<WordDisplay>
             {
                 _wordDisplayText.text = $"{currentWord} <color={UpdateScore(ref currentScore, selectingTiles)}>({currentScore})</color>";
                 Validate(lineList, selectingTiles);
-                // UIManager.Instance.ToggleHintAndConfirm(false);
+                UIController.Instance.ToggleHintAndConfirm(false);
             }
             else
             {
                 _wordDisplayText.text = currentWord;
                 Invalidate(lineList, selectingTiles);
-                // UIManager.Instance.ToggleHintAndConfirm(true);
+                UIController.Instance.ToggleHintAndConfirm(true);
             }
 
             UpdateWordDisplayPosition(tile);
         }
         else
         {
-            // UIManager.Instance.ToggleHintAndConfirm(true);
+            UIController.Instance.ToggleHintAndConfirm(true);
             UndisplayWordAndScore();
             Invalidate(lineList, selectingTiles);
         }
