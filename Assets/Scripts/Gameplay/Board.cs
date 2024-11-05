@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Board : Singleton<Board>
 {
     [SerializeField] private GameObject _tilePrefab, _linePrefab;
+
     [NonSerialized] public List<Tile> TileList = new();
     [NonSerialized] public Dictionary<string, List<Vector2Int>> FoundWords = new();
 
@@ -33,15 +34,12 @@ public class Board : Singleton<Board>
         _board = GetComponent<RectTransform>();
         _graphicRaycaster = GetComponentInParent<GraphicRaycaster>();
         _eventSystem = FindObjectOfType<EventSystem>();
-        //
-        GameDictionary.Instance.Initialize();
     }
 
     private void Start()
     {
         Initialize();
         GenerateBoard();
-        //
         WordFinder.Instance.FindAllWords();
     }
 
@@ -245,8 +243,7 @@ public class Board : Singleton<Board>
     private IEnumerator<float> PopAndRefresh()
     {
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
-
-        WordFinder.Instance.FindAllWords();
+        GameManager.Instance.CheckForGameOver();
     }
 
     private IEnumerator<float> PopSelectedTiles()

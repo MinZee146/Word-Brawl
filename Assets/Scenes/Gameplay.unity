@@ -2220,7 +2220,6 @@ GameObject:
   - component: {fileID: 1996059038}
   - component: {fileID: 1996059037}
   - component: {fileID: 1996059039}
-  - component: {fileID: 1996059041}
   - component: {fileID: 1996059042}
   m_Layer: 5
   m_Name: Board
@@ -2300,18 +2299,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 1488562425842033061, guid: 3dcc897d1e0216e41857828973955f6f, type: 3}
   _linePrefab: {fileID: 7082551490863374475, guid: fa1fd576d5aff384ba3c758facdc9f9d, type: 3}
---- !u!114 &1996059041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996059035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb93ed81dedff544a5a8fbc3b6bffb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1996059042
 MonoBehaviour:
   m_ObjectHideFlags: 0
