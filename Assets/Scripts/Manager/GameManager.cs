@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
         PowerupsManager.Instance.InitializePowerUps();
+        NameRegister.Instance.Initialize();
     }
 
     public bool CheckForGameOver()

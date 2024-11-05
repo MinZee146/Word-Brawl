@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class NameRegister : MonoBehaviour
+public class NameRegister : SingletonPersistent<NameRegister>
 {
     [SerializeField] private GameObject _nameRegisterPanel;
     [SerializeField] private TMP_InputField _usernameInput;
 
-    private void Start()
+    public void Initialize()
     {
         if (!PlayerPrefs.HasKey("Username"))
         {
+            PlayerPrefs.DeleteAll();
             _nameRegisterPanel.SetActive(true);
             _nameRegisterPanel.GetComponent<RectTransform>().DOScale(Vector3.one, 0.5f)
             .SetEase(Ease.OutBack);
