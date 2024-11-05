@@ -176,7 +176,7 @@ public class Board : Singleton<Board>
 
             DisconnectLastLine();
             _currentWord = _currentWord?[..^1];
-            WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
+            WordDisplay.Instance.UpdateWordState(tile, _currentWord, ref _currentScore, _lineList, _selectingTiles);
         }
         else
         {
@@ -185,7 +185,7 @@ public class Board : Singleton<Board>
             _selectingTiles.Add(tile);
 
             _currentWord += tile.Letter;
-            WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
+            WordDisplay.Instance.UpdateWordState(tile, _currentWord, ref _currentScore, _lineList, _selectingTiles);
         }
     }
 
@@ -195,7 +195,7 @@ public class Board : Singleton<Board>
         _selectingTiles.Add(tile);
         _currentWord += tile.Letter;
 
-        WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
+        WordDisplay.Instance.UpdateWordState(tile, _currentWord, ref _currentScore, _lineList, _selectingTiles);
     }
 
     public void DeselectAll()
@@ -341,12 +341,12 @@ public class Board : Singleton<Board>
             previousTile = tile;
 
             _currentWord += tile.Letter;
-            WordDisplay.Instance.UpdateWordState(tile, _currentWord, _currentScore, _lineList, _selectingTiles);
+            WordDisplay.Instance.UpdateWordState(tile, _currentWord, ref _currentScore, _lineList, _selectingTiles);
         }
 
         _lastSelectedTiles = new List<Tile>(_selectingTiles);
 
-        Debug.Log($"Opponent selected: {word}({_currentScore})");
+        Debug.Log($"Opponent selected: {word} ({_currentScore})");
     }
     #endregion
 }

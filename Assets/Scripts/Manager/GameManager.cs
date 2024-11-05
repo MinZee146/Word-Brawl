@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     public void CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
+        
         if (Board.Instance.FoundWords.Count == 0)
         {
             UIManager.Instance.ToggleGameOverScreen();

@@ -41,7 +41,7 @@ public class WordDisplay : Singleton<WordDisplay>
         }
     }
 
-    public void         UpdateWordState(Tile tile, string currentWord, int currentScore, List<GameObject> lineList, List<Tile> selectingTiles)
+    public void UpdateWordState(Tile tile, string currentWord, ref int currentScore, List<GameObject> lineList, List<Tile> selectingTiles)
     {
         if (currentWord.Length > 1)
         {
