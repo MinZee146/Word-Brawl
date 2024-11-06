@@ -1,4 +1,4 @@
-public class GameManager : Singleton<GameManager>
+public class GameManager : SingletonPersistent<GameManager>
 {
     private void Start()
     {
@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
         UIManager.Instance.Initialize();
-        PowerupsManager.Instance.InitializePowerUps();
+        PowerupsManager.Instance.Initialize();
         NameRegister.Instance.Initialize();
     }
 

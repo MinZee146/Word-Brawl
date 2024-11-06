@@ -21,7 +21,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _phase++;
         _turn = 1;
 
-        PowerupsManager.Instance.InitializePowerUps();
+        PowerupsManager.Instance.Initialize();
     }
 
     public void NextTurn()

@@ -77,6 +77,4 @@ public class UIManager : SingletonPersistent<UIManager>
         var musicState = PlayerPrefs.GetInt("IsMusicOn", 1);
         _toggleMusicButton.GetComponent<Image>().sprite = musicState == 1 ? _musicOn : _musicOff;
     }
-
-
 }
