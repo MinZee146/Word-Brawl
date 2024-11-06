@@ -18,7 +18,7 @@ public class GameUIController : Singleton<GameUIController>
             return;
         }
 
-        if (true) //
+        if (GameFlowManager.Instance.IsPlayerTurn)
         {
             _hintButton.SetActive(hintState);
             _confirmButton.SetActive(!hintState);
