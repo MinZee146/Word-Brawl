@@ -1042,7 +1042,7 @@ GameObject:
   - component: {fileID: 380231952}
   - component: {fileID: 380231951}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1902,7 +1902,7 @@ GameObject:
   - component: {fileID: 530286877}
   - component: {fileID: 530286876}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3183,7 +3183,7 @@ GameObject:
   - component: {fileID: 798566236}
   - component: {fileID: 798566235}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6034,7 +6034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOverScreen: {fileID: 1988901250}
   _loadingScreen: {fileID: 1286227008}
-  _powerupsPanel: {fileID: 1880143089}
+  _powerUpsPanel: {fileID: 1880143089}
   _settingsPanel: {fileID: 936685579}
   _toggleSFXButton: {fileID: 319452343}
   _toggleMusicButton: {fileID: 1526058485}
@@ -6772,7 +6772,7 @@ GameObject:
   - component: {fileID: 1518021698}
   - component: {fileID: 1518021697}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7608,7 +7608,7 @@ GameObject:
   - component: {fileID: 1638812744}
   - component: {fileID: 1638812746}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8138,7 +8138,7 @@ GameObject:
   - component: {fileID: 1830698610}
   - component: {fileID: 1830698609}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8387,7 +8387,7 @@ GameObject:
   - component: {fileID: 1880143092}
   - component: {fileID: 1880143091}
   m_Layer: 5
-  m_Name: PowerupsPanel
+  m_Name: PowerUpsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8546,7 +8546,7 @@ GameObject:
   - component: {fileID: 1913920604}
   - component: {fileID: 1913920603}
   m_Layer: 5
-  m_Name: Powerup
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class PowerupsManager : SingletonPersistent<PowerupsManager>
+public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 {
     [SerializeField] private Button[] _powerUpsButtons;
 
-    private PowerupBase[] _powerUpsList = new PowerupBase[6];
-    private AsyncOperationHandle<IList<PowerupBase>> _loadedPowerupHandle;
+    private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
+    private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
 
     public int PowerUpCounts()
     {
@@ -20,11 +20,11 @@ public class PowerupsManager : SingletonPersistent<PowerupsManager>
 
     public void Initialize()
     {
-        _loadedPowerupHandle = Addressables.LoadAssetsAsync<PowerupBase>("PowerupConfigs", null);
-        _loadedPowerupHandle.Completed += OnPowerUpsLoaded;
+        _loadedPowerUpHandle = Addressables.LoadAssetsAsync<PowerUpBase>("PowerupConfigs", null);
+        _loadedPowerUpHandle.Completed += OnPowerUpsLoaded;
     }
 
-    private void OnPowerUpsLoaded(AsyncOperationHandle<IList<PowerupBase>> handle)
+    private void OnPowerUpsLoaded(AsyncOperationHandle<IList<PowerUpBase>> handle)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -53,7 +53,7 @@ public class PowerupsManager : SingletonPersistent<PowerupsManager>
 
         if (GameFlowManager.Instance.IsPlayerTurn)
         {
-            UIManager.Instance.TogglePowerupsPanel();
+            UIManager.Instance.TogglePowerUpsPanel();
         }
         // TODO: Add Powerup logic here
     }
@@ -61,7 +61,7 @@ public class PowerupsManager : SingletonPersistent<PowerupsManager>
     public void UnloadPowerUps()
     {
         // Release all loaded power-ups with a single call
-        Addressables.Release(_loadedPowerupHandle);
+        Addressables.Release(_loadedPowerUpHandle);
 
         // Clear button states and listeners
         foreach (var button in _powerUpsButtons)

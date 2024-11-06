@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DoubleScore", menuName = "Powerups/DoubleScore")]
-public class DoubleScore : PowerupBase
+public class DoubleScore : PowerUpBase
 {
     public override void ApplyPowerUp()
     {

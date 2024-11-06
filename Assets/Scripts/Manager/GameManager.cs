@@ -13,7 +13,7 @@ public class GameManager : SingletonPersistent<GameManager>
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
         UIManager.Instance.Initialize();
-        PowerupsManager.Instance.Initialize();
+        PowerUpsManager.Instance.Initialize();
         NameRegister.Instance.Initialize();
     }
 

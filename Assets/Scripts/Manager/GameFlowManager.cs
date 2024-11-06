@@ -21,7 +21,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _phase++;
         _turn = 1;
 
-        PowerupsManager.Instance.Initialize();
+        PowerUpsManager.Instance.Initialize();
     }
 
     public void NextTurn()
@@ -33,9 +33,9 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
 
         if (_isPlayerTurn)
         {
-            if (_turn > 2 && PowerupsManager.Instance.PowerUpCounts() > 0)
+            if (_turn > 2 && PowerUpsManager.Instance.PowerUpCounts() > 0)
             {
-                UIManager.Instance.TogglePowerupsPanel();
+                UIManager.Instance.TogglePowerUpsPanel();
             }
         }
         else

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class PowerupBase : ScriptableObject
+public abstract class PowerUpBase : ScriptableObject
 {
     public Sprite Sprite;
     public string Description;

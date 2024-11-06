@@ -1,12 +1,11 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
-    [SerializeField] private GameObject _gameOverScreen, _loadingScreen, _powerupsPanel, _settingsPanel;
+    [SerializeField] private GameObject _gameOverScreen, _loadingScreen, _powerUpsPanel, _settingsPanel;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
@@ -55,10 +54,10 @@ public class UIManager : SingletonPersistent<UIManager>
         _gameOverScreen.SetActive(!_gameOverScreen.activeSelf);
     }
 
-    public void TogglePowerupsPanel()
+    public void TogglePowerUpsPanel()
     {
         _isInteractable = !_isInteractable;
-        _powerupsPanel.SetActive(!_powerupsPanel.activeSelf);
+        _powerUpsPanel.SetActive(!_powerUpsPanel.activeSelf);
     }
 
     public void ToggleSettingsScreen()
@@ -70,7 +69,7 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToggleInspectBoard()
     {
         _isInspectingBoard = !_isInspectingBoard;
-        TogglePowerupsPanel();
+        TogglePowerUpsPanel();
     }
 
     public void ToggleSFX()

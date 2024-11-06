@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ExtraTurn", menuName = "Powerups/ExtraTurn")]
-public class ExtraTurn : PowerupBase
+public class ExtraTurn : PowerUpBase
 {
     public override void ApplyPowerUp()
     {

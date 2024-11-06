@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShortBonus", menuName = "Powerups/ShortBonus")]
-public class ShortBonus : PowerupBase
+public class ShortBonus : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
