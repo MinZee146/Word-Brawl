@@ -293,7 +293,10 @@ public class Board : Singleton<Board>
             PlayerStatsManager.Instance.UpdateOpponentStats(_currentWord, _currentScore);
         }
 
-        GameFlowManager.Instance.NextTurn();
+        if (!GameManager.Instance.IsGameOver)
+        {
+            GameFlowManager.Instance.NextTurn();
+        }
     }
 
     private IEnumerator<float> PopSelectedTiles()
