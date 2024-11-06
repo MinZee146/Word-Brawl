@@ -12,8 +12,16 @@ public class UIManager : SingletonPersistent<UIManager>
     [SerializeField] private TMP_InputField _replaceLetter;
 
     private bool _isInspectingBoard, _isInteractable = true;
-    public bool IsInspectingBoard => _isInspectingBoard;
-    public bool IsInteractable => _isInteractable;
+    public bool IsInspectingBoard
+    {
+        get => _isInspectingBoard;
+        set => _isInspectingBoard = value;
+    }
+    public bool IsInteractable
+    {
+        get => _isInteractable;
+        set => _isInteractable = value;
+    }
 
     public void Initialize()
     {

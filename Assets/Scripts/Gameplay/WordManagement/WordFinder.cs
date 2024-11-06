@@ -58,10 +58,14 @@ public class WordFinder : Singleton<WordFinder>
     #region Hint
     public void GetHint()
     {
+        UIManager.Instance.IsInteractable = false;
+        GameUIController.Instance.ToggleHintAndConfirm(display: false);
+
         if (_currentHint == null || !CheckIfHintIsLost())
         {
             _hintIndex = 0;
-            _currentHint = Board.Instance.FoundWords.Values.FirstOrDefault(word => word.Count >= 5) ?? Board.Instance.FoundWords.Values.FirstOrDefault();
+            _currentHint = Board.Instance.FoundWords.Values.FirstOrDefault(word => word.Count >= 5)
+                           ?? Board.Instance.FoundWords.Values.FirstOrDefault();
             Board.Instance.FoundWords.Keys.FirstOrDefault(word => Board.Instance.FoundWords[word] == _currentHint);
         }
 
@@ -92,8 +96,20 @@ public class WordFinder : Singleton<WordFinder>
             sequence.Append(subSequence);
 
             sequence.OnComplete(() =>
-                AudioManager.Instance.PlaySFX("HintCompleted")
-            );
+            {
+                AudioManager.Instance.PlaySFX("HintCompleted");
+
+                UIManager.Instance.IsInteractable = true;
+                GameUIController.Instance.ToggleHintAndConfirm();
+            });
+        }
+        else
+        {
+            sequence.OnComplete(() =>
+            {
+                UIManager.Instance.IsInteractable = true;
+                GameUIController.Instance.ToggleHintAndConfirm();
+            });
         }
 
         sequence.Play();
