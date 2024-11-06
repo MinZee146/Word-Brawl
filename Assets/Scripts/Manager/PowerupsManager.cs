@@ -18,7 +18,7 @@ public class PowerupsManager : SingletonPersistent<PowerupsManager>
         return _powerUpsButtons.Count(button => button.interactable);
     }
 
-    public void InitializePowerUps()
+    public void Initialize()
     {
         _loadedPowerupHandle = Addressables.LoadAssetsAsync<PowerupBase>("PowerupConfigs", null);
         _loadedPowerupHandle.Completed += OnPowerUpsLoaded;

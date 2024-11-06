@@ -19,12 +19,13 @@ public class UIManager : SingletonPersistent<UIManager>
     public void LoadGameScene()
     {
         ToggleLoadingScreen();
+        GameManager.Instance.NewGame();
+        
         Addressables.LoadSceneAsync("Assets/Scenes/Gameplay.unity").Completed += handle =>
         {
             PlayerStatsManager.Instance.LoadNames();
         };
     }
-
 
     public void ToggleGameOverScreen()
     {
@@ -79,6 +80,4 @@ public class UIManager : SingletonPersistent<UIManager>
         var musicState = PlayerPrefs.GetInt("IsMusicOn", 1);
         _toggleMusicButton.GetComponent<Image>().sprite = musicState == 1 ? _musicOn : _musicOff;
     }
-
-
 }

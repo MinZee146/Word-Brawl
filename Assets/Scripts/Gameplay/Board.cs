@@ -117,23 +117,7 @@ public class Board : Singleton<Board>
 
             if (touch.phase == TouchPhase.Began)
             {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(GameUIController.Instance.ConfirmButtonRect(), touch.position))
-                {
-                    GameUIController.Instance.ToggleHintAndConfirm();
-                }
-
-                _isDragging = true;
-
-                DeselectAll();
-                DisconnectAll();
-
-                _lastSelectedTiles = new List<Tile>(_selectingTiles);
-                _selectingTiles.Clear();
-
-                _selectedWord = _currentWord;
-                _currentWord = null;
-
-                WordDisplay.Instance.UndisplayWordAndScore();
+                HandleTouchBegin(touch);
             }
             else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
@@ -144,6 +128,27 @@ public class Board : Singleton<Board>
                 HandleDragging();
             }
         }
+    }
+
+    private void HandleTouchBegin(Touch touch)
+    {
+        if (!RectTransformUtility.RectangleContainsScreenPoint(GameUIController.Instance.ConfirmButtonRect(), touch.position))
+        {
+            GameUIController.Instance.ToggleHintAndConfirm();
+        }
+
+        _isDragging = true;
+
+        DeselectAll();
+        DisconnectAll();
+
+        _lastSelectedTiles = new List<Tile>(_selectingTiles);
+        _selectingTiles.Clear();
+
+        _selectedWord = _currentWord;
+        _currentWord = null;
+
+        WordDisplay.Instance.UndisplayWordAndScore();
     }
 
     private void HandleDragging()
@@ -270,7 +275,7 @@ public class Board : Singleton<Board>
 
         GameManager.Instance.CheckForGameOver();
 
-        if (GameManager.Instance.IsPlayerTurn)
+        if (GameFlowManager.Instance.IsPlayerTurn)
         {
             PlayerStatsManager.Instance.UpdatePlayerStats(_currentWord, _currentScore);
         }
