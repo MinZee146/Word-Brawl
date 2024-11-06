@@ -20,7 +20,7 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         ToggleLoadingScreen();
         GameManager.Instance.NewGame();
-        
+
         Addressables.LoadSceneAsync("Assets/Scenes/Gameplay.unity").Completed += handle =>
         {
             PlayerStatsManager.Instance.LoadNames();
@@ -50,6 +50,12 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToggleSettingsScreen()
     {
         _settingsPanel.SetActive(!_settingsPanel.activeSelf);
+    }
+
+    public void ToggleInspectBoard()
+    {
+        Board.Instance.ToggleInspectBoard();
+        TogglePowerupsPanel();
     }
 
     public void ToggleSFX()

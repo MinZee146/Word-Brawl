@@ -34,5 +34,4 @@ public class GameUIController : Singleton<GameUIController>
     {
         UIManager.Instance.ToggleSettingsScreen();
     }
-
 }
