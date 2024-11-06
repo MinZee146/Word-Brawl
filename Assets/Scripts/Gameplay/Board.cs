@@ -22,7 +22,7 @@ public class Board : Singleton<Board>
     private List<GameObject> _lineList = new();
     private TileConfigManager _configManager = new();
 
-    private bool _isDragging, _isInspectingBoard;
+    private bool _isDragging;
     private string _currentWord, _selectedWord;
     private int _currentScore;
 
@@ -109,11 +109,6 @@ public class Board : Singleton<Board>
     #endregion
 
     #region InputHandle
-    public void ToggleInspectBoard()
-    {
-        _isInspectingBoard = !_isInspectingBoard;
-    }
-
     private void HandleTouchInput()
     {
         if (Input.touchCount > 0 && GameFlowManager.Instance.IsPlayerTurn)
@@ -122,7 +117,7 @@ public class Board : Singleton<Board>
 
             if (touch.phase == TouchPhase.Began)
             {
-                if (_isInspectingBoard)
+                if (UIManager.Instance.IsInspectingBoard)
                 {
                     UIManager.Instance.ToggleInspectBoard();
                 }

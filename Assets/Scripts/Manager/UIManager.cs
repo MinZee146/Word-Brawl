@@ -11,6 +11,9 @@ public class UIManager : SingletonPersistent<UIManager>
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
 
+    private bool _isInspectingBoard;
+    public bool IsInspectingBoard => _isInspectingBoard;
+
     public void Initialize()
     {
         UpdateSettingsUI();
@@ -54,7 +57,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ToggleInspectBoard()
     {
-        Board.Instance.ToggleInspectBoard();
+        _isInspectingBoard = !_isInspectingBoard;
         TogglePowerupsPanel();
     }
 
