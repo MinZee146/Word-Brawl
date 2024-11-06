@@ -1,11 +1,11 @@
+using MEC;
+
 public class GameFlowManager : SingletonPersistent<GameFlowManager>
 {
-    private bool _isGameOver;
     private bool _isPlayerTurn;
     private int _turn, _phase;
 
     public bool IsPlayerTurn => _isPlayerTurn;
-    public bool IsGameOver => _isGameOver;
     public int Turn => _turn;
     public int Phase => _phase;
 
@@ -31,9 +31,16 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
 
         GameUIController.Instance.ToggleHintAndConfirm();
 
-        if (_turn > 2 && _isPlayerTurn && PowerupsManager.Instance.PowerUpCounts() > 0)
+        if (_isPlayerTurn)
         {
-            UIManager.Instance.TogglePowerupsPanel();
+            if (_turn > 2 && PowerupsManager.Instance.PowerUpCounts() > 0)
+            {
+                UIManager.Instance.TogglePowerupsPanel();
+            }
+        }
+        else
+        {
+            Timing.RunCoroutine(AI.Instance.AITurn());
         }
     }
 }

@@ -111,7 +111,7 @@ public class Board : Singleton<Board>
     #region InputHandle
     private void HandleTouchInput()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && GameFlowManager.Instance.IsPlayerTurn)
         {
             var touch = Input.GetTouch(0);
 
@@ -283,6 +283,8 @@ public class Board : Singleton<Board>
         {
             PlayerStatsManager.Instance.UpdateOpponentStats(_currentWord, _currentScore);
         }
+
+        GameFlowManager.Instance.NextTurn();
     }
 
     private IEnumerator<float> PopSelectedTiles()

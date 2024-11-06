@@ -32,10 +32,5 @@ public class AI : Singleton<AI>
         WordDisplay.Instance.UndisplayWordAndScore();
 
         Timing.RunCoroutine(Board.Instance.PopAndRefresh());
-
-        // UIManager.Instance.UpdateOpponentScore(_currentScore);
-
-        // _selectingTiles.Clear();
-        // _currentWord = null;
     }
 }

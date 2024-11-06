@@ -1,5 +1,8 @@
 public class GameManager : SingletonPersistent<GameManager>
 {
+    private bool _isGameOver;
+    public bool IsGameOver => _isGameOver;
+
     private void Start()
     {
         Initialize();
@@ -25,6 +28,7 @@ public class GameManager : SingletonPersistent<GameManager>
 
         if (Board.Instance.FoundWords.Count == 0)
         {
+            _isGameOver = true;
             UIManager.Instance.ToggleGameOverScreen();
         }
     }
