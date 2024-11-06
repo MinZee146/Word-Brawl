@@ -32,6 +32,8 @@ public class Board : Singleton<Board>
     public void Initialize()
     {
         _configManager.LoadConfigs();
+        _configManager.HandleConfigsLoaded += OnConfigsLoaded;
+
         _board = GetComponent<RectTransform>();
         _graphicRaycaster = GetComponentInParent<GraphicRaycaster>();
         _eventSystem = FindObjectOfType<EventSystem>();
@@ -40,6 +42,10 @@ public class Board : Singleton<Board>
     private void Start()
     {
         Initialize();
+    }
+
+    private void OnConfigsLoaded()
+    {
         GenerateBoard();
         WordFinder.Instance.FindAllWords();
     }

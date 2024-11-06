@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Powerups
+  m_EditorClassIdentifier: 
+  m_GroupName: Powerups
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2730c99d6ba6f0744a1fbaf82fc8d4fa
+  m_SerializeEntries:
+  - m_GUID: 0045032d358a5b444b18fb1d01f5de04
+    m_Address: Assets/Configs/PowerupConfigs/Shuffle.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e745b297bd993e468cebe23f735a5d1
+    m_Address: Assets/Configs/PowerupConfigs/Grief.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58363f8a3fecaff48b4beb8c3c7a92cf
+    m_Address: Assets/Configs/PowerupConfigs/LongBonus.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 589145a68ceb8624684224a1a173df7a
+    m_Address: Assets/Configs/PowerupConfigs/DoubleScore.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f519be892c11e94daf848c109a99ad0
+    m_Address: Assets/Configs/PowerupConfigs/RevealWord.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 764df90a3d5e2104eb15b04d85a2eaf2
+    m_Address: Assets/Configs/PowerupConfigs/ExtraTurn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dc09634e56e1504699d703e7d9a0be1
+    m_Address: Assets/Configs/PowerupConfigs/ShortBonus.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1844118acbe59448a49a0cbfffe8abe
+    m_Address: Assets/Configs/PowerupConfigs/LetterReplace.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb97bd404b973034c9d882765ffb4d02
+    m_Address: Assets/Configs/PowerupConfigs/ShortPenalty.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PowerupConfigs
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a3880b8fb25b90a4cada257dda67b2f5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f344b529ad27b5f40880d247c988ec64, type: 2}
+    - {fileID: 11400000, guid: ad07376dd7577644bb8981d3fcfa9638, type: 2}

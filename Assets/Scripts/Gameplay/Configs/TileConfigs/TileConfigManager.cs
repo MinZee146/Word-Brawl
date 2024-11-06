@@ -1,10 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class TileConfigManager
 {
+    public event Action HandleConfigsLoaded;
+
     private TileConfig[] _tileConfigList;
+    private AsyncOperationHandle<IList<TileConfig>> _loadedConfigsHandle;
     private readonly Dictionary<char, float> _letterFrequency = new()
     {
         {'E', 11.1607f}, {'A', 8.4966f}, {'I', 7.5448f}, {'O', 7.1635f}, {'N', 6.6544f}, {'R', 7.5809f}, {'T', 6.9509f},
@@ -16,7 +22,7 @@ public class TileConfigManager
     public TileConfig GetRandomLetter()
     {
         var totalWeight = _letterFrequency.Sum(entry => entry.Value);
-        var randomWeight = Random.Range(0, totalWeight);
+        var randomWeight = UnityEngine.Random.Range(0, totalWeight);
 
         foreach (var entry in _letterFrequency)
         {
@@ -33,11 +39,32 @@ public class TileConfigManager
 
     public TileConfig GetConfig(char letter)
     {
-        return _tileConfigList.FirstOrDefault(tileStat => tileStat.Letter == letter);
+        return _tileConfigList?.FirstOrDefault(tileStat => tileStat.Letter == letter);
     }
 
     public void LoadConfigs()
     {
-        _tileConfigList = Resources.LoadAll<TileConfig>("TileConfigs");
+        // Load all TileConfig assets with the label "TileConfigs" asynchronously
+        _loadedConfigsHandle = Addressables.LoadAssetsAsync<TileConfig>("TileConfigs", null);
+        _loadedConfigsHandle.Completed += OnConfigsLoaded;
+    }
+
+    private void OnConfigsLoaded(AsyncOperationHandle<IList<TileConfig>> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            _tileConfigList = handle.Result.ToArray();
+            HandleConfigsLoaded?.Invoke();
+        }
+        else
+        {
+            Debug.LogError("Failed to load TileConfigs from Addressables.");
+        }
+    }
+
+    public void UnloadConfigs()
+    {
+        Addressables.Release(_loadedConfigsHandle);
+        _tileConfigList = null;
     }
 }
