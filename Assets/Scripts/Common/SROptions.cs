@@ -15,4 +15,10 @@ public partial class SROptions
     {
         Timing.RunCoroutine(AI.Instance.AITurn());
     }
+
+    [Category("Debug")]
+    public void GameOver()
+    {
+        UIManager.Instance.ToggleGameOverScreen();
+    }
 }
