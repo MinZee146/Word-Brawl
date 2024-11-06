@@ -1,14 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using UnityEngine;
-
 public class GameManager : Singleton<GameManager>
 {
-    private bool _isPlayerTurn;
-    public bool IsPlayerTurn => _isPlayerTurn;
-    private int _turn;
-
     private void Start()
     {
         Initialize();
@@ -22,26 +13,18 @@ public class GameManager : Singleton<GameManager>
         NameRegister.Instance.Initialize();
     }
 
+    public void NewGame()
+    {
+        GameFlowManager.Instance.StartGame();
+    }
+
     public void CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
-        
+
         if (Board.Instance.FoundWords.Count == 0)
         {
             UIManager.Instance.ToggleGameOverScreen();
-        }
-    }
-
-    public void NextTurn()
-    {
-        _turn++;
-        _isPlayerTurn = !_isPlayerTurn;
-
-        UIController.Instance.ToggleHintAndConfirm();
-
-        if (_turn > 2 && _isPlayerTurn && PowerupsManager.Instance.PowerUpCounts() > 0)
-        {
-            UIManager.Instance.TogglePowerupsPanel();
         }
     }
 }

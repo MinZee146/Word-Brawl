@@ -270,7 +270,7 @@ public class Board : Singleton<Board>
 
         GameManager.Instance.CheckForGameOver();
 
-        if (GameManager.Instance.IsPlayerTurn)
+        if (GameFlowManager.Instance.IsPlayerTurn)
         {
             PlayerStatsManager.Instance.UpdatePlayerStats(_currentWord, _currentScore);
         }

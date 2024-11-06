@@ -11,9 +11,11 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void LoadGameScene()
     {
-        ToggleLoadingScreen();
         var asyncLoad = SceneManager.LoadSceneAsync("Gameplay");
         asyncLoad.completed += (operation) => PlayerStatsManager.Instance.LoadNames();
+
+        ToggleLoadingScreen();
+        GameManager.Instance.NewGame();
     }
 
     public void ToggleGameOverScreen()
