@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     {
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
+        UIManager.Instance.Initialize();
         PowerupsManager.Instance.InitializePowerUps();
         NameRegister.Instance.Initialize();
     }
@@ -25,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     public void CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
-        
+
         if (Board.Instance.FoundWords.Count == 0)
         {
             UIManager.Instance.ToggleGameOverScreen();
@@ -37,7 +38,7 @@ public class GameManager : Singleton<GameManager>
         _turn++;
         _isPlayerTurn = !_isPlayerTurn;
 
-        UIController.Instance.ToggleHintAndConfirm();
+        GameUIController.Instance.ToggleHintAndConfirm();
 
         if (_turn > 2 && _isPlayerTurn && PowerupsManager.Instance.PowerUpCounts() > 0)
         {

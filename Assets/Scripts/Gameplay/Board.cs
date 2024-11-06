@@ -117,9 +117,9 @@ public class Board : Singleton<Board>
 
             if (touch.phase == TouchPhase.Began)
             {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(UIController.Instance.ConfirmButtonRect(), touch.position))
+                if (!RectTransformUtility.RectangleContainsScreenPoint(GameUIController.Instance.ConfirmButtonRect(), touch.position))
                 {
-                    UIController.Instance.ToggleHintAndConfirm();
+                    GameUIController.Instance.ToggleHintAndConfirm();
                 }
 
                 _isDragging = true;
@@ -261,7 +261,7 @@ public class Board : Singleton<Board>
 
     public IEnumerator<float> PopAndRefresh()
     {
-        UIController.Instance.ToggleHintAndConfirm(display: false);
+        GameUIController.Instance.ToggleHintAndConfirm(display: false);
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
 
         _selectingTiles.Clear();

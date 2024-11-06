@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIController : SingletonPersistent<UIController>
+public class GameUIController : Singleton<GameUIController>
 {
     [SerializeField] private GameObject _hintButton, _confirmButton;
 
@@ -28,6 +28,11 @@ public class UIController : SingletonPersistent<UIController>
             _hintButton.SetActive(false);
             _confirmButton.SetActive(false);
         }
+    }
+
+    public void ToggleSettings()
+    {
+        UIManager.Instance.ToggleSettingsScreen();
     }
 
 }
