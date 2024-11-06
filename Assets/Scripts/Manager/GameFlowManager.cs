@@ -29,7 +29,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _turn++;
         _isPlayerTurn = !_isPlayerTurn;
 
-        UIController.Instance.ToggleHintAndConfirm();
+        GameUIController.Instance.ToggleHintAndConfirm();
 
         if (_turn > 2 && _isPlayerTurn && PowerupsManager.Instance.PowerUpCounts() > 0)
         {

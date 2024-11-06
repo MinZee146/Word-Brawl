@@ -28,17 +28,4 @@ public class GameManager : Singleton<GameManager>
             UIManager.Instance.ToggleGameOverScreen();
         }
     }
-
-    public void NextTurn()
-    {
-        _turn++;
-        _isPlayerTurn = !_isPlayerTurn;
-
-        GameUIController.Instance.ToggleHintAndConfirm();
-
-        if (_turn > 2 && _isPlayerTurn && PowerupsManager.Instance.PowerUpCounts() > 0)
-        {
-            UIManager.Instance.TogglePowerupsPanel();
-        }
-    }
 }
