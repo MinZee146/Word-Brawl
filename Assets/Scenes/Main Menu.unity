@@ -691,7 +691,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 319452346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292717605}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &319452346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5876,6 +5888,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOverScreen: {fileID: 1988901250}
   _loadingScreen: {fileID: 1286227008}
+  _powerupsPanel: {fileID: 1880143089}
+  _settingsPanel: {fileID: 936685579}
+  _toggleSFXButton: {fileID: 319452343}
+  _toggleMusicButton: {fileID: 1526058485}
+  _sfxOn: {fileID: -213356348, guid: 156ec492e516ccb4099add479601d65e, type: 3}
+  _sfxOff: {fileID: 1897002124, guid: 156ec492e516ccb4099add479601d65e, type: 3}
+  _musicOn: {fileID: -663011761, guid: 156ec492e516ccb4099add479601d65e, type: 3}
+  _musicOff: {fileID: 53940023, guid: 156ec492e516ccb4099add479601d65e, type: 3}
   _replaceLetter: {fileID: 795406335}
 --- !u!114 &1292717606
 MonoBehaviour:
@@ -6797,7 +6817,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1526058488}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292717605}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1526058488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7054,7 +7086,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1292717605}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ToggleGameOverScreen
+        m_MethodName: ToggleSettingsScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

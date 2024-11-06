@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     {
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
+        UIManager.Instance.Initialize();
         PowerupsManager.Instance.InitializePowerUps();
         NameRegister.Instance.Initialize();
     }
@@ -25,6 +26,19 @@ public class GameManager : Singleton<GameManager>
         if (Board.Instance.FoundWords.Count == 0)
         {
             UIManager.Instance.ToggleGameOverScreen();
+        }
+    }
+
+    public void NextTurn()
+    {
+        _turn++;
+        _isPlayerTurn = !_isPlayerTurn;
+
+        GameUIController.Instance.ToggleHintAndConfirm();
+
+        if (_turn > 2 && _isPlayerTurn && PowerupsManager.Instance.PowerUpCounts() > 0)
+        {
+            UIManager.Instance.TogglePowerupsPanel();
         }
     }
 }
