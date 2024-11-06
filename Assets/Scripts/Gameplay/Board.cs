@@ -111,7 +111,7 @@ public class Board : Singleton<Board>
     #region InputHandle
     private void HandleTouchInput()
     {
-        if (Input.touchCount > 0 && GameFlowManager.Instance.IsPlayerTurn)
+        if (Input.touchCount > 0 && GameFlowManager.Instance.IsPlayerTurn && UIManager.Instance.IsInteractable)
         {
             var touch = Input.GetTouch(0);
 

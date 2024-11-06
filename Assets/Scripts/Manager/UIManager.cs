@@ -11,8 +11,9 @@ public class UIManager : SingletonPersistent<UIManager>
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
 
-    private bool _isInspectingBoard;
+    private bool _isInspectingBoard, _isInteractable = true;
     public bool IsInspectingBoard => _isInspectingBoard;
+    public bool IsInteractable => _isInteractable;
 
     public void Initialize()
     {
@@ -30,11 +31,6 @@ public class UIManager : SingletonPersistent<UIManager>
         };
     }
 
-    public void ToggleGameOverScreen()
-    {
-        _gameOverScreen.SetActive(!_gameOverScreen.activeSelf);
-    }
-
     public void ToggleLoadingScreen()
     {
         _loadingScreen.SetActive(!_loadingScreen.activeSelf);
@@ -45,13 +41,21 @@ public class UIManager : SingletonPersistent<UIManager>
         _replaceLetter.text = _replaceLetter.text.ToUpper();
     }
 
+    public void ToggleGameOverScreen()
+    {
+        _isInteractable = !_isInteractable;
+        _gameOverScreen.SetActive(!_gameOverScreen.activeSelf);
+    }
+
     public void TogglePowerupsPanel()
     {
+        _isInteractable = !_isInteractable;
         _powerupsPanel.SetActive(!_powerupsPanel.activeSelf);
     }
 
     public void ToggleSettingsScreen()
     {
+        _isInteractable = !_isInteractable;
         _settingsPanel.SetActive(!_settingsPanel.activeSelf);
     }
 
