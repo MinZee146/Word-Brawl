@@ -272,12 +272,16 @@ public class Board : Singleton<Board>
     public IEnumerator<float> PopAndRefresh()
     {
         GameUIController.Instance.ToggleHintAndConfirm(display: false);
+        UIManager.Instance.IsInteractable = false;
+
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(PopSelectedTiles()));
 
-        _selectingTiles.Clear();
+        GameUIController.Instance.ToggleHintAndConfirm();
+        UIManager.Instance.IsInteractable = true;
+
         _currentWord = null;
         _currentScore = 0;
-
+        _selectingTiles.Clear();
         GameManager.Instance.CheckForGameOver();
 
         if (GameFlowManager.Instance.IsPlayerTurn)
