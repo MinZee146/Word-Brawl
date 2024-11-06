@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,9 +19,12 @@ public class UIManager : SingletonPersistent<UIManager>
     public void LoadGameScene()
     {
         ToggleLoadingScreen();
-        var asyncLoad = SceneManager.LoadSceneAsync("Gameplay");
-        asyncLoad.completed += (operation) => PlayerStatsManager.Instance.LoadNames();
+        Addressables.LoadSceneAsync("Assets/Scenes/Gameplay.unity").Completed += handle =>
+        {
+            PlayerStatsManager.Instance.LoadNames();
+        };
     }
+
 
     public void ToggleGameOverScreen()
     {
