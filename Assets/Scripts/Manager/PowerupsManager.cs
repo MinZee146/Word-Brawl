@@ -61,7 +61,22 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             UIManager.Instance.TogglePowerUpsPanel();
         }
 
-        Debug.Log("Selected PowerUp: " + _powerUpsList[index].name);
+        Debug.Log("SelectedPowerUp: " + _powerUpsList[index].name);
+    }
+
+    public void SelectRandomPowerUp()
+    {
+        var availableButtons = _powerUpsButtons.Where(button => button.interactable).ToList();
+
+        if (availableButtons.Count == 0)
+        {
+            return;
+        }
+
+        var randomIndex = Random.Range(0, availableButtons.Count);
+        var selectedPowerUpIndex = System.Array.IndexOf(_powerUpsButtons, availableButtons[randomIndex]);
+
+        UsePowerUp(selectedPowerUpIndex);
     }
 
     public void CheckForPowerUp(ref int currentScore)
