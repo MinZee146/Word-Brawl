@@ -123,8 +123,9 @@ public class UIManager : SingletonPersistent<UIManager>
         _imagePowerUp.sprite = sprite;
     }
 
-    public void OpponentPowerUpPanel()
+    public void ToggleOpponentPowerUpPanel()
     {
+        _isInteractable = !_isInteractable;
         _opponentPowerUp.SetActive(!_opponentPowerUp.activeSelf);
     }
 
@@ -154,8 +155,8 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ConfirmReplace()
     {
-         if (string.IsNullOrWhiteSpace(_replaceLetter.text)) return;
-         
+        if (string.IsNullOrWhiteSpace(_replaceLetter.text)) return;
+
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
         ToggleTileReplacePopUp();
     }

@@ -44,10 +44,10 @@ public class AI : Singleton<AI>
         {
             yield return Timing.WaitForSeconds(0.5f);
             PowerUpsManager.Instance.SelectRandomPowerUp();
-            UIManager.Instance.OpponentPowerUpPanel();
+            UIManager.Instance.ToggleOpponentPowerUpPanel();
 
             yield return Timing.WaitForSeconds(2.5f);
-            UIManager.Instance.OpponentPowerUpPanel();
+            UIManager.Instance.ToggleOpponentPowerUpPanel();
         }
     }
 }
