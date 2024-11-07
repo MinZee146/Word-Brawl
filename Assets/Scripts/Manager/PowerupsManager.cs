@@ -56,7 +56,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         _powerUpsList[index].ApplyPowerUp();
         _currentPowerUp = _powerUpsList[index];
 
-        Debug.Log(GameFlowManager.Instance.IsPlayerTurn);
         if (GameFlowManager.Instance.IsPlayerTurn)
         {
             UIManager.Instance.TogglePowerUpsPanel();
