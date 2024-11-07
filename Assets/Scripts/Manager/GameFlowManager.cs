@@ -22,6 +22,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _turn = 0;
         _isPlayerTurn = _phase != 1;
 
+        PowerUpsManager.Instance.UnloadPowerUps();
         PowerUpsManager.Instance.Initialize();
         Board.Instance.NewGame();
         NextTurn();
