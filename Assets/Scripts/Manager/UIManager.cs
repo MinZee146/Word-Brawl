@@ -14,6 +14,9 @@ public class UIManager : SingletonPersistent<UIManager>
     [SerializeField] private Image _imagePowerUp;
 
     private bool _isInspectingBoard, _isInteractable = true;
+    private string _inspectPanel;
+
+    public string InspectPanel => _inspectPanel;
     public bool IsInspectingBoard
     {
         get => _isInspectingBoard;
@@ -65,10 +68,20 @@ public class UIManager : SingletonPersistent<UIManager>
         _settingsPanel.SetActive(!_settingsPanel.activeSelf);
     }
 
-    public void ToggleInspectBoard()
+    public void ToggleInspectPowerUps()
     {
         _isInspectingBoard = !_isInspectingBoard;
+        _inspectPanel = "PowerUps";
+
         TogglePowerUpsPanel();
+    }
+
+    public void ToggleInspectReplace()
+    {
+        _isInspectingBoard = !_isInspectingBoard;
+        _inspectPanel = "Replace";
+
+        ToggleTileReplacePopUp();
     }
     #endregion
 

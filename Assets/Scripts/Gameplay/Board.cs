@@ -126,7 +126,13 @@ public class Board : Singleton<Board>
             {
                 if (UIManager.Instance.IsInspectingBoard)
                 {
-                    UIManager.Instance.ToggleInspectBoard();
+                    if (UIManager.Instance.InspectPanel == "PowerUps")
+                    {
+                        UIManager.Instance.ToggleInspectPowerUps();
+                    }
+                    if (UIManager.Instance.InspectPanel == "Replace")
+                    {
+                        UIManager.Instance.ToggleInspectReplace();
                 }
                 else
                     HandleTap();
