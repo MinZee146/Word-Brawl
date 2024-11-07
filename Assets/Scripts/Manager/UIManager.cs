@@ -134,5 +134,10 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
     }
+
+    public void ConfirmReplace()
+    {
+        Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
+    }
     #endregion
 }
