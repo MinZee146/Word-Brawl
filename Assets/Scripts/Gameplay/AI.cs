@@ -46,7 +46,7 @@ public class AI : Singleton<AI>
             PowerUpsManager.Instance.SelectRandomPowerUp();
             UIManager.Instance.ToggleOpponentPowerUpPanel();
 
-            yield return Timing.WaitForSeconds(2.5f);
+            yield return Timing.WaitForSeconds(2f);
             UIManager.Instance.ToggleOpponentPowerUpPanel();
         }
     }
