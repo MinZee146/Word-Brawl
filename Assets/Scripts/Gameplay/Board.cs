@@ -17,6 +17,7 @@ public class Board : Singleton<Board>
 
     public const int ColsEven = 6, ColsOdd = 5, Rows = 10;
     public TileConfig GetRandomLetter() => _configManager.GetRandomLetter();
+    public event Action HandleTileReplace;
 
     private RectTransform _board;
     private List<Tile> _selectingTiles = new(), _lastSelectedTiles;
@@ -60,7 +61,7 @@ public class Board : Singleton<Board>
 
     private void Update()
     {
-        HandleTouchInput();
+        HandleInput();
     }
 
     #region GenerateBoard
@@ -117,35 +118,37 @@ public class Board : Singleton<Board>
     #endregion
 
     #region InputHandle
-    private void HandleTouchInput()
+    private void HandleInput()
     {
-        if (Input.touchCount > 0 && GameFlowManager.Instance.IsPlayerTurn && UIManager.Instance.IsInteractable)
+        if (GameFlowManager.Instance.IsPlayerTurn && UIManager.Instance.IsInteractable)
         {
-            var touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
+            if (Input.GetMouseButtonDown(0))
             {
                 if (UIManager.Instance.IsInspectingBoard)
                 {
                     UIManager.Instance.ToggleInspectBoard();
                 }
-
-                HandleTouchBegin(touch);
+                else
+                    HandleTap();
             }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+
+            if (Input.GetMouseButtonUp(0))
             {
                 _isDragging = false;
             }
-            else if (touch.phase == TouchPhase.Moved && _isDragging)
+
+            if (_isDragging)
             {
                 HandleDragging();
             }
         }
     }
 
-    private void HandleTouchBegin(Touch touch)
+    private void HandleTap()
     {
-        if (!RectTransformUtility.RectangleContainsScreenPoint(GameUIController.Instance.ConfirmButtonRect(), touch.position))
+        var pos = Input.mousePosition;
+
+        if (!RectTransformUtility.RectangleContainsScreenPoint(GameUIController.Instance.ConfirmButtonRect(), pos))
         {
             GameUIController.Instance.ToggleHintAndConfirm();
         }
@@ -179,6 +182,7 @@ public class Board : Singleton<Board>
             if (_selectingTiles.Count == 0)
             {
                 SelectTile(tile);
+                HandleTileReplace?.Invoke();
             }
             else if (_selectingTiles[^1].IsAdjacent(tile))
             {
@@ -393,4 +397,13 @@ public class Board : Singleton<Board>
         Debug.Log($"Opponent selected: {word} ({_currentScore})");
     }
     #endregion
+    public void ReplaceSelectingTileWith(char letter)
+    {
+        var tile = _selectingTiles[^1];
+        TileList.Remove(tile);
+        tile.SetTileConfig(_configManager.Configs.FirstOrDefault(tileStat => tileStat.Letter == letter));
+        TileList.Add(tile);
+        tile.Deselect();
+        WordFinder.Instance.FindAllWords();
+    }
 }

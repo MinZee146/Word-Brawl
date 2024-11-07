@@ -8,6 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class TileConfigManager
 {
     public event Action HandleConfigsLoaded;
+    public TileConfig[] Configs => _tileConfigList;
 
     private TileConfig[] _tileConfigList;
     private AsyncOperationHandle<IList<TileConfig>> _loadedConfigsHandle;

@@ -7,7 +7,7 @@ public class UIManager : SingletonPersistent<UIManager>
 {
     [SerializeField]
     private GameObject _gameOverScreen, _loadingScreen, _powerUpsPanel, _settingsPanel,
-                    _revealWordPanel;
+                    _revealWordPanel, _replaceTilePanel;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
@@ -112,5 +112,10 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToggleRevealWordPopUp()
     {
         _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
+    }
+
+    public void ToggleTileReplacePopUp()
+    {
+        _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
     }
 }

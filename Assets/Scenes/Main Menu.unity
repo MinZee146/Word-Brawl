@@ -6037,6 +6037,7 @@ MonoBehaviour:
   _powerUpsPanel: {fileID: 1880143089}
   _settingsPanel: {fileID: 936685579}
   _revealWordPanel: {fileID: 1790317836}
+  _replaceTilePanel: {fileID: 339985808}
   _toggleSFXButton: {fileID: 319452343}
   _toggleMusicButton: {fileID: 1526058485}
   _sfxOn: {fileID: -213356348, guid: 156ec492e516ccb4099add479601d65e, type: 3}

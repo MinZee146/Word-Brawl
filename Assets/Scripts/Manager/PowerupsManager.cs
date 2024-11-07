@@ -103,7 +103,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
                 currentScore *= 2;
                 break;
             case "RevealWord":
-
             case "ReplaceLetter":
             case "Shuffle":
                 break;
