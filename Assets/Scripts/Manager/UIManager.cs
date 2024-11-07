@@ -129,12 +129,10 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         _replaceLetter.text = _replaceLetter.text.ToUpper();
     }
-    
-     public void ToggleTileReplacePopUp()
+
+    public void ToggleTileReplacePopUp()
     {
         _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
     }
     #endregion
-}
-   
 }
