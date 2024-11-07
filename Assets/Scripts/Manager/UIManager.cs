@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
-    [SerializeField]
-    private GameObject _gameOverScreen, _loadingScreen, _powerUpsPanel, _settingsPanel,
-                    _revealWordPanel;
+    [SerializeField] private GameObject _loadingScreen, _gameOverPanel, _powerUpsPanel, _settingsPanel;
+    [SerializeField] private GameObject _opponentPowerUp, _revealWordPanel;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
-    [SerializeField] private TextMeshProUGUI _revealText;
+    [SerializeField] private TextMeshProUGUI _revealText, _descriptionPowerUp;
+    [SerializeField] private Image _imagePowerUp;
 
     private bool _isInspectingBoard, _isInteractable = true;
     public bool IsInspectingBoard
@@ -41,20 +41,16 @@ public class UIManager : SingletonPersistent<UIManager>
         };
     }
 
+    #region TogglePanel
     public void ToggleLoadingScreen()
     {
         _loadingScreen.SetActive(!_loadingScreen.activeSelf);
     }
 
-    public void ToUpper()
-    {
-        _replaceLetter.text = _replaceLetter.text.ToUpper();
-    }
-
-    public void ToggleGameOverScreen()
+    public void ToggleGameOverPanel()
     {
         _isInteractable = !_isInteractable;
-        _gameOverScreen.SetActive(!_gameOverScreen.activeSelf);
+        _gameOverPanel.SetActive(!_gameOverPanel.activeSelf);
     }
 
     public void TogglePowerUpsPanel()
@@ -63,7 +59,7 @@ public class UIManager : SingletonPersistent<UIManager>
         _powerUpsPanel.SetActive(!_powerUpsPanel.activeSelf);
     }
 
-    public void ToggleSettingsScreen()
+    public void ToggleSettingsPanel()
     {
         _isInteractable = !_isInteractable;
         _settingsPanel.SetActive(!_settingsPanel.activeSelf);
@@ -74,7 +70,9 @@ public class UIManager : SingletonPersistent<UIManager>
         _isInspectingBoard = !_isInspectingBoard;
         TogglePowerUpsPanel();
     }
+    #endregion
 
+    #region SettingsUI
     public void ToggleSFX()
     {
         AudioManager.Instance.ToggleSFX();
@@ -103,6 +101,19 @@ public class UIManager : SingletonPersistent<UIManager>
         var musicState = PlayerPrefs.GetInt("IsMusicOn", 1);
         _toggleMusicButton.GetComponent<Image>().sprite = musicState == 1 ? _musicOn : _musicOff;
     }
+    #endregion
+
+    #region PowerUpUI
+    public void UpdateOpponentPowerUp(string description, Sprite sprite)
+    {
+        _descriptionPowerUp.text = description;
+        _imagePowerUp.sprite = sprite;
+    }
+
+    public void OpponentPowerUpPanel()
+    {
+        _opponentPowerUp.SetActive(!_opponentPowerUp.activeSelf);
+    }
 
     public void SetRevealedText(string text)
     {
@@ -113,4 +124,10 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
     }
+
+    public void ToUpper()
+    {
+        _replaceLetter.text = _replaceLetter.text.ToUpper();
+    }
+    #endregion
 }

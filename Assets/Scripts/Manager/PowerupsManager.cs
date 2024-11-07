@@ -78,6 +78,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         var selectedPowerUpIndex = System.Array.IndexOf(_powerUpsButtons, availableButtons[randomIndex]);
 
         UsePowerUp(selectedPowerUpIndex);
+        UIManager.Instance.UpdateOpponentPowerUp(_powerUpsList[selectedPowerUpIndex].Description, _powerUpsList[selectedPowerUpIndex].Sprite);
     }
 
     public void CheckForPowerUp(ref int currentScore, int currentLength)

@@ -36,7 +36,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         }
         else
         {
-            UIManager.Instance.ToggleGameOverScreen();
+            UIManager.Instance.ToggleGameOverPanel();
         }
     }
 
