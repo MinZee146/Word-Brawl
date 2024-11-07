@@ -33,6 +33,7 @@ public class UIManager : SingletonPersistent<UIManager>
         UpdateSettingsUI();
     }
 
+    #region LoadScene
     public void LoadGameScene()
     {
         ToggleLoadingScreen();
@@ -43,6 +44,14 @@ public class UIManager : SingletonPersistent<UIManager>
             PlayerStatsManager.Instance.LoadNames();
         };
     }
+
+    public void LoadMenuScene()
+    {
+        Addressables.LoadSceneAsync("Assets/Scenes/Main Menu.unity");
+        ToggleGameOverPanel();
+        ToggleLoadingScreen();
+    }
+    #endregion
 
     #region TogglePanel
     public void ToggleLoadingScreen()
