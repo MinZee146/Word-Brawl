@@ -83,14 +83,16 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         if (_isBeingGrief)
         {
             currentScore /= 2;
-            _isBeingGrief = false;
         }
-        if(_isPenalty){
-            if(currentLength  < 6){
+
+        if (_isPenalty)
+        {
+            if (currentLength < 5)
+            {
                 currentScore /= 2;
             }
-            _isPenalty = false;
         }
+
         if (_currentPowerUp == null) return;
 
         switch (_currentPowerUp.GetName())
@@ -120,6 +122,12 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
     public void CleanPowerUp()
     {
+        if (_currentPowerUp == null) return;
+        if (_currentPowerUp.GetName() != "Grief")
+            _isBeingGrief = false;
+        if (_currentPowerUp.GetName() != "ShortPenalty")
+            _isPenalty = false;
+
         _currentPowerUp = null;
     }
 
