@@ -19,9 +19,24 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
     public void NextPhase()
     {
         _phase++;
-        _turn = 1;
+        _turn = 0;
+        _isPlayerTurn = _phase != 1;
 
         PowerUpsManager.Instance.Initialize();
+        Board.Instance.NewGame();
+        NextTurn();
+    }
+
+    public void HandleGameOver()
+    {
+        if (Phase == 1)
+        {
+            NextPhase();
+        }
+        else
+        {
+            UIManager.Instance.ToggleGameOverScreen();
+        }
     }
 
     public void NextTurn()

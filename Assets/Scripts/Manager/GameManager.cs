@@ -25,11 +25,6 @@ public class GameManager : SingletonPersistent<GameManager>
     public void CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
-
-        if (Board.Instance.FoundWords.Count == 0)
-        {
-            _isGameOver = true;
-            UIManager.Instance.ToggleGameOverScreen();
-        }
+        _isGameOver = Board.Instance.FoundWords.Keys.Count == 0;
     }
 }

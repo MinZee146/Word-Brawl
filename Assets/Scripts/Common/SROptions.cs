@@ -21,4 +21,10 @@ public partial class SROptions
     {
         UIManager.Instance.ToggleGameOverScreen();
     }
+
+    [Category("Debug")]
+    public void NewPhase()
+    {
+        GameFlowManager.Instance.NextPhase();
+    }
 }

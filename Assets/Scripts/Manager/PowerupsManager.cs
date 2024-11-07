@@ -51,6 +51,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         AudioManager.Instance.PlaySFX("PowerupSelect");
         _powerUpsButtons[index].interactable = false;
 
+        Debug.Log(GameFlowManager.Instance.IsPlayerTurn);
         if (GameFlowManager.Instance.IsPlayerTurn)
         {
             UIManager.Instance.TogglePowerUpsPanel();

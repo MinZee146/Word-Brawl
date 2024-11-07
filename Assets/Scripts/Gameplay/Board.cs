@@ -44,6 +44,13 @@ public class Board : Singleton<Board>
         Initialize();
     }
 
+    public void NewGame()
+    {
+        AudioManager.Instance.PlaySFX("NewGame");
+        GenerateBoard();
+        WordFinder.Instance.FindAllWords();
+    }
+
     private void OnConfigsLoaded()
     {
         GenerateBoard();
@@ -296,6 +303,10 @@ public class Board : Singleton<Board>
         if (!GameManager.Instance.IsGameOver)
         {
             GameFlowManager.Instance.NextTurn();
+        }
+        else
+        {
+            GameFlowManager.Instance.HandleGameOver();
         }
     }
 
