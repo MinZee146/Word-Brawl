@@ -104,6 +104,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         switch (_currentPowerUp.GetName())
         {
             case "RevealWord":
+                break;
             case "ReplaceLetter":
                 _isReplaceLetter = true;
                 break;
