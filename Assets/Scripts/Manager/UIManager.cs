@@ -7,7 +7,7 @@ public class UIManager : SingletonPersistent<UIManager>
 {
     [SerializeField] private GameObject _loadingScreen, _gameOverPanel, _powerUpsPanel, _settingsPanel;
     [SerializeField] private GameObject _opponentPowerUp, _revealWordPanel, _replaceTilePanel;
-    [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton;
+    [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
     [SerializeField] private TextMeshProUGUI _revealText, _descriptionPowerUp;
@@ -113,6 +113,8 @@ public class UIManager : SingletonPersistent<UIManager>
 
         var musicState = PlayerPrefs.GetInt("IsMusicOn", 1);
         _toggleMusicButton.GetComponent<Image>().sprite = musicState == 1 ? _musicOn : _musicOff;
+
+        _replaceLetter.onValueChanged.AddListener(delegate { ToggleInspectAndOKReplace(); });
     }
     #endregion
 
@@ -159,6 +161,20 @@ public class UIManager : SingletonPersistent<UIManager>
 
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
         ToggleTileReplacePopUp();
+    }
+
+    public void ToggleInspectAndOKReplace()
+    {
+        if (string.IsNullOrWhiteSpace(_replaceLetter.text))
+        {
+            _inspectButton.SetActive(true);
+            _okButton.SetActive(false);
+        }
+        else
+        {
+            _inspectButton.SetActive(false);
+            _okButton.SetActive(true);
+        }
     }
     #endregion
 }
