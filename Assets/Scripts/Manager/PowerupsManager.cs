@@ -11,8 +11,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     [SerializeField] private Button[] _powerUpsButtons;
 
     private PowerUpBase _currentPowerUp;
-    private bool _isBeingGrief;
-
+    private bool _isBeingGrief, _isPenalty;
     private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
     private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
 
@@ -64,14 +63,19 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         Debug.Log("Selected PowerUp: " + _powerUpsList[index].name);
     }
 
-    public void CheckForPowerUp(ref int currentScore)
+    public void CheckForPowerUp(ref int currentScore, int currentLength)
     {
         if (_isBeingGrief)
         {
             currentScore /= 2;
             _isBeingGrief = false;
         }
-
+        if(_isPenalty){
+            if(currentLength  < 6){
+                currentScore /= 2;
+            }
+            _isPenalty = false;
+        }
         if (_currentPowerUp == null) return;
 
         switch (_currentPowerUp.GetName())
@@ -86,6 +90,15 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
                 break;
             case "Grief":
                 _isBeingGrief = true;
+                break;
+            case "LongBonus":
+                currentScore = currentLength >= 5 ? currentScore * 2 : currentScore;
+                break;
+            case "ShortBonus":
+                currentScore = currentLength < 5 ? currentScore * 2 : currentScore;
+                break;
+            case "ShortPenalty":
+                _isPenalty = true;
                 break;
         }
     }
