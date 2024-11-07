@@ -10,8 +10,10 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 {
     [SerializeField] private Button[] _powerUpsButtons;
 
+    public bool CheckExtraTurn => _isExtraTurn;
+
     private PowerUpBase _currentPowerUp;
-    private bool _isBeingGrief, _isPenalty;
+    private bool _isBeingGrief, _isPenalty, _isExtraTurn;
     private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
     private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
 
@@ -101,7 +103,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
                 currentScore *= 2;
                 break;
             case "RevealWord":
-            case "ExtraTurn":
+
             case "ReplaceLetter":
             case "Shuffle":
                 break;
@@ -117,26 +119,38 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             case "ShortPenalty":
                 _isPenalty = true;
                 break;
+            case "ExtraTurn":
+                _isExtraTurn = true;
+                break;
         }
     }
 
     public void CleanPowerUp()
     {
-        if (_currentPowerUp == null) return;
+        if (_currentPowerUp == null)
+        {
+            _isExtraTurn = false;
+            return;
+        }
+
         if (_currentPowerUp.GetName() != "Grief")
             _isBeingGrief = false;
+
         if (_currentPowerUp.GetName() != "ShortPenalty")
             _isPenalty = false;
+
+        if (_currentPowerUp.GetName() != "ExtraTurn")
+        {
+            _isExtraTurn = false;
+        }
 
         _currentPowerUp = null;
     }
 
     public void UnloadPowerUps()
     {
-        // Release all loaded power-ups with a single call
         Addressables.Release(_loadedPowerUpHandle);
 
-        // Clear button states and listeners
         foreach (var button in _powerUpsButtons)
         {
             button.onClick.RemoveAllListeners();

@@ -305,7 +305,10 @@ public class Board : Singleton<Board>
 
         if (!GameManager.Instance.IsGameOver)
         {
-            GameFlowManager.Instance.NextTurn();
+            if (!PowerUpsManager.Instance.CheckExtraTurn)
+            {
+                GameFlowManager.Instance.NextTurn();
+            }
         }
         else
         {
