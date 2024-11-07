@@ -122,7 +122,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ToggleRevealWordPopUp()
     {
-        IsInteractable = false;
+        _isInteractable = !_isInteractable;
         _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
     }
 
@@ -133,13 +133,16 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ToggleTileReplacePopUp()
     {
-        IsInteractable = false;
+        _isInteractable = !_isInteractable;
+
+        _replaceLetter.text = "";
         _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
     }
 
     public void ConfirmReplace()
     {
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
+        ToggleTileReplacePopUp();
     }
     #endregion
 }
