@@ -155,6 +155,7 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ConfirmReplace()
     {
          if (string.IsNullOrWhiteSpace(_replaceLetter.text)) return;
+         
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
         ToggleTileReplacePopUp();
     }

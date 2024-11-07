@@ -133,9 +133,12 @@ public class Board : Singleton<Board>
                     if (UIManager.Instance.InspectPanel == "Replace")
                     {
                         UIManager.Instance.ToggleInspectReplace();
+                    }
                 }
                 else
-                    HandleTap();
+                {
+                    HandleTouching();
+                }
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -150,7 +153,7 @@ public class Board : Singleton<Board>
         }
     }
 
-    private void HandleTap()
+    private void HandleTouching()
     {
         var pos = Input.mousePosition;
 
