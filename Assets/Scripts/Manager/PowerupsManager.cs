@@ -177,14 +177,17 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
     public void UnloadPowerUps()
     {
-        Addressables.Release(_loadedPowerUpHandle);
-
-        foreach (var button in _powerUpsButtons)
+        if (_loadedPowerUpHandle.IsValid())
         {
-            button.onClick.RemoveAllListeners();
-            button.interactable = false;
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = string.Empty;
-            button.transform.GetChild(1).GetComponent<Image>().sprite = null;
+            Addressables.Release(_loadedPowerUpHandle);
+
+            foreach (var button in _powerUpsButtons)
+            {
+                button.onClick.RemoveAllListeners();
+                button.interactable = false;
+                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = string.Empty;
+                button.transform.GetChild(1).GetComponent<Image>().sprite = null;
+            }
         }
     }
 }

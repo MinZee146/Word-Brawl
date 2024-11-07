@@ -65,7 +65,10 @@ public class TileConfigManager
 
     public void UnloadConfigs()
     {
-        Addressables.Release(_loadedConfigsHandle);
-        _tileConfigList = null;
+        if (_loadedConfigsHandle.IsValid())
+        {
+            Addressables.Release(_loadedConfigsHandle);
+            _tileConfigList = null;
+        }
     }
 }
