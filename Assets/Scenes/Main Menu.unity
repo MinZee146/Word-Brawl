@@ -6036,6 +6036,7 @@ MonoBehaviour:
   _loadingScreen: {fileID: 1286227008}
   _powerUpsPanel: {fileID: 1880143089}
   _settingsPanel: {fileID: 936685579}
+  _revealWordPanel: {fileID: 1790317836}
   _toggleSFXButton: {fileID: 319452343}
   _toggleMusicButton: {fileID: 1526058485}
   _sfxOn: {fileID: -213356348, guid: 156ec492e516ccb4099add479601d65e, type: 3}
@@ -6043,6 +6044,7 @@ MonoBehaviour:
   _musicOn: {fileID: -663011761, guid: 156ec492e516ccb4099add479601d65e, type: 3}
   _musicOff: {fileID: 53940023, guid: 156ec492e516ccb4099add479601d65e, type: 3}
   _replaceLetter: {fileID: 795406335}
+  _revealText: {fileID: 1216228468}
 --- !u!114 &1292717606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8086,7 +8088,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1819603055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292717605}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleRevealWordPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1819603055
 MonoBehaviour:
   m_ObjectHideFlags: 0

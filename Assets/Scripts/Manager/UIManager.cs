@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
-    [SerializeField] private GameObject _gameOverScreen, _loadingScreen, _powerUpsPanel, _settingsPanel;
+    [SerializeField]
+    private GameObject _gameOverScreen, _loadingScreen, _powerUpsPanel, _settingsPanel,
+                    _revealWordPanel;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
+    [SerializeField] private TextMeshProUGUI _revealText;
 
     private bool _isInspectingBoard, _isInteractable = true;
     public bool IsInspectingBoard
@@ -99,5 +102,15 @@ public class UIManager : SingletonPersistent<UIManager>
 
         var musicState = PlayerPrefs.GetInt("IsMusicOn", 1);
         _toggleMusicButton.GetComponent<Image>().sprite = musicState == 1 ? _musicOn : _musicOff;
+    }
+
+    public void SetRevealedText(string text)
+    {
+        _revealText.text = $"The longest word available is {text.ToUpper()}";
+    }
+
+    public void ToggleRevealWordPopUp()
+    {
+        _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
     }
 }
