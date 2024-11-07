@@ -19,7 +19,7 @@ public partial class SROptions
     [Category("Debug")]
     public void GameOver()
     {
-        UIManager.Instance.ToggleGameOverScreen();
+        UIManager.Instance.ToggleGameOverPanel();
     }
 
     [Category("Debug")]
