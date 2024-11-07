@@ -5,5 +5,6 @@ public class LongBonus : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
+        Name = "LongBonus";
     }
 }
