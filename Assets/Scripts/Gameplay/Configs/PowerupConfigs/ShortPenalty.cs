@@ -5,5 +5,6 @@ public class ShortPenalty : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
+        Name = "ShortPenalty";
     }
 }

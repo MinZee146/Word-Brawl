@@ -5,6 +5,6 @@ public class RevealWord : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
-
+        Name = "RevealWord";
     }
 }

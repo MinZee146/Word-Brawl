@@ -5,5 +5,6 @@ public class ShortBonus : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
+        Name = "ShortBonus";
     }
 }

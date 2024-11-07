@@ -5,5 +5,6 @@ public class Shuffle : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
+        Name = "Shuffle";
     }
 }
