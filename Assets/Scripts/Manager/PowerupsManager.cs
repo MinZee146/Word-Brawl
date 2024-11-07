@@ -11,9 +11,23 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     [SerializeField] private Button[] _powerUpsButtons;
 
     public bool CheckExtraTurn => _isExtraTurn;
+    public bool CheckReplaceLetter
+    {
+        get
+        {
+            bool currentValue = _isReplaceLetter;
 
+            if (currentValue)
+            {
+                _isReplaceLetter = !_isReplaceLetter;
+            }
+
+            return currentValue;
+        }
+    }
+
+    private bool _isBeingGrief, _isPenalty, _isExtraTurn, _isReplaceLetter;
     private PowerUpBase _currentPowerUp;
-    private bool _isBeingGrief, _isPenalty, _isExtraTurn;
     private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
     private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
 
@@ -62,6 +76,8 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             UIManager.Instance.TogglePowerUpsPanel();
         }
 
+        CheckForPowerUpAction();
+
         Debug.Log("SelectedPowerUp: " + _powerUpsList[index].name);
     }
 
@@ -81,7 +97,25 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         UIManager.Instance.UpdateOpponentPowerUp(_powerUpsList[selectedPowerUpIndex].Description, _powerUpsList[selectedPowerUpIndex].Sprite);
     }
 
-    public void CheckForPowerUp(ref int currentScore, int currentLength)
+    public void CheckForPowerUpAction()
+    {
+        if (_currentPowerUp == null) return;
+
+        switch (_currentPowerUp.GetName())
+        {
+            case "RevealWord":
+            case "ReplaceLetter":
+                _isReplaceLetter = true;
+                break;
+            case "Shuffle":
+                break;
+            case "ExtraTurn":
+                _isExtraTurn = true;
+                break;
+        }
+    }
+
+    public void CheckForPowerUpScoring(ref int currentScore, int currentLength)
     {
         if (_isBeingGrief)
         {
@@ -103,10 +137,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             case "DoubleScore":
                 currentScore *= 2;
                 break;
-            case "RevealWord":
-            case "ReplaceLetter":
-            case "Shuffle":
-                break;
             case "Grief":
                 _isBeingGrief = true;
                 break;
@@ -118,9 +148,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
                 break;
             case "ShortPenalty":
                 _isPenalty = true;
-                break;
-            case "ExtraTurn":
-                _isExtraTurn = true;
                 break;
         }
     }

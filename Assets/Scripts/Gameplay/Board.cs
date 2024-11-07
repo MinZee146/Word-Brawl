@@ -153,6 +153,11 @@ public class Board : Singleton<Board>
             GameUIController.Instance.ToggleHintAndConfirm();
         }
 
+        if (PowerUpsManager.Instance.CheckReplaceLetter)
+        {
+            HandleTileReplace?.Invoke();
+        }
+
         _isDragging = true;
 
         DeselectAll();
@@ -182,7 +187,6 @@ public class Board : Singleton<Board>
             if (_selectingTiles.Count == 0)
             {
                 SelectTile(tile);
-                HandleTileReplace?.Invoke();
             }
             else if (_selectingTiles[^1].IsAdjacent(tile))
             {
@@ -404,6 +408,6 @@ public class Board : Singleton<Board>
         tile.SetTileConfig(_configManager.Configs.FirstOrDefault(tileStat => tileStat.Letter == letter));
         TileList.Add(tile);
         tile.Deselect();
-        WordFinder.Instance.FindAllWords();
+        GameManager.Instance.CheckForGameOver();
     }
 }
