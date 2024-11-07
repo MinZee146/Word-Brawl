@@ -5,6 +5,7 @@ public class Grief : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
+        Name = "Grief";
     }
 }
 

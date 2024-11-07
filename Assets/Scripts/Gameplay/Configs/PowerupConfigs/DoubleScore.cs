@@ -5,5 +5,6 @@ public class DoubleScore : PowerUpBase
 {
     public override void ApplyPowerUp()
     {
+        Name = "DoubleScore";
     }
 }

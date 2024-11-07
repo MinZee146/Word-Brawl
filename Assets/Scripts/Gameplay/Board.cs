@@ -289,6 +289,8 @@ public class Board : Singleton<Board>
         _currentWord = null;
         _currentScore = 0;
         _selectingTiles.Clear();
+
+        PowerUpsManager.Instance.CleanPowerUp();
         GameManager.Instance.CheckForGameOver();
 
         if (GameFlowManager.Instance.IsPlayerTurn)
