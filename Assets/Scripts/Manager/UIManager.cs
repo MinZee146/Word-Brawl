@@ -131,7 +131,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void SetRevealedText(string text)
     {
-        _revealText.text = $"The longest word available is {text.ToUpper()}";
+        _revealText.text = $"The longest word available is <color=#FF2222>{text.ToUpper()}</color>";
     }
 
     public void ToggleRevealWordPopUp()
