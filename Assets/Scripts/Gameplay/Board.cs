@@ -16,6 +16,7 @@ public class Board : Singleton<Board>
     [NonSerialized] public Dictionary<string, List<Vector2Int>> FoundWords = new();
 
     public const int ColsEven = 6, ColsOdd = 5, Rows = 10;
+    public TileConfig GetRandomLetter() => _configManager.GetRandomLetter();
 
     private RectTransform _board;
     private List<Tile> _selectingTiles = new(), _lastSelectedTiles;
