@@ -122,6 +122,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ToggleRevealWordPopUp()
     {
+        IsInteractable = false;
         _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
     }
 
@@ -132,6 +133,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ToggleTileReplacePopUp()
     {
+        IsInteractable = false;
         _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
     }
 

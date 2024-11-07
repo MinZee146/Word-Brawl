@@ -9,7 +9,6 @@ public class LetterReplace : PowerUpBase
         Board.Instance.HandleTileReplace += () =>
         {
             UIManager.Instance.ToggleTileReplacePopUp();
-            UIManager.Instance.IsInteractable = false;
         };
     }
 }
