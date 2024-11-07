@@ -72,6 +72,7 @@ public class WordDisplay : Singleton<WordDisplay>
     {
         currentScore = selectingTiles.Count == 0 ? 0 : selectingTiles.Sum(tile => tile.Score) * selectingTiles.Count;
         // _currentTrueScore = _currentScore;
+        PowerUpsManager.Instance.CheckForPowerUp(ref currentScore);
 
         var scoreColor = currentScore switch
         {
