@@ -25,6 +25,8 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     public void Initialize()
     {
         UnloadPowerUps();
+        CleanPowerUp();
+
         _loadedPowerUpHandle = Addressables.LoadAssetsAsync<PowerUpBase>("PowerupConfigs", null);
         _loadedPowerUpHandle.Completed += OnPowerUpsLoaded;
     }

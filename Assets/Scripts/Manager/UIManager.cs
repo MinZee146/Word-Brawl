@@ -38,7 +38,7 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         ToggleLoadingScreen();
         GameManager.Instance.NewGame();
-
+        
         Addressables.LoadSceneAsync("Assets/Scenes/Gameplay.unity").Completed += handle =>
         {
             PlayerStatsManager.Instance.LoadNames();

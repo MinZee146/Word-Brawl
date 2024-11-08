@@ -13,19 +13,18 @@ public class GameManager : SingletonPersistent<GameManager>
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
         UIManager.Instance.Initialize();
-        PowerUpsManager.Instance.Initialize();
         NameRegister.Instance.Initialize();
     }
 
     public void NewGame()
     {
         GameFlowManager.Instance.StartGame();
+        PowerUpsManager.Instance.Initialize();
     }
 
     public void Replay()
     {
         NewGame();
-        PowerUpsManager.Instance.Initialize();
         Board.Instance.NewGame();
         UIManager.Instance.ToggleGameOverPanel();
     }
