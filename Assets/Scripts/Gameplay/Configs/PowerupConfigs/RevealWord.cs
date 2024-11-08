@@ -7,6 +7,7 @@ public class RevealWord : PowerUpBase
     public override void ApplyPowerUp()
     {
         Name = "RevealWord";
+
         var word = Board.Instance.FoundWords.Keys.OrderByDescending(word => word.Length).FirstOrDefault();
         UIManager.Instance.SetRevealedText(word);
         UIManager.Instance.ToggleRevealWordPopUp();

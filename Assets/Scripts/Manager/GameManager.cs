@@ -22,6 +22,14 @@ public class GameManager : SingletonPersistent<GameManager>
         GameFlowManager.Instance.StartGame();
     }
 
+    public void Replay()
+    {
+        NewGame();
+        PowerUpsManager.Instance.Initialize();
+        Board.Instance.NewGame();
+        UIManager.Instance.ToggleGameOverPanel();
+    }
+
     public void CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();

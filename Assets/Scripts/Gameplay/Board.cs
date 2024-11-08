@@ -126,10 +126,19 @@ public class Board : Singleton<Board>
             {
                 if (UIManager.Instance.IsInspectingBoard)
                 {
-                    UIManager.Instance.ToggleInspectBoard();
+                    if (UIManager.Instance.InspectPanel == "PowerUps")
+                    {
+                        UIManager.Instance.ToggleInspectPowerUps();
+                    }
+                    if (UIManager.Instance.InspectPanel == "Replace")
+                    {
+                        UIManager.Instance.ToggleInspectReplace();
+                    }
                 }
                 else
-                    HandleTap();
+                {
+                    HandleTouching();
+                }
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -144,13 +153,18 @@ public class Board : Singleton<Board>
         }
     }
 
-    private void HandleTap()
+    private void HandleTouching()
     {
         var pos = Input.mousePosition;
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(GameUIController.Instance.ConfirmButtonRect(), pos))
         {
             GameUIController.Instance.ToggleHintAndConfirm();
+        }
+
+        if (PowerUpsManager.Instance.CheckReplaceLetter)
+        {
+            HandleTileReplace?.Invoke();
         }
 
         _isDragging = true;
@@ -182,7 +196,6 @@ public class Board : Singleton<Board>
             if (_selectingTiles.Count == 0)
             {
                 SelectTile(tile);
-                HandleTileReplace?.Invoke();
             }
             else if (_selectingTiles[^1].IsAdjacent(tile))
             {
@@ -404,7 +417,7 @@ public class Board : Singleton<Board>
         tile.SetTileConfig(_configManager.Configs.FirstOrDefault(tileStat => tileStat.Letter == letter));
         TileList.Add(tile);
         tile.Deselect();
-        WordFinder.Instance.FindAllWords();
+        GameManager.Instance.CheckForGameOver();
     }
 
     public void ClearHandleTileReplaceListeners()

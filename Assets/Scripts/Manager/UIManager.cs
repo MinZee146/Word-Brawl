@@ -7,13 +7,16 @@ public class UIManager : SingletonPersistent<UIManager>
 {
     [SerializeField] private GameObject _loadingScreen, _gameOverPanel, _powerUpsPanel, _settingsPanel;
     [SerializeField] private GameObject _opponentPowerUp, _revealWordPanel, _replaceTilePanel;
-    [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton;
+    [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
     [SerializeField] private TextMeshProUGUI _revealText, _descriptionPowerUp;
     [SerializeField] private Image _imagePowerUp;
 
     private bool _isInspectingBoard, _isInteractable = true;
+    private string _inspectPanel;
+
+    public string InspectPanel => _inspectPanel;
     public bool IsInspectingBoard
     {
         get => _isInspectingBoard;
@@ -30,6 +33,7 @@ public class UIManager : SingletonPersistent<UIManager>
         UpdateSettingsUI();
     }
 
+    #region LoadScene
     public void LoadGameScene()
     {
         ToggleLoadingScreen();
@@ -40,6 +44,14 @@ public class UIManager : SingletonPersistent<UIManager>
             PlayerStatsManager.Instance.LoadNames();
         };
     }
+
+    public void LoadMenuScene()
+    {
+        Addressables.LoadSceneAsync("Assets/Scenes/Main Menu.unity");
+        ToggleGameOverPanel();
+        ToggleLoadingScreen();
+    }
+    #endregion
 
     #region TogglePanel
     public void ToggleLoadingScreen()
@@ -65,10 +77,20 @@ public class UIManager : SingletonPersistent<UIManager>
         _settingsPanel.SetActive(!_settingsPanel.activeSelf);
     }
 
-    public void ToggleInspectBoard()
+    public void ToggleInspectPowerUps()
     {
         _isInspectingBoard = !_isInspectingBoard;
+        _inspectPanel = "PowerUps";
+
         TogglePowerUpsPanel();
+    }
+
+    public void ToggleInspectReplace()
+    {
+        _isInspectingBoard = !_isInspectingBoard;
+        _inspectPanel = "Replace";
+
+        ToggleTileReplacePopUp();
     }
     #endregion
 
@@ -110,37 +132,57 @@ public class UIManager : SingletonPersistent<UIManager>
         _imagePowerUp.sprite = sprite;
     }
 
-    public void OpponentPowerUpPanel()
+    public void ToggleOpponentPowerUpPanel()
     {
+        _isInteractable = !_isInteractable;
         _opponentPowerUp.SetActive(!_opponentPowerUp.activeSelf);
     }
 
     public void SetRevealedText(string text)
     {
-        _revealText.text = $"The longest word available is {text.ToUpper()}";
+        _revealText.text = $"The longest word available is <color=#FF2222>{text.ToUpper()}</color>";
     }
 
     public void ToggleRevealWordPopUp()
     {
+        _isInteractable = !_isInteractable;
         _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
     }
 
-    public void ToUpper()
+    public void OnReplaceLetterChanged()
     {
         _replaceLetter.text = _replaceLetter.text.ToUpper();
+        ToggleInspectAndOKReplace();
     }
 
     public void ToggleTileReplacePopUp()
     {
+        _isInteractable = !_isInteractable;
+
+        _replaceLetter.text = "";
         _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
     }
 
     public void ConfirmReplace()
     {
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
-        Board.Instance.ClearHandleTileReplaceListeners();
         ToggleTileReplacePopUp();
+        Board.Instance.ClearHandleTileReplaceListeners();
         IsInteractable = true;
+    }
+
+    private void ToggleInspectAndOKReplace()
+    {
+        if (string.IsNullOrWhiteSpace(_replaceLetter.text))
+        {
+            _inspectButton.SetActive(true);
+            _okButton.SetActive(false);
+        }
+        else
+        {
+            _inspectButton.SetActive(false);
+            _okButton.SetActive(true);
+        }
     }
     #endregion
 }
