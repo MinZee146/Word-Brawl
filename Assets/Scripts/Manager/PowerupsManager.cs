@@ -67,7 +67,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
         CheckForPowerUpAction();
 
-        Debug.Log("SelectedPowerUp: " + _powerUpsList[index].name);
+        Debug.Log("Selected PowerUp: " + _powerUpsList[index].name);
     }
 
     public void SelectRandomPowerUp()

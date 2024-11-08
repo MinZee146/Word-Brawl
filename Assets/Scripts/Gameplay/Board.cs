@@ -285,6 +285,7 @@ public class Board : Singleton<Board>
         _isDragging = false;
 
         if (!GameDictionary.Instance.CheckWord(_selectedWord)) return;
+        Debug.Log($"Player Selected: {_selectedWord} ({_currentScore})");
 
         Timing.RunCoroutine(PopAndRefresh());
     }
@@ -402,7 +403,7 @@ public class Board : Singleton<Board>
 
         _lastSelectedTiles = new List<Tile>(_selectingTiles);
 
-        Debug.Log($"Opponent selected: {word} ({_currentScore})");
+        Debug.Log($"Opponent Selected: {word} ({_currentScore})");
     }
     #endregion
 
