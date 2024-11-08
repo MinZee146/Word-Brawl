@@ -35,8 +35,8 @@ public class AI : Singleton<AI>
         WordDisplay.Instance.UndisplayWordAndScore();
 
         Timing.RunCoroutine(Board.Instance.PopAndRefresh());
-        yield return Timing.WaitForSeconds(2f);
 
+        yield return Timing.WaitForSeconds(1.5f);
         if (PowerUpsManager.Instance.CheckExtraTurn)
         {
             Timing.RunCoroutine(AITurn());
@@ -45,16 +45,20 @@ public class AI : Singleton<AI>
 
     private IEnumerator<float> ChoosePowerUp()
     {
-        if (PowerUpsManager.Instance.PowerUpCounts() == 0) yield break;
-
-        if (GameFlowManager.Instance.Turn > 2)
+        if (PowerUpsManager.Instance.PowerUpCounts() == 0 || GameFlowManager.Instance.Turn <= 2)
         {
-            yield return Timing.WaitForSeconds(0.5f);
+            yield return Timing.WaitForSeconds(1.5f);
+        }
+        else
+        {
+            yield return Timing.WaitForSeconds(0.75f);
             PowerUpsManager.Instance.SelectRandomPowerUp();
             UIManager.Instance.ToggleOpponentPowerUpPanel();
 
-            yield return Timing.WaitForSeconds(2f);
+            yield return Timing.WaitForSeconds(1.5f);
             UIManager.Instance.ToggleOpponentPowerUpPanel();
+
+            yield return Timing.WaitForSeconds(1f);
         }
     }
 }
