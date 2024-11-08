@@ -146,14 +146,20 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         if (_currentPowerUp == null)
         {
             _isExtraTurn = false;
+            _isBeingGrief = false;
+            _isPenalty = false;
             return;
         }
 
         if (_currentPowerUp.GetName() != "Grief")
+        {
             _isBeingGrief = false;
+        }
 
         if (_currentPowerUp.GetName() != "ShortPenalty")
+        {
             _isPenalty = false;
+        }
 
         if (_currentPowerUp.GetName() != "ExtraTurn")
         {
