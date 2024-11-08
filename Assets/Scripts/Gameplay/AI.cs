@@ -7,7 +7,8 @@ public class AI : Singleton<AI>
 {
     public IEnumerator<float> AITurn()
     {
-        yield return Timing.WaitUntilDone(Timing.RunCoroutine(ChoosePowerUp()));
+        if (!PowerUpsManager.Instance.CheckExtraTurn)
+            yield return Timing.WaitUntilDone(Timing.RunCoroutine(ChoosePowerUp()));
 
         var longWords = Board.Instance.FoundWords.Keys.Where(word => word.Length >= 5).ToList();
         var shortWords = Board.Instance.FoundWords.Keys.Where(word => word.Length < 5).ToList();
@@ -34,6 +35,12 @@ public class AI : Singleton<AI>
         WordDisplay.Instance.UndisplayWordAndScore();
 
         Timing.RunCoroutine(Board.Instance.PopAndRefresh());
+        yield return Timing.WaitForSeconds(2f);
+
+        if (PowerUpsManager.Instance.CheckExtraTurn)
+        {
+            Timing.RunCoroutine(AITurn());
+        }
     }
 
     private IEnumerator<float> ChoosePowerUp()

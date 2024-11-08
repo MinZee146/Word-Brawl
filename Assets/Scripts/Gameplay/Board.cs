@@ -406,4 +406,9 @@ public class Board : Singleton<Board>
         tile.Deselect();
         WordFinder.Instance.FindAllWords();
     }
+
+    public void ClearHandleTileReplaceListeners()
+    {
+        HandleTileReplace = null;
+    }
 }
