@@ -23,6 +23,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _isPlayerTurn = _phase != 1;
 
         PowerUpsManager.Instance.Initialize();
+        PlayerStatsManager.Instance.Reset();
         Board.Instance.NewGame();
         NextTurn();
     }
@@ -45,6 +46,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _isPlayerTurn = !_isPlayerTurn;
 
         GameUIController.Instance.ToggleHintAndConfirm();
+        Notifier.Instance.OnTurnChanged();
 
         if (_isPlayerTurn)
         {

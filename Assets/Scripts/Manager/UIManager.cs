@@ -11,6 +11,7 @@ public class UIManager : SingletonPersistent<UIManager>
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
     [SerializeField] private TextMeshProUGUI _revealText, _descriptionPowerUp;
+    [SerializeField] private TextMeshProUGUI _playerName, _opponentName, _playerBestWord, _opponentBestWord;
     [SerializeField] private Image _imagePowerUp;
 
     private bool _isInspectingBoard, _isInteractable = true;
@@ -31,6 +32,7 @@ public class UIManager : SingletonPersistent<UIManager>
     public void Initialize()
     {
         UpdateSettingsUI();
+        _playerName.text = PlayerPrefs.GetString("Username");
     }
 
     #region LoadScene
@@ -38,7 +40,7 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         ToggleLoadingScreen();
         GameManager.Instance.NewGame();
-        
+
         Addressables.LoadSceneAsync("Assets/Scenes/Gameplay.unity").Completed += handle =>
         {
             PlayerStatsManager.Instance.LoadNames();
@@ -61,6 +63,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public void ToggleGameOverPanel()
     {
+        LoadStats();
         _isInteractable = !_isInteractable;
         _gameOverPanel.SetActive(!_gameOverPanel.activeSelf);
     }
@@ -168,6 +171,7 @@ public class UIManager : SingletonPersistent<UIManager>
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
         Board.Instance.ClearHandleTileReplaceListeners();
         ToggleTileReplacePopUp();
+        Notifier.Instance.OnTurnChanged();
     }
 
     private void ToggleInspectAndOKReplace()
@@ -184,4 +188,10 @@ public class UIManager : SingletonPersistent<UIManager>
         }
     }
     #endregion
+
+    public void LoadStats()
+    {
+        _playerBestWord.text = $"Best word: {PlayerStatsManager.Instance.GetPlayerBestWord()}";
+        _opponentBestWord.text = $"Best word: {PlayerStatsManager.Instance.GetOpponentBestWord()}";
+    }
 }

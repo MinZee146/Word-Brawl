@@ -6,7 +6,6 @@ public class LetterReplace : PowerUpBase
     public override void ApplyPowerUp()
     {
         Name = "ReplaceLetter";
-        
         Board.Instance.HandleTileReplace += () =>
         {
             UIManager.Instance.ToggleTileReplacePopUp();

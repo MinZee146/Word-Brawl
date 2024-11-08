@@ -332,7 +332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1000
+  m_text: '0
 
 '
   m_isRightToLeft: 0
@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 572221402}
   - component: {fileID: 572221404}
   - component: {fileID: 572221403}
+  - component: {fileID: 572221405}
   m_Layer: 5
   m_Name: Notifier
   m_TagString: Untagged
@@ -654,6 +655,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572221401}
   m_CullTransparentMesh: 1
+--- !u!114 &572221405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572221401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6a35abb696d11488da5eefd55e0393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notifyText: {fileID: 1776329042}
+  _playerName: {fileID: 1942355297}
+  _opponentName: {fileID: 1400129473}
 --- !u!1 &663534551
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1000
+  m_text: '0
 
 '
   m_isRightToLeft: 0
@@ -1480,6 +1496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerName: {fileID: 1942355297}
   _opponentName: {fileID: 1400129473}
+  _playerScore: {fileID: 340227883}
+  _opponentScore: {fileID: 751396229}
 --- !u!4 &1670555049
 Transform:
   m_ObjectHideFlags: 0
@@ -1686,7 +1704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Avocado used Reveal Word
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4255821624b638c4b82707be14f22b8f, type: 2}
   m_sharedMaterial: {fileID: -7557393127917957578, guid: 4255821624b638c4b82707be14f22b8f, type: 2}

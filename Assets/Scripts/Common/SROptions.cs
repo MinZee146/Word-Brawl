@@ -27,4 +27,10 @@ public partial class SROptions
     {
         GameFlowManager.Instance.NextPhase();
     }
+
+    [Category("Debug")]
+    public void LoadStats()
+    {
+        UIManager.Instance.LoadStats();
+    }
 }

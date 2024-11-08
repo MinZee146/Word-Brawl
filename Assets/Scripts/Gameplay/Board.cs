@@ -54,6 +54,7 @@ public class Board : Singleton<Board>
 
     private void OnConfigsLoaded()
     {
+        Notifier.Instance.OnTurnChanged();
         GenerateBoard();
         WordFinder.Instance.FindAllWords();
     }
@@ -300,21 +301,21 @@ public class Board : Singleton<Board>
         GameUIController.Instance.ToggleHintAndConfirm();
         UIManager.Instance.IsInteractable = true;
 
+        if (GameFlowManager.Instance.IsPlayerTurn)
+        {
+            PlayerStatsManager.Instance.UpdatePlayerStats(_selectedWord, _currentScore);
+        }
+        else
+        {
+            PlayerStatsManager.Instance.UpdateOpponentStats(_currentWord, _currentScore);
+        }
+
         _currentWord = null;
         _currentScore = 0;
         _selectingTiles.Clear();
 
         PowerUpsManager.Instance.CleanPowerUp();
         GameManager.Instance.CheckForGameOver();
-
-        if (GameFlowManager.Instance.IsPlayerTurn)
-        {
-            PlayerStatsManager.Instance.UpdatePlayerStats(_currentWord, _currentScore);
-        }
-        else
-        {
-            PlayerStatsManager.Instance.UpdateOpponentStats(_currentWord, _currentScore);
-        }
 
         if (!GameManager.Instance.IsGameOver)
         {

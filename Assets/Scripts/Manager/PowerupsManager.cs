@@ -57,8 +57,9 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     {
         AudioManager.Instance.PlaySFX("PowerupSelect");
         _powerUpsButtons[index].interactable = false;
-        _powerUpsList[index].ApplyPowerUp();
         _currentPowerUp = _powerUpsList[index];
+        _powerUpsList[index].ApplyPowerUp();
+        Notifier.Instance.OnUsePowerUp(_currentPowerUp.GetName());
 
         if (GameFlowManager.Instance.IsPlayerTurn)
         {
