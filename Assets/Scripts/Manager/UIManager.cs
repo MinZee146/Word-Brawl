@@ -166,9 +166,8 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ConfirmReplace()
     {
         Board.Instance.ReplaceSelectingTileWith(_replaceLetter.text[0]);
-        ToggleTileReplacePopUp();
         Board.Instance.ClearHandleTileReplaceListeners();
-        IsInteractable = true;
+        ToggleTileReplacePopUp();
     }
 
     private void ToggleInspectAndOKReplace()

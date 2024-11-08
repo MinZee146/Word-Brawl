@@ -162,11 +162,7 @@ public class Board : Singleton<Board>
             GameUIController.Instance.ToggleHintAndConfirm();
         }
 
-        if (PowerUpsManager.Instance.CheckReplaceLetter)
-        {
-            HandleTileReplace?.Invoke();
-        }
-
+        HandleTileReplace?.Invoke();
         _isDragging = true;
 
         DeselectAll();
@@ -410,6 +406,8 @@ public class Board : Singleton<Board>
         Debug.Log($"Opponent selected: {word} ({_currentScore})");
     }
     #endregion
+
+    #region PowerUpsHandle
     public void ReplaceSelectingTileWith(char letter)
     {
         var tile = _selectingTiles[^1];
@@ -424,4 +422,5 @@ public class Board : Singleton<Board>
     {
         HandleTileReplace = null;
     }
+    #endregion
 }

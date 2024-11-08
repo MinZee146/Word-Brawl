@@ -11,22 +11,8 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     [SerializeField] private Button[] _powerUpsButtons;
 
     public bool CheckExtraTurn => _isExtraTurn;
-    public bool CheckReplaceLetter
-    {
-        get
-        {
-            bool currentValue = _isReplaceLetter;
 
-            if (currentValue)
-            {
-                _isReplaceLetter = !_isReplaceLetter;
-            }
-
-            return currentValue;
-        }
-    }
-
-    private bool _isBeingGrief, _isPenalty, _isExtraTurn, _isReplaceLetter;
+    private bool _isBeingGrief, _isPenalty, _isExtraTurn;
     private PowerUpBase _currentPowerUp;
     private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
     private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
@@ -107,7 +93,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             case "RevealWord":
                 break;
             case "ReplaceLetter":
-                _isReplaceLetter = true;
                 break;
             case "Shuffle":
                 break;
