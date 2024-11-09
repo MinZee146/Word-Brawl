@@ -172,7 +172,6 @@ public class UIManager : SingletonPersistent<UIManager>
         }
         else
         {
-            _okButton.SetActive(false);
             _okReplaceButton.SetActive(false);
             _inspectButton.SetActive(false);
         }
@@ -184,10 +183,14 @@ public class UIManager : SingletonPersistent<UIManager>
 
         if (!GameFlowManager.Instance.IsPlayerTurn)
         {
-            _replaceLetter.readOnly = false;
-            _okButton.SetActive(false);
+            _replaceLetter.readOnly = true;
             _okReplaceButton.SetActive(false);
             _inspectButton.SetActive(false);
+        }
+        else
+        {
+            _replaceLetter.readOnly = false;
+            _inspectButton.SetActive(true);
         }
 
         _replaceLetter.text = "";

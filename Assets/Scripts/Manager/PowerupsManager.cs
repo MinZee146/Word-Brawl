@@ -150,14 +150,15 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
     public void CleanPowerUp()
     {
+        _isReplaceLetter = false;
+        _isShuffle = false;
         _isRevealWord = false;
+
         if (_currentPowerUp == null)
         {
             _isExtraTurn = false;
             _isBeingGrief = false;
             _isPenalty = false;
-            _isReplaceLetter = false;
-            _isShuffle = false;
             return;
         }
 
@@ -174,16 +175,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         if (_currentPowerUp.GetName() != "ExtraTurn")
         {
             _isExtraTurn = false;
-        }
-
-        if (_currentPowerUp.GetName() != "ReplaceLetter")
-        {
-            _isReplaceLetter = false;
-        }
-
-        if (_currentPowerUp.GetName() != "Shuffle")
-        {
-            _isShuffle = false;
         }
 
         _currentPowerUp = null;

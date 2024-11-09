@@ -74,16 +74,26 @@ public class AI : Singleton<AI>
             yield return Timing.WaitForSeconds(1.5f);
             UIManager.Instance.ToggleOpponentPowerUpPanel();
 
-            if (PowerUpsManager.Instance.CheckShuffle)
-            {
-                Board.Instance.ShuffleBoard();
-            }
+            yield return Timing.WaitForSeconds(0.25f);
 
-            yield return Timing.WaitForSeconds(0.5f);
-
-            if (PowerUpsManager.Instance.CheckReplaceLetter)
             {
-                yield return Timing.WaitUntilDone(Timing.RunCoroutine(AIReplaceTile()));
+                if (PowerUpsManager.Instance.CheckRevealWord)
+                {
+                    UIManager.Instance.ToggleRevealWordPopUp();
+                    yield return Timing.WaitForSeconds(2f);
+                    UIManager.Instance.ToggleRevealWordPopUp();
+                }
+
+                if (PowerUpsManager.Instance.CheckShuffle)
+                {
+                    Board.Instance.ShuffleBoard();
+                }
+
+                if (PowerUpsManager.Instance.CheckReplaceLetter)
+                {
+                    yield return Timing.WaitUntilDone(Timing.RunCoroutine(AIReplaceTile()));
+                }
+
                 yield return Timing.WaitForSeconds(0.5f);
             }
         }
