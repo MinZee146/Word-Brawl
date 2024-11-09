@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MEC;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AI : Singleton<AI>
 {
+    public string ForcedWord;
+    public bool PreferLong, PreferShort;
+
     public IEnumerator<float> AITurn()
     {
         if (!PowerUpsManager.Instance.CheckExtraTurn)
@@ -16,16 +20,24 @@ public class AI : Singleton<AI>
         var randomValue = Random.Range(0f, 1f);
         List<string> selectedList;
 
-        if (randomValue <= 0.35f && longWords.Count > 0)
+        if (PreferLong && longWords.Count > 0)
+        {
+            selectedList = longWords;
+        }
+        else if (PreferShort && shortWords.Count > 0)
+        {
+            selectedList = shortWords;
+        }
+        else if (randomValue <= 0.35f && longWords.Count > 0)
         {
             selectedList = longWords;
         }
         else
         {
-            selectedList = shortWords.Count > 0 ? shortWords : longWords;
+            selectedList = shortWords;
         }
 
-        var randomWord = selectedList[Random.Range(0, selectedList.Count)];
+        var randomWord = String.IsNullOrEmpty(ForcedWord) ? selectedList[Random.Range(0, selectedList.Count)] : ForcedWord;
 
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(Board.Instance.OpponentSelect(randomWord)));
         yield return Timing.WaitForSeconds(0.6f);
@@ -41,6 +53,8 @@ public class AI : Singleton<AI>
         {
             Timing.RunCoroutine(AITurn());
         }
+
+        ForcedWord = null;
     }
 
     private IEnumerator<float> ChoosePowerUp()

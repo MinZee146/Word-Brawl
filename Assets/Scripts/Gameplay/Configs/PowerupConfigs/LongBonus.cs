@@ -6,5 +6,6 @@ public class LongBonus : PowerUpBase
     public override void ApplyPowerUp()
     {
         Name = "LongBonus";
+        AI.Instance.PreferLong = true;
     }
 }

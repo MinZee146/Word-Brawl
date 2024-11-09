@@ -168,6 +168,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         }
 
         _currentPowerUp = null;
+        AI.Instance.PreferLong = AI.Instance.PreferShort = false;
     }
 
     public void UnloadPowerUps()
