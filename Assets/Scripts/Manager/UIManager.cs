@@ -7,7 +7,7 @@ public class UIManager : SingletonPersistent<UIManager>
 {
     [SerializeField] private GameObject _loadingScreen, _gameOverPanel, _powerUpsPanel, _settingsPanel;
     [SerializeField] private GameObject _opponentPowerUp, _revealWordPanel, _replaceTilePanel;
-    [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okButton;
+    [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okReplaceButton, _okRevealButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
     [SerializeField] private TextMeshProUGUI _revealText, _descriptionPowerUp;
@@ -149,6 +149,16 @@ public class UIManager : SingletonPersistent<UIManager>
     public void ToggleRevealWordPopUp()
     {
         _isInteractable = !_isInteractable;
+
+        if (GameFlowManager.Instance.IsPlayerTurn)
+        {
+            _okRevealButton.SetActive(true);
+        }
+        else
+        {
+            _okRevealButton.SetActive(false);
+        }
+
         _revealWordPanel.SetActive(!_revealWordPanel.activeSelf);
     }
 
@@ -163,6 +173,7 @@ public class UIManager : SingletonPersistent<UIManager>
         else
         {
             _okButton.SetActive(false);
+            _okReplaceButton.SetActive(false);
             _inspectButton.SetActive(false);
         }
     }
@@ -175,6 +186,7 @@ public class UIManager : SingletonPersistent<UIManager>
         {
             _replaceLetter.readOnly = false;
             _okButton.SetActive(false);
+            _okReplaceButton.SetActive(false);
             _inspectButton.SetActive(false);
         }
 
@@ -200,12 +212,12 @@ public class UIManager : SingletonPersistent<UIManager>
         if (string.IsNullOrWhiteSpace(_replaceLetter.text))
         {
             _inspectButton.SetActive(true);
-            _okButton.SetActive(false);
+            _okReplaceButton.SetActive(false);
         }
         else
         {
             _inspectButton.SetActive(false);
-            _okButton.SetActive(true);
+            _okReplaceButton.SetActive(true);
         }
     }
     #endregion

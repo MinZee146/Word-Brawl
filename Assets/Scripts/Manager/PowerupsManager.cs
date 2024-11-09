@@ -13,8 +13,9 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     public bool CheckExtraTurn => _isExtraTurn;
     public bool CheckReplaceLetter => _isReplaceLetter;
     public bool CheckShuffle => _isShuffle;
+    public bool CheckRevealWord => _isRevealWord;
 
-    private bool _isBeingGrief, _isPenalty, _isExtraTurn, _isReplaceLetter, _isShuffle;
+    private bool _isBeingGrief, _isPenalty, _isExtraTurn, _isReplaceLetter, _isShuffle, _isRevealWord;
     private PowerUpBase _currentPowerUp;
     private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
     private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
@@ -96,6 +97,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         switch (_currentPowerUp.GetName())
         {
             case "RevealWord":
+                _isRevealWord = true;
                 break;
             case "Shuffle":
                 _isShuffle = true;
@@ -148,6 +150,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
     public void CleanPowerUp()
     {
+        _isRevealWord = false;
         if (_currentPowerUp == null)
         {
             _isExtraTurn = false;

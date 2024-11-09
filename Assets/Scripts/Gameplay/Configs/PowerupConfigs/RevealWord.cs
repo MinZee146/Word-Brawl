@@ -9,13 +9,15 @@ public class RevealWord : PowerUpBase
         Name = "RevealWord";
 
         var word = Board.Instance.FoundWords.Keys.OrderByDescending(word => word.Length).FirstOrDefault();
+        UIManager.Instance.SetRevealedText(word);
 
         if (!GameFlowManager.Instance.IsPlayerTurn)
         {
             AI.Instance.ForcedWord = word;
         }
-
-        UIManager.Instance.SetRevealedText(word);
-        UIManager.Instance.ToggleRevealWordPopUp();
+        else
+        {
+            UIManager.Instance.ToggleRevealWordPopUp();
+        }
     }
 }

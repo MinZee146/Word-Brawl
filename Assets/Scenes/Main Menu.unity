@@ -6067,7 +6067,8 @@ MonoBehaviour:
   _toggleSFXButton: {fileID: 319452343}
   _toggleMusicButton: {fileID: 1526058485}
   _inspectButton: {fileID: 1962775020}
-  _okButton: {fileID: 1598693438}
+  _okReplaceButton: {fileID: 1598693438}
+  _okRevealButton: {fileID: 1819603052}
   _sfxOn: {fileID: -213356348, guid: 156ec492e516ccb4099add479601d65e, type: 3}
   _sfxOff: {fileID: 1897002124, guid: 156ec492e516ccb4099add479601d65e, type: 3}
   _musicOn: {fileID: -663011761, guid: 156ec492e516ccb4099add479601d65e, type: 3}
