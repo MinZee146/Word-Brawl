@@ -322,6 +322,11 @@ public class Board : Singleton<Board>
         {
             if (!PowerUpsManager.Instance.CheckExtraTurn)
             {
+                GameUIController.Instance.ToggleHintAndConfirm(display: false);
+                UIManager.Instance.IsInteractable = false;
+
+                yield return Timing.WaitForSeconds(0.5f);
+                UIManager.Instance.IsInteractable = true;
                 GameFlowManager.Instance.NextTurn();
             }
         }

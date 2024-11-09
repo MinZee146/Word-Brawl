@@ -63,11 +63,10 @@ public class AI : Singleton<AI>
     {
         if (PowerUpsManager.Instance.PowerUpCounts() == 0 || GameFlowManager.Instance.Turn <= 2)
         {
-            yield return Timing.WaitForSeconds(1.5f);
+            yield return Timing.WaitForSeconds(0.75f);
         }
         else
         {
-            yield return Timing.WaitForSeconds(0.75f);
             PowerUpsManager.Instance.SelectRandomPowerUp();
             UIManager.Instance.ToggleOpponentPowerUpPanel();
 
