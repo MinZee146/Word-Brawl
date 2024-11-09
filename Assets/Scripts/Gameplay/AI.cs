@@ -74,6 +74,11 @@ public class AI : Singleton<AI>
             yield return Timing.WaitForSeconds(1.5f);
             UIManager.Instance.ToggleOpponentPowerUpPanel();
 
+            if (PowerUpsManager.Instance.CheckShuffle)
+            {
+                Board.Instance.ShuffleBoard();
+            }
+
             yield return Timing.WaitForSeconds(0.5f);
 
             if (PowerUpsManager.Instance.CheckReplaceLetter)

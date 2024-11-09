@@ -424,5 +424,16 @@ public class Board : Singleton<Board>
     {
         HandleTileReplace = null;
     }
+
+    public void ShuffleBoard()
+    {
+        foreach (var tile in TileList)
+        {
+            tile.SetTileConfig(GetRandomLetter());
+            tile.Deselect();
+        }
+
+        GameManager.Instance.CheckForGameOver();
+    }
     #endregion
 }

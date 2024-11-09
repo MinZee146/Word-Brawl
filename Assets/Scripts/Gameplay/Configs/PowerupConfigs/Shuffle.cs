@@ -7,12 +7,9 @@ public class Shuffle : PowerUpBase
     {
         Name = "Shuffle";
 
-        foreach (var tile in Board.Instance.TileList)
+        if (GameFlowManager.Instance.IsPlayerTurn)
         {
-            tile.SetTileConfig(Board.Instance.GetRandomLetter());
-            tile.Deselect();
+            Board.Instance.ShuffleBoard();
         }
-
-        GameManager.Instance.CheckForGameOver();
     }
 }
