@@ -11,8 +11,9 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
     [SerializeField] private Button[] _powerUpsButtons;
 
     public bool CheckExtraTurn => _isExtraTurn;
+    public bool CheckReplaceLetter => _isReplaceLetter;
 
-    private bool _isBeingGrief, _isPenalty, _isExtraTurn;
+    private bool _isBeingGrief, _isPenalty, _isExtraTurn, _isReplaceLetter;
     private PowerUpBase _currentPowerUp;
     private PowerUpBase[] _powerUpsList = new PowerUpBase[6];
     private AsyncOperationHandle<IList<PowerUpBase>> _loadedPowerUpHandle;
@@ -95,9 +96,10 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         {
             case "RevealWord":
                 break;
-            case "ReplaceLetter":
-                break;
             case "Shuffle":
+                break;
+            case "ReplaceLetter":
+                _isReplaceLetter = true;
                 break;
             case "ExtraTurn":
                 _isExtraTurn = true;
@@ -114,14 +116,14 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             case "DoubleScore":
                 currentScore *= 2;
                 break;
-            case "Grief":
-                _isBeingGrief = true;
-                break;
             case "LongBonus":
                 currentScore = currentLength >= 5 ? currentScore * 2 : currentScore;
                 break;
             case "ShortBonus":
                 currentScore = currentLength < 5 ? currentScore * 2 : currentScore;
+                break;
+            case "Grief":
+                _isBeingGrief = true;
                 break;
             case "ShortPenalty":
                 _isPenalty = true;
@@ -149,6 +151,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             _isExtraTurn = false;
             _isBeingGrief = false;
             _isPenalty = false;
+            _isReplaceLetter = false;
             return;
         }
 
@@ -165,6 +168,11 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         if (_currentPowerUp.GetName() != "ExtraTurn")
         {
             _isExtraTurn = false;
+        }
+
+        if (_currentPowerUp.GetName() != "ReplaceLetter")
+        {
+            _isReplaceLetter = false;
         }
 
         _currentPowerUp = null;
