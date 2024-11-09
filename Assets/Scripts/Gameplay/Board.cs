@@ -16,6 +16,7 @@ public class Board : Singleton<Board>
 
     public const int ColsEven = 6, ColsOdd = 5, Rows = 10;
     public TileConfig GetRandomLetter() => _configManager.GetRandomLetter();
+    public TileConfig GetConfig(char letter) => _configManager.GetConfig(letter);
     public event Action HandleTileReplace;
 
     private RectTransform _board;

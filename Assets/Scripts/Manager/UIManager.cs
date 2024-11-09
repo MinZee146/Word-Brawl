@@ -162,8 +162,19 @@ public class UIManager : SingletonPersistent<UIManager>
     {
         _isInteractable = !_isInteractable;
 
+        if (!GameFlowManager.Instance.IsPlayerTurn)
+        {
+            _replaceLetter.readOnly = false;
+            _okButton.SetActive(false);
+        }
+
         _replaceLetter.text = "";
         _replaceTilePanel.SetActive(!_replaceTilePanel.activeSelf);
+    }
+
+    public void SetReplaceText(char letter)
+    {
+        _replaceLetter.text = letter.ToString();
     }
 
     public void ConfirmReplace()

@@ -120,4 +120,33 @@ public class WordFinder : Singleton<WordFinder>
         return Board.Instance.FoundWords.Values.Any(array => array == _currentHint);
     }
     #endregion
+
+    #region LetterReplace
+    public string FindIncompleteWord()
+    {
+        const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (var targetLength = 5; targetLength > 0; targetLength--)
+        {
+            foreach (var potentialWord in from word in Board.Instance.FoundWords.Keys
+                                          where word.Length == targetLength - 1
+                                          from letter in alphabet
+                                          let potentialWord = word + letter
+                                          where GameDictionary.Instance.CheckWord(potentialWord) && !IsLetterNear(word, letter)
+                                          select potentialWord)
+            {
+                return potentialWord;
+            }
+        }
+        return null;
+    }
+
+    private bool IsLetterNear(string word, char letter)
+    {
+        var positions = Board.Instance.FoundWords[word];
+        return positions.Select(pos => GetNeighbors(
+            Board.Instance.TileList.First(t => t.Row == pos.x && t.Column == pos.y))).
+            Any(neighbors => neighbors.
+                Any(t => t.Letter == letter));
+    }
+    #endregion
 }
