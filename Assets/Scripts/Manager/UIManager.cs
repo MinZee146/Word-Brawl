@@ -155,7 +155,16 @@ public class UIManager : SingletonPersistent<UIManager>
     public void OnReplaceLetterChanged()
     {
         _replaceLetter.text = _replaceLetter.text.ToUpper();
-        ToggleInspectAndOKReplace();
+
+        if (GameFlowManager.Instance.IsPlayerTurn)
+        {
+            ToggleInspectAndOKReplace();
+        }
+        else
+        {
+            _okButton.SetActive(false);
+            _inspectButton.SetActive(false);
+        }
     }
 
     public void ToggleTileReplacePopUp()
@@ -166,6 +175,7 @@ public class UIManager : SingletonPersistent<UIManager>
         {
             _replaceLetter.readOnly = false;
             _okButton.SetActive(false);
+            _inspectButton.SetActive(false);
         }
 
         _replaceLetter.text = "";
