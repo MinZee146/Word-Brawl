@@ -107,19 +107,6 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
     public void CheckForPowerUpScoring(ref int currentScore, int currentLength)
     {
-        if (_isBeingGrief)
-        {
-            currentScore /= 2;
-        }
-
-        if (_isPenalty)
-        {
-            if (currentLength < 5)
-            {
-                currentScore /= 2;
-            }
-        }
-
         if (_currentPowerUp == null) return;
 
         switch (_currentPowerUp.GetName())
@@ -139,6 +126,19 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             case "ShortPenalty":
                 _isPenalty = true;
                 break;
+        }
+
+        if (_isBeingGrief && _currentPowerUp.GetName() != "Grief")
+        {
+            currentScore /= 2;
+        }
+
+        if (_isPenalty && _currentPowerUp.GetName() != "ShortPenalty")
+        {
+            if (currentLength < 5)
+            {
+                currentScore /= 2;
+            }
         }
     }
 
