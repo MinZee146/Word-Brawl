@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
-    [SerializeField] private GameObject _loadingScreen, _gameOverPanel, _powerUpsPanel, _settingsPanel;
+    [SerializeField] private GameObject _menuUI, _gameOverPanel, _powerUpsPanel, _settingsPanel;
     [SerializeField] private GameObject _opponentPowerUp, _revealWordPanel, _replaceTilePanel;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okReplaceButton, _okRevealButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
@@ -63,7 +63,7 @@ public class UIManager : SingletonPersistent<UIManager>
     #region TogglePanel
     public void ToggleLoadingScreen()
     {
-        _loadingScreen.SetActive(!_loadingScreen.activeSelf);
+        _menuUI.SetActive(!_menuUI.activeSelf);
     }
 
     public void ToggleGameOverPanel()
