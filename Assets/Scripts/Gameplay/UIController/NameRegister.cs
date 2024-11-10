@@ -25,6 +25,7 @@ public class NameRegister : SingletonPersistent<NameRegister>
             PlayerPrefs.Save();
 
             _nameRegisterPanel.SetActive(false);
+            UIManager.Instance.SetName(PlayerPrefs.GetString("Username"));
         }
     }
 }

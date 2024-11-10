@@ -35,6 +35,11 @@ public class UIManager : SingletonPersistent<UIManager>
         _playerName.text = PlayerPrefs.GetString("Username");
     }
 
+    public void SetName(string name)
+    {
+        _playerName.text = name;
+    }
+
     #region LoadScene
     public void LoadGameScene()
     {
