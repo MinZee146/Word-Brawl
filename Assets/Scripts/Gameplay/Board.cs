@@ -332,6 +332,7 @@ public class Board : Singleton<Board>
         }
         else
         {
+            yield return Timing.WaitForSeconds(0.75f);
             GameFlowManager.Instance.HandleGameOver();
         }
     }
