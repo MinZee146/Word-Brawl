@@ -6730,10 +6730,12 @@ MonoBehaviour:
   _powerUpsPanel: {fileID: 779016708}
   _settingsPanel: {fileID: 51422505}
   _phaseChangePanel: {fileID: 1635642554}
+  _hintRunsOutPanel: {fileID: 1822184815}
   _gameOverBG: {fileID: 1988901250}
   _powerUpsBG: {fileID: 1880143089}
   _settingsBG: {fileID: 936685579}
   _phaseChangeBG: {fileID: 1762604383}
+  _hintRunsOutBG: {fileID: 1858290626}
   _opponentPowerUpPanel: {fileID: 1826653781}
   _revealWordPanel: {fileID: 1402126000}
   _replaceTilePanel: {fileID: 1044387018}
@@ -6741,8 +6743,6 @@ MonoBehaviour:
   _revealWordBG: {fileID: 1790317836}
   _replaceTileBG: {fileID: 339985808}
   _loadingBG: {fileID: 776653799}
-  _hintRunsOutPanel: {fileID: 1822184815}
-  _adRunsOutBG: {fileID: 1858290626}
   _toggleSFXButton: {fileID: 319452343}
   _toggleMusicButton: {fileID: 1526058485}
   _inspectButton: {fileID: 1962775020}
