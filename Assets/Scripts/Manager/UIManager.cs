@@ -11,9 +11,8 @@ using System;
 
 public class UIManager : SingletonPersistent<UIManager>
 {
-    [SerializeField] private GameObject _menuUI, _gameOverPanel, _powerUpsPanel, _settingsPanel, _phaseChangePanel, _gameOverBG, _powerUpsBG, _settingsBG, _phaseChangeBG;
+    [SerializeField] private GameObject _menuUI, _gameOverPanel, _powerUpsPanel, _settingsPanel, _phaseChangePanel, _hintRunsOutPanel, _gameOverBG, _powerUpsBG, _settingsBG, _phaseChangeBG, _hintRunsOutBG;
     [SerializeField] private GameObject _opponentPowerUpPanel, _revealWordPanel, _replaceTilePanel, _opponentPowerUpBG, _revealWordBG, _replaceTileBG, _loadingBG;
-    [SerializeField] private GameObject _hintRunsOutPanel, _adRunsOutBG;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okReplaceButton, _okRevealButton;
     [SerializeField] private Sprite _sfxOn, _sfxOff, _musicOn, _musicOff;
     [SerializeField] private TMP_InputField _replaceLetter;
@@ -140,11 +139,6 @@ public class UIManager : SingletonPersistent<UIManager>
         }
     }
 
-    public void ToggleHintsRunOutPanel()
-    {
-        PanelAnimation(_hintRunsOutPanel, _adRunsOutBG);
-    }
-
     public void ToggleGameOverPanel()
     {
         PanelAnimation(_gameOverPanel, _gameOverBG);
@@ -173,6 +167,11 @@ public class UIManager : SingletonPersistent<UIManager>
                 LoadingAnimation.Instance.AnimationLoaded(0.5f, 0f);
             });
         });
+    }
+
+    public void ToggleHintsRunOutPanel()
+    {
+        PanelAnimation(_hintRunsOutPanel, _hintRunsOutBG);
     }
 
     public void ToggleInspectPowerUps()
@@ -335,7 +334,7 @@ public class UIManager : SingletonPersistent<UIManager>
 
     public bool CheckCanInteractBoard()
     {
-        if (_gameOverBG.activeSelf || _settingsBG.activeSelf || _powerUpsBG.activeSelf || _phaseChangeBG.activeSelf
+        if (_gameOverBG.activeSelf || _settingsBG.activeSelf || _powerUpsBG.activeSelf || _phaseChangeBG.activeSelf || _hintRunsOutBG.activeSelf
         || _opponentPowerUpBG.activeSelf || _revealWordBG.activeSelf || _replaceTileBG.activeSelf || _loadingBG.activeSelf
         || !_isInteractable)
         {
