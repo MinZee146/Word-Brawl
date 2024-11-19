@@ -4,9 +4,8 @@ using System;
 
 public class LoadingAnimation : SingletonPersistent<LoadingAnimation>
 {
-    [SerializeField] private RectTransform _leftPanel;
-    [SerializeField] private RectTransform _rightPanel;
-    [SerializeField] private RectTransform _topPanel;
+    [SerializeField] private GameObject _loadingPanel;
+    [SerializeField] private RectTransform _leftPanel, _rightPanel, _topPanel;
 
     private Vector2 leftOriginalPos;
     private Vector2 rightOriginalPos;
@@ -16,7 +15,7 @@ public class LoadingAnimation : SingletonPersistent<LoadingAnimation>
 
     public void Initialize()
     {
-        gameObject.SetActive(false);
+        _loadingPanel.SetActive(false);
 
         _leftPanel.sizeDelta = new Vector2(halfScreenWidth, screenHeight);
         _rightPanel.sizeDelta = new Vector2(halfScreenWidth, screenHeight);
@@ -33,7 +32,7 @@ public class LoadingAnimation : SingletonPersistent<LoadingAnimation>
 
     public void AnimationLoading(float transitionDuration, Action onComplete = null)
     {
-        gameObject.SetActive(true);
+        _loadingPanel.SetActive(true);
 
         Sequence closeSequence = DOTween.Sequence();
         closeSequence.Join(_topPanel.DOAnchorPos(new Vector2(0, -2 * screenHeight / 25), transitionDuration));
@@ -55,7 +54,7 @@ public class LoadingAnimation : SingletonPersistent<LoadingAnimation>
             openSequence.Join(_rightPanel.DOAnchorPos(rightOriginalPos, transitionDuration));
             openSequence.OnComplete(() =>
             {
-                gameObject.SetActive(false);
+                _loadingPanel.SetActive(false);
             });
         });
     }

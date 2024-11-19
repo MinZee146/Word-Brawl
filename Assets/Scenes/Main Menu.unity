@@ -3391,7 +3391,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776653801}
-  - component: {fileID: 776653800}
   m_Layer: 5
   m_Name: LoadingPanel
   m_TagString: Untagged
@@ -3399,21 +3398,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &776653800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776653799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11cde986afda4f84f8afbdcd483aef9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _leftPanel: {fileID: 193727774}
-  _rightPanel: {fileID: 77668369}
-  _topPanel: {fileID: 816628458}
 --- !u!224 &776653801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6705,6 +6689,7 @@ GameObject:
   - component: {fileID: 1292717610}
   - component: {fileID: 1292717605}
   - component: {fileID: 1292717611}
+  - component: {fileID: 1292717613}
   - component: {fileID: 1292717612}
   m_Layer: 5
   m_Name: UIManager
@@ -6892,6 +6877,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1292717613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292717604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cde986afda4f84f8afbdcd483aef9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadingPanel: {fileID: 776653799}
+  _leftPanel: {fileID: 193727774}
+  _rightPanel: {fileID: 77668369}
+  _topPanel: {fileID: 816628458}
 --- !u!1 &1311701080
 GameObject:
   m_ObjectHideFlags: 0
