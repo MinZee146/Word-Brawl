@@ -12,22 +12,25 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public void LoadNames()
     {
         _playerName.text = PlayerPrefs.GetString("Username");
+        _opponentName.text = UIManager.Instance.CurrentOpponent;
     }
 
-    public void UpdatePlayerStats(string word, int score)
+    public void UpdateStats(string playerWord, string opponentWord, int score)
     {
-        UpdatePlayerScore(score);
-        if (score <= _playerBestScore) return;
-        _playerBestScore = score;
-        _playerBestWord = word;
-    }
-
-    public void UpdateOpponentStats(string word, int score)
-    {
-        UpdateOpponentScore(score);
-        if (score <= _opponentBestScore) return;
-        _opponentBestScore = score;
-        _opponentBestWord = word;
+        if (GameFlowManager.Instance.IsPlayerTurn)
+        {
+            UpdatePlayerScore(score);
+            if (score <= _playerBestScore) return;
+            _playerBestScore = score;
+            _playerBestWord = playerWord;
+        }
+        else
+        {
+            UpdateOpponentScore(score);
+            if (score <= _opponentBestScore) return;
+            _opponentBestScore = score;
+            _opponentBestWord = opponentWord;
+        }
     }
 
     public string GetPlayerBestWord()
@@ -38,6 +41,19 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public string GetOpponentBestWord()
     {
         return _opponentBestWord + $" ({_opponentBestScore})";
+    }
+
+    public bool IsPlayerWon()
+    {
+        if (_playerCurrentScore == _opponentCurrentScore)
+            return IsPlayerHavingBestWord();
+        else
+            return _playerCurrentScore > _opponentCurrentScore;
+    }
+
+    public bool IsPlayerHavingBestWord()
+    {
+        return _playerBestScore > _opponentBestScore;
     }
 
     private void UpdatePlayerScore(int score)
@@ -55,6 +71,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public void Reset()
     {
         _playerCurrentScore = _opponentCurrentScore = 0;
+        _playerBestScore = _opponentBestScore = 0;
+        _playerBestWord = _opponentBestWord = "";
         _opponentScore.text = _playerScore.text = "0";
     }
 }

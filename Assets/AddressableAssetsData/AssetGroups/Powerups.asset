@@ -15,65 +15,65 @@ MonoBehaviour:
   m_GroupName: PowerUps
   m_Data:
     m_SerializedData: []
-  m_GUID: 2730c99d6ba6f0744a1fbaf82fc8d4fa
+  m_GUID: 1e21a570f1e8e614bb25da720fc56b7b
   m_SerializeEntries:
-  - m_GUID: 0045032d358a5b444b18fb1d01f5de04
-    m_Address: Assets/Configs/PowerupConfigs/Shuffle.asset
+  - m_GUID: 040ecfa789cbad643ae636b4fc7b917b
+    m_Address: Assets/Addressables/PowerupsConfig/LongBonus.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2e745b297bd993e468cebe23f735a5d1
-    m_Address: Assets/Configs/PowerupConfigs/Grief.asset
+  - m_GUID: 74b8b2df770a9894dbeaac52402f75d7
+    m_Address: Assets/Addressables/PowerupsConfig/LetterReplace.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 58363f8a3fecaff48b4beb8c3c7a92cf
-    m_Address: Assets/Configs/PowerupConfigs/LongBonus.asset
+  - m_GUID: 98f3ca963fd3d3b4b8ba27c57b89f760
+    m_Address: Assets/Addressables/PowerupsConfig/Grief.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 589145a68ceb8624684224a1a173df7a
-    m_Address: Assets/Configs/PowerupConfigs/DoubleScore.asset
+  - m_GUID: a091ec09ec5bcf84cba2fca96a6ebee8
+    m_Address: Assets/Addressables/PowerupsConfig/ExtraTurn.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5f519be892c11e94daf848c109a99ad0
-    m_Address: Assets/Configs/PowerupConfigs/RevealWord.asset
+  - m_GUID: b6f9c681db53bae448a4aea5c86c2548
+    m_Address: Assets/Addressables/PowerupsConfig/DoubleScore.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 764df90a3d5e2104eb15b04d85a2eaf2
-    m_Address: Assets/Configs/PowerupConfigs/ExtraTurn.asset
+  - m_GUID: ba5563b5208a0d943a1258aaf5c3da9b
+    m_Address: Assets/Addressables/PowerupsConfig/ShortPenalty.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9dc09634e56e1504699d703e7d9a0be1
-    m_Address: Assets/Configs/PowerupConfigs/ShortBonus.asset
+  - m_GUID: c7cdf62791a7bf5459a72f7e7d19ebf2
+    m_Address: Assets/Addressables/PowerupsConfig/RevealWord.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a1844118acbe59448a49a0cbfffe8abe
-    m_Address: Assets/Configs/PowerupConfigs/LetterReplace.asset
+  - m_GUID: e2f65ced63807a54582f2ad442c77afd
+    m_Address: Assets/Addressables/PowerupsConfig/Shuffle.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: eb97bd404b973034c9d882765ffb4d02
-    m_Address: Assets/Configs/PowerupConfigs/ShortPenalty.asset
+  - m_GUID: f19f1bb08c931364ba5b2e1dd18ee279
+    m_Address: Assets/Addressables/PowerupsConfig/ShortBonus.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - PowerupConfigs
+    - PowerUps
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a3880b8fb25b90a4cada257dda67b2f5, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f344b529ad27b5f40880d247c988ec64, type: 2}
-    - {fileID: 11400000, guid: ad07376dd7577644bb8981d3fcfa9638, type: 2}
+    - {fileID: 11400000, guid: 04838ae8ac008d74c883c83766714e43, type: 2}
+    - {fileID: 11400000, guid: 893173ed5edd3bf418cfffc1b3f8684a, type: 2}

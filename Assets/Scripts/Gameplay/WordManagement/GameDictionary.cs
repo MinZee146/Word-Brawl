@@ -39,6 +39,11 @@ public class GameDictionary : SingletonPersistent<GameDictionary>
 
     public bool CheckWord(string word)
     {
+        if (word == null)
+        {
+            return false;
+        }
+
         return _words.Contains(word.ToUpper());
     }
 
@@ -49,7 +54,6 @@ public class GameDictionary : SingletonPersistent<GameDictionary>
 
     public void UnloadDictionary()
     {
-        // Release the Addressable asset when done
         Addressables.Release(_dictText);
     }
 }

@@ -61,6 +61,18 @@ public class Tile : MonoBehaviour
         AudioManager.Instance.PlaySFX("TileSelect");
     }
 
+    public void Deselect()
+    {
+        _innerCircle.sprite = _idleSprite;
+        _innerCircle.color = Color;
+        _letterText.color = _dark;
+        _scoreText.color = _dark;
+        _background.color = _light;
+
+        _innerCircle.transform.DOComplete();
+        _innerCircle.transform.DOShakePosition(0.5f, 10f, 10, 75, false, true, ShakeRandomnessMode.Harmonic);
+    }
+
     public void ValidateWord()
     {
         _innerCircle.sprite = _validSprite;
@@ -82,18 +94,6 @@ public class Tile : MonoBehaviour
             Deselect();
             AudioManager.Instance.PlaySFX("Hint");
         });
-    }
-
-    public void Deselect()
-    {
-        _innerCircle.sprite = _idleSprite;
-        _innerCircle.color = Color;
-        _letterText.color = _dark;
-        _scoreText.color = _dark;
-        _background.color = _light;
-
-        _innerCircle.transform.DOComplete();
-        _innerCircle.transform.DOShakePosition(0.5f, 10f, 10, 75, false, true, ShakeRandomnessMode.Harmonic);
     }
 
     public IEnumerator<float> PopAndDestroy()

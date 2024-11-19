@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 
 public class AI : Singleton<AI>
 {
-    public string ForcedWord;
-    public bool PreferLong, PreferShort;
+    [NonSerialized] public string ForcedWord;
+    [NonSerialized] public bool PreferLong, PreferShort;
 
     public IEnumerator<float> AITurn()
     {
@@ -30,7 +30,7 @@ public class AI : Singleton<AI>
         {
             selectedList = shortWords;
         }
-        else if (randomValue <= 0.35f && longWords.Count > 0)
+        else if (randomValue <= 0.3f && longWords.Count > 0)
         {
             selectedList = longWords;
         }
@@ -42,7 +42,7 @@ public class AI : Singleton<AI>
         var randomWord = string.IsNullOrEmpty(ForcedWord) ? selectedList[Random.Range(0, selectedList.Count)] : ForcedWord;
 
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(Board.Instance.OpponentSelect(randomWord)));
-        yield return Timing.WaitForSeconds(0.6f);
+        yield return Timing.WaitForSeconds(0.75f);
 
         Board.Instance.DisconnectAll();
         Board.Instance.DeselectAll();
@@ -54,8 +54,13 @@ public class AI : Singleton<AI>
 
         if (PowerUpsManager.Instance.CheckExtraTurn)
         {
-            yield return Timing.WaitForSeconds(1.5f);
-            Timing.RunCoroutine(AITurn());
+            yield return Timing.WaitUntilDone(Timing.RunCoroutine(GameManager.Instance.CheckForGameOver()));
+
+            if (!GameManager.Instance.IsGameOver)
+            {
+                yield return Timing.WaitForSeconds(Random.Range(1f, 2f));
+                Timing.RunCoroutine(AITurn());
+            }
         }
     }
 
@@ -63,24 +68,27 @@ public class AI : Singleton<AI>
     {
         if (PowerUpsManager.Instance.PowerUpCounts() == 0 || GameFlowManager.Instance.Turn <= 2)
         {
-            yield return Timing.WaitForSeconds(0.75f);
+            yield return Timing.WaitForSeconds(Random.Range(1f, 2f));
         }
         else
         {
+            yield return Timing.WaitForSeconds(Random.Range(0.5f, 1.5f));
+
             PowerUpsManager.Instance.SelectRandomPowerUp();
             UIManager.Instance.ToggleOpponentPowerUpPanel();
+            yield return Timing.WaitForSeconds(2f);
 
-            yield return Timing.WaitForSeconds(1.5f);
             UIManager.Instance.ToggleOpponentPowerUpPanel();
-
-            yield return Timing.WaitForSeconds(0.25f);
+            yield return Timing.WaitForSeconds(0.5f);
 
             {
                 if (PowerUpsManager.Instance.CheckRevealWord)
                 {
+                    yield return Timing.WaitForSeconds(0.25f);
                     UIManager.Instance.ToggleRevealWordPopUp();
                     yield return Timing.WaitForSeconds(2f);
                     UIManager.Instance.ToggleRevealWordPopUp();
+                    yield return Timing.WaitForSeconds(0.25f);
                 }
 
                 if (PowerUpsManager.Instance.CheckShuffle)
@@ -92,9 +100,9 @@ public class AI : Singleton<AI>
                 {
                     yield return Timing.WaitUntilDone(Timing.RunCoroutine(AIReplaceTile()));
                 }
-
-                yield return Timing.WaitForSeconds(0.5f);
             }
+
+            yield return Timing.WaitForSeconds(Random.Range(0.5f, 1.5f));
         }
     }
 
@@ -104,12 +112,12 @@ public class AI : Singleton<AI>
         var lastChar = incompleteWord[^1];
         var currentWord = incompleteWord[..^1];
 
-        var lastLetterPos = Board.Instance.FoundWords[currentWord].Last();
+        var lastLetterPos = Board.Instance.FoundWords[currentWord].Path.Last();
         var lastLetterTile = Board.Instance.TileList.FirstOrDefault(t => t.Row == lastLetterPos.x && t.Column == lastLetterPos.y);
         var neighbors = Board.Instance.TileList.Where(lastLetterTile.IsAdjacent).ToList();
 
         var randomNeighbor = neighbors[Random.Range(0, neighbors.Count)];
-        while (Board.Instance.FoundWords[currentWord].Contains(new Vector2Int(randomNeighbor.Row, randomNeighbor.Column)))
+        while (Board.Instance.FoundWords[currentWord].Path.Contains(new Vector2Int(randomNeighbor.Row, randomNeighbor.Column)))
         {
             randomNeighbor = neighbors[Random.Range(0, neighbors.Count)];
         }
@@ -119,17 +127,24 @@ public class AI : Singleton<AI>
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(AIReplaceTile(lastChar, randomNeighbor)));
 
         //Add this to found words temporarily to be immediately selected
-        Board.Instance.FoundWords[incompleteWord] = new List<Vector2Int>(Board.Instance.FoundWords[currentWord]) { new(randomNeighbor.Row, randomNeighbor.Column) };
+        Board.Instance.FoundWords[incompleteWord] = new FoundWordData(new List<Vector2Int>(Board.Instance.FoundWords[currentWord].Path) { new(randomNeighbor.Row, randomNeighbor.Column) }, 0);
         ForcedWord = incompleteWord;
     }
 
     private IEnumerator<float> AIReplaceTile(char lastChar, Tile randomNeighbor)
     {
-        UIManager.Instance.ToggleTileReplacePopUp();
+        yield return Timing.WaitForSeconds(0.25f);
+        randomNeighbor.Select();
         yield return Timing.WaitForSeconds(0.5f);
+        randomNeighbor.Deselect();
+        yield return Timing.WaitForSeconds(0.5f);
+
+        UIManager.Instance.ToggleTileReplacePopUp();
+        yield return Timing.WaitForSeconds(1f);
         UIManager.Instance.SetReplaceText(lastChar);
         yield return Timing.WaitForSeconds(1f);
         UIManager.Instance.ToggleTileReplacePopUp();
+        yield return Timing.WaitForSeconds(1f);
 
         randomNeighbor.transform.DOScale(Vector3.one * 0.1f, 0.3f).OnComplete(() =>
          {

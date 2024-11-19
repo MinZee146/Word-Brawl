@@ -1,3 +1,7 @@
+using UnityEngine;
+using System.Collections.Generic;
+using MEC;
+
 public class GameManager : SingletonPersistent<GameManager>
 {
     private bool _isGameOver;
@@ -13,7 +17,6 @@ public class GameManager : SingletonPersistent<GameManager>
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
         UIManager.Instance.Initialize();
-        NameRegister.Instance.Initialize();
     }
 
     public void NewGame()
@@ -24,14 +27,32 @@ public class GameManager : SingletonPersistent<GameManager>
 
     public void Replay()
     {
-        NewGame();
-        Board.Instance.NewGame();
+        AudioManager.Instance.PlaySFX("ButtonClick");
         UIManager.Instance.ToggleGameOverPanel();
+
+        LoadingAnimation.Instance.AnimationLoading(0.5f, () =>
+        {
+            UIManager.Instance.LoadNames();
+            PlayerStatsManager.Instance.LoadNames();
+            PlayerStatsManager.Instance.Reset();
+
+            Board.Instance.NewGame();
+            NewGame();
+
+            LoadingAnimation.Instance.AnimationLoaded(0.5f, 0);
+        });
     }
 
-    public void CheckForGameOver()
+    public IEnumerator<float> CheckForGameOver()
     {
         WordFinder.Instance.FindAllWords();
         _isGameOver = Board.Instance.FoundWords.Keys.Count == 0;
+
+        if (_isGameOver)
+        {
+            Notifier.Instance.OnPhaseChanged();
+            yield return Timing.WaitForSeconds(0.75f);
+            GameFlowManager.Instance.HandleGameOver();
+        }
     }
 }

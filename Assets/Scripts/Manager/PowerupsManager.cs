@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using MEC;
 
 public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 {
@@ -30,7 +31,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         UnloadPowerUps();
         CleanPowerUp();
 
-        _loadedPowerUpHandle = Addressables.LoadAssetsAsync<PowerUpBase>("PowerupConfigs", null);
+        _loadedPowerUpHandle = Addressables.LoadAssetsAsync<PowerUpBase>("PowerUps", null);
         _loadedPowerUpHandle.Completed += OnPowerUpsLoaded;
     }
 
@@ -45,7 +46,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
                 _powerUpsList[index] = powerUps[index];
 
                 _powerUpsButtons[index].interactable = true;
-                _powerUpsButtons[index].onClick.AddListener(() => UsePowerUp(index));
+                _powerUpsButtons[index].onClick.AddListener(() => Timing.RunCoroutine(UsePowerUp(index)));
                 _powerUpsButtons[index].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = powerUps[index].Description;
                 _powerUpsButtons[index].transform.GetChild(1).GetComponent<Image>().sprite = powerUps[index].Sprite;
             }
@@ -56,19 +57,24 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         }
     }
 
-    private void UsePowerUp(int index)
+    private IEnumerator<float> UsePowerUp(int index)
     {
-        AudioManager.Instance.PlaySFX("PowerupSelect");
         _powerUpsButtons[index].interactable = false;
-        _currentPowerUp = _powerUpsList[index];
-        _powerUpsList[index].ApplyPowerUp();
-        Notifier.Instance.OnUsePowerUp(_currentPowerUp.GetName());
 
         if (GameFlowManager.Instance.IsPlayerTurn)
         {
             UIManager.Instance.TogglePowerUpsPanel();
+
+            UIManager.Instance.IsInteractable = false;
+            yield return Timing.WaitForSeconds(0.5f);
+            UIManager.Instance.IsInteractable = true;
         }
 
+        _currentPowerUp = _powerUpsList[index];
+        _powerUpsList[index].ApplyPowerUp();
+
+        AudioManager.Instance.PlaySFX("PowerupSelect");
+        Notifier.Instance.OnUsePowerUp(_currentPowerUp.GetName());
         CheckForPowerUpAction();
 
         Debug.Log("Selected PowerUp: " + _powerUpsList[index].name);
@@ -86,7 +92,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
         var randomIndex = Random.Range(0, availableButtons.Count);
         var selectedPowerUpIndex = System.Array.IndexOf(_powerUpsButtons, availableButtons[randomIndex]);
 
-        UsePowerUp(selectedPowerUpIndex);
+        Timing.RunCoroutine(UsePowerUp(selectedPowerUpIndex));
         UIManager.Instance.UpdateOpponentPowerUp(_powerUpsList[selectedPowerUpIndex].Description, _powerUpsList[selectedPowerUpIndex].Sprite);
     }
 
@@ -113,6 +119,16 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
     public void CheckForPowerUpScoring(ref int currentScore, int currentLength)
     {
+        if (_isBeingGrief && _currentPowerUp == null)
+        {
+            currentScore /= 2;
+        }
+
+        if (_isPenalty && _currentPowerUp == null && currentLength < 5)
+        {
+            currentScore /= 2;
+        }
+
         if (_currentPowerUp == null) return;
 
         switch (_currentPowerUp.GetName())
@@ -139,12 +155,9 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
             currentScore /= 2;
         }
 
-        if (_isPenalty && _currentPowerUp.GetName() != "ShortPenalty")
+        if (_isPenalty && _currentPowerUp.GetName() != "ShortPenalty" && currentLength < 5)
         {
-            if (currentLength < 5)
-            {
-                currentScore /= 2;
-            }
+            currentScore /= 2;
         }
     }
 

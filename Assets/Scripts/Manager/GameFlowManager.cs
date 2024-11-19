@@ -1,4 +1,5 @@
 using MEC;
+using UnityEngine;
 
 public class GameFlowManager : SingletonPersistent<GameFlowManager>
 {
@@ -14,6 +15,7 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _phase = 1;
         _turn = 1;
         _isPlayerTurn = true;
+        AudioManager.Instance.PlaySFX("Bell");
     }
 
     public void NextPhase()
@@ -23,8 +25,8 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         _isPlayerTurn = _phase != 1;
 
         PowerUpsManager.Instance.Initialize();
-        Board.Instance.NewGame();
-        NextTurn();
+        UIManager.Instance.TogglePhaseChangePanel();
+        AudioManager.Instance.PlaySFX("Bell");
     }
 
     public void HandleGameOver()
@@ -35,7 +37,9 @@ public class GameFlowManager : SingletonPersistent<GameFlowManager>
         }
         else
         {
+            UIManager.Instance.LoadStats();
             UIManager.Instance.ToggleGameOverPanel();
+            AudioManager.Instance.PlaySFX("Bell");
         }
     }
 

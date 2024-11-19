@@ -11,6 +11,11 @@ public class Notifier : Singleton<Notifier>
         _notifyText.text = isPlayerTurn ? $"{_playerName.text}'s turn" : $"{_opponentName.text}'s turn";
     }
 
+    public void OnPhaseChanged()
+    {
+        _notifyText.text = "No words left!";
+    }
+
     public void OnUsePowerUp(string powerUpName)
     {
         var isPlayerTurn = GameFlowManager.Instance.IsPlayerTurn;
@@ -22,7 +27,10 @@ public class Notifier : Singleton<Notifier>
         else
         {
             var user = isPlayerTurn ? _playerName.text : _opponentName.text;
-            _notifyText.text = $"{user} used <color=#4C1F7A>{powerUpName}</color>";
+
+            var formattedPowerUpName = System.Text.RegularExpressions.Regex.Replace(powerUpName, "(?<!^)([A-Z])", " $1");
+            _notifyText.text = $"{user} used <color=#003366>{formattedPowerUpName}</color>";
+
         }
     }
 }
