@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using MEC;
+using UnityEngine;
 
 public partial class SROptions
 {
@@ -14,6 +15,12 @@ public partial class SROptions
     public void NewPhase()
     {
         GameFlowManager.Instance.NextPhase();
+    }
+
+    [Category("Debug")]
+    public void ClearAllPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     [Category("PopUps")]
