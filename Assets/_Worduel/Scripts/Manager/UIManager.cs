@@ -14,7 +14,7 @@ public class UIManager : SingletonPersistent<UIManager>
 {
     [SerializeField] private GameObject _gameOverPanel, _gameOverBG, _powerUpsPanel, _powerUpsBG, _roundChangePanel, _roundChangeBG, _moreHintsPanel, _moreHintsBG, _purchaseFailedPanel, _purchaseFailedBG, _purchaseCompletedMenu, _purchaseCompletedBG;
     [SerializeField] private GameObject _opponentPowerUpPanel, _opponentPowerUpBG, _revealWordPanel, _revealWordBG, _replaceTilePanel, _replaceTileBG, _instructionPanel, _instructionBG, _doubleRewardBG, _doubleRewardMenu;
-    [SerializeField] private GameObject _homeScreen, _loadingBG, _navigationBar, _currency, _themeSelectPanel, _themeSelectBG, _settingsPanel, _settingsBG, _statsPanel, _statsBG, _dailyPanel, _dailyBG;
+    [SerializeField] private GameObject _homeScreen, _loadingBG, _currency, _themeSelectPanel, _themeSelectBG, _settingsPanel, _settingsBG, _statsPanel, _statsBG, _dailyPanel, _dailyBG;
     [SerializeField] private GameObject _toggleSFXButton, _toggleMusicButton, _inspectButton, _okReplaceButton, _okRevealButton, _homeSettingsButton, _homeGameOverButton, _replayButton;
     [SerializeField] private Sprite _soundOn, _soundOff;
     [SerializeField] private TMP_InputField _replaceLetter;
@@ -77,7 +77,6 @@ public class UIManager : SingletonPersistent<UIManager>
                 PopUpsPool.Instance.Instantiate();
 
                 ToggleHomeScreen(false);
-                ToggleNavigationBar(false);
                 ToggleCurrency(false);
 
                 LoadingAnimation.Instance.AnimationLoaded(0.5f, 0.25f);
@@ -109,7 +108,6 @@ public class UIManager : SingletonPersistent<UIManager>
 
                 SetButtonInSettingsActive(false);
                 ToggleHomeScreen(true);
-                ToggleNavigationBar(true);
                 ToggleCurrency(true);
 
                 LoadingAnimation.Instance.AnimationLoaded(0.5f, 0.25f);
@@ -376,11 +374,6 @@ public class UIManager : SingletonPersistent<UIManager>
             homeImage.DOFade(0, 0f).SetEase(Ease.OutQuad);
             replayImage.DOFade(0, 0f).SetEase(Ease.OutQuad);
         }
-    }
-
-    public void ToggleNavigationBar(bool setActive)
-    {
-        _navigationBar.SetActive(setActive);
     }
 
     public void ToggleHomeScreen(bool setActive)

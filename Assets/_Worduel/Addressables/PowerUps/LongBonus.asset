@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1194a9c89b8e394196e860a2caaa0e4, type: 3}
   m_Name: LongBonus
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 5ffc42fa354a28c4d919b1c7765413d1, type: 3}
+  Sprite: {fileID: 21300000, guid: a3c7bbaf72407424fb4199c7e6e437f8, type: 3}
   Description: Doubles score for 5+ words.
