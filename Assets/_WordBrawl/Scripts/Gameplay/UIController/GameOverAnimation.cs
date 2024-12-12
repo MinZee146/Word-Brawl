@@ -80,9 +80,6 @@ public class GameOverAnimation : MonoBehaviour
             UIManager.Instance.SetButtonInGameOverActive(true);
             CurrencyManager.Instance.UpdateCoins(Convert.ToInt32(_coinsEarnedText.text));
             _coins.gameObject.SetActive(false);
-
-            UIManager.Instance.ToggleDoubleRewardPanel(true);
-            // DoubleRewardPopUp.Instance.FetchCurrentRewards(Convert.ToInt32(_coinsEarnedText.text), RewardType.Coin);
         });
     }
 
