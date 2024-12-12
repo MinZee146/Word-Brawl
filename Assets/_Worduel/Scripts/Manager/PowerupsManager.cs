@@ -64,7 +64,7 @@ public class PowerUpsManager : SingletonPersistent<PowerUpsManager>
 
         if (GameFlowManager.Instance.IsPlayerTurn)
         {
-            // PowerUpCountdown.Instance.Reset();
+            PowerUpCountdown.Instance.Reset();
             UIManager.Instance.TogglePowerUpsPanel(false);
 
             UIManager.Instance.IsInteractable = false;
