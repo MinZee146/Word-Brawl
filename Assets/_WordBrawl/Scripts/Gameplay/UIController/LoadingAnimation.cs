@@ -36,11 +36,9 @@ public class LoadingAnimation : SingletonPersistent<LoadingAnimation>
         rightOriginalPos = new Vector2(screenWidth / 2f, 0);
         topOriginalPos = new Vector2(0, screenHeight / 5f);
 
-        _leftPanel.anchoredPosition = leftOriginalPos;
-        _rightPanel.anchoredPosition = rightOriginalPos;
-        _topPanel.anchoredPosition = topOriginalPos;
-
-        _loadingPanel.SetActive(false);
+        _leftPanel.anchoredPosition = Vector2.zero;
+        _rightPanel.anchoredPosition = Vector2.zero;
+        _topPanel.anchoredPosition = Vector2.zero;
     }
 
     public void AnimationLoading(float transitionDuration, Action onComplete = null)
