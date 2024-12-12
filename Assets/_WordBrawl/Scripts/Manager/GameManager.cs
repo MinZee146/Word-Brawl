@@ -20,8 +20,10 @@ public class GameManager : SingletonPersistent<GameManager>
     public GameMode CurrentGameMode = GameMode.PvC;
     public Location CurrentLocation = Location.Home;
 
-    private void Start()
+    private async void Start()
     {
+        await RemoteConfig.Instance.FetchData();
+
         Initialize();
     }
 
