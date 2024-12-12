@@ -66,7 +66,7 @@ public partial class SROptions
     [Category("Cheats")]
     public void GrantHints()
     {
-        var currentHint = PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, 5);
+        var currentHint = PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints);
         PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, currentHint + 5);
         HintCounter.Instance.FetchHintPref();
     }

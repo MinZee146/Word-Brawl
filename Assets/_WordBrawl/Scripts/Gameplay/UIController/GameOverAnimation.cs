@@ -50,6 +50,11 @@ public class GameOverAnimation : MonoBehaviour
         UIManager.Instance.SetButtonInGameOverActive(false);
     }
 
+    private int EarnedCoins()
+    {
+        return !PlayerStatsManager.Instance.IsPlayerHavingBestWord() ? RemoteConfig.Instance.RewardCoins : RemoteConfig.Instance.RewardCoins + PlayerStatsManager.Instance.ScoreGap();
+    }
+
     private void CoinsEarnedAnimation()
     {
         var sequence = DOTween.Sequence();
@@ -57,7 +62,7 @@ public class GameOverAnimation : MonoBehaviour
         sequence.AppendInterval(0.25f);
         sequence.onComplete += () =>
         {
-            Timing.RunCoroutine(AnimateCoinIncrease(RemoteConfig.Instance.RewardCoins + PlayerStatsManager.Instance.ScoreGap()));
+            Timing.RunCoroutine(AnimateCoinIncrease(EarnedCoins()));
         };
     }
 

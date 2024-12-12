@@ -22,6 +22,7 @@ public class GameManager : SingletonPersistent<GameManager>
 
     private async void Start()
     {
+        LoadingAnimation.Instance.Initialize();
         await RemoteConfig.Instance.FetchData();
 
         Initialize();
@@ -36,6 +37,7 @@ public class GameManager : SingletonPersistent<GameManager>
         CurrencyManager.Instance.Initialize();
         PlayerDataTracker.Instance.Initialize();
         RewardManager.Instance.GrantDailySpin();
+        LoadingAnimation.Instance.AnimationLoaded(0.5f, 0.5f);
     }
 
     public void NewGame()
