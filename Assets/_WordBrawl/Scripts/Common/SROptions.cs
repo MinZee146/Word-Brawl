@@ -16,6 +16,12 @@ public partial class SROptions
     }
 
     [Category("Debug")]
+    public void ClearAllPrefabs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    [Category("Debug")]
     public void Instruction()
     {
         UIManager.Instance.ToggleInstructionPanel(true);
