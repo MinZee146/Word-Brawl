@@ -183,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 421b1fe7a5024cd4cb28d66740cda341, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d8f4c4540c920042a4b88d1d178a5ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -532620669, guid: 29098c850e8c0744b8f8bc5c6e377a18, type: 3}
+  m_Sprite: {fileID: -1698133926, guid: 7b4bcbaa372826647ad7b859f1283731, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -883,7 +883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28a951b5319260a4482b4e7515d81149, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ee4b6148d6ecd9488df9376bd0fa3c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1952,7 +1952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1284333807, guid: 29098c850e8c0744b8f8bc5c6e377a18, type: 3}
+  m_Sprite: {fileID: 1501766524, guid: 7b4bcbaa372826647ad7b859f1283731, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2916,7 +2916,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 421b1fe7a5024cd4cb28d66740cda341, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d8f4c4540c920042a4b88d1d178a5ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ac5207ebc1c2f9d4b88b1ad704adeb4f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78b3900487560d54eb4c2e6d2aba33f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3575,7 +3575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blue: {fileID: 21300000, guid: 37486415f4b104746a9da6b19d9064ab, type: 3}
-  _red: {fileID: 21300000, guid: 154d3d56355a59e47bbadf3a0b03eec8, type: 3}
+  _red: {fileID: 21300000, guid: b35b6e7d5bcc86f49a18c0862c2a462f, type: 3}
   _playerScoreBoard: {fileID: 50140455}
   _opponentScoreBoard: {fileID: 1830543612}
   _score: {fileID: 411204459}
