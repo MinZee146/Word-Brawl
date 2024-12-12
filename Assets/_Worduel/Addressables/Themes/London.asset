@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f5b0052d2a2ea4eb6dd54ad3b581e8, type: 3}
+  m_Name: London
+  m_EditorClassIdentifier: 
+  Name: London
+  Price: 400
+  Illustration: {fileID: 21300000, guid: e5e0dea7c1b6ca2458c26de3608bfcaf, type: 3}
+  Background: {fileID: 21300000, guid: e5e0dea7c1b6ca2458c26de3608bfcaf, type: 3}
+  PlayerScoreBoard: {r: 0.38750443, g: 0.6603774, b: 0.60984534, a: 1}
+  OpponentScoreBoard: {r: 0.7509433, g: 0.15160552, b: 0.19669577, a: 1}

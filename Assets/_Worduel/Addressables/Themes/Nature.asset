@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f5b0052d2a2ea4eb6dd54ad3b581e8, type: 3}
+  m_Name: Nature
+  m_EditorClassIdentifier: 
+  Name: Nature
+  Price: 400
+  Illustration: {fileID: 21300000, guid: 51eeaa6f92c810e4588d8bcc3b9c7113, type: 3}
+  Background: {fileID: 21300000, guid: 51eeaa6f92c810e4588d8bcc3b9c7113, type: 3}
+  PlayerScoreBoard: {r: 0.24705882, g: 0.42352942, b: 0.31764707, a: 1}
+  OpponentScoreBoard: {r: 0.78113204, g: 0.35224634, b: 0.36670306, a: 1}

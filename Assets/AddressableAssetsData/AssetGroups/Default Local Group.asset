@@ -28,12 +28,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - ospd
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9917b5a6ae812594bbc84171cd98c2cd
-    m_Address: Assets/Addressables/Names.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - names
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd744c922bb3d744890e03b95de85266
     m_Address: Assets/Scenes/Main Menu.unity
     m_ReadOnly: 0

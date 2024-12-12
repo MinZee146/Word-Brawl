@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Themes
+  m_EditorClassIdentifier: 
+  m_GroupName: Themes
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f2d0a78b4f94f0040acb1a58f1a4510f
+  m_SerializeEntries:
+  - m_GUID: 05a9f01318b3b8b4aa67a3ce558be232
+    m_Address: Assets/Addressables/Themes/Sweet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a5e7108903844757a4446a1c0d425a8
+    m_Address: Assets/_Worduel/Addressables/Themes/Bangkok.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ffe897c7cdcb034e9915685ac156280
+    m_Address: Assets/Addressables/Themes/Barn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 122ed3bca47cab543ad4075ec7746452
+    m_Address: Assets/Addressables/Themes/Ocean.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41240091ecfe67f4782735bf586230f0
+    m_Address: Assets/Addressables/Themes/Gelato.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f0b800c65f070443afdef4d0f3b08c9
+    m_Address: Assets/Addressables/Themes/Lollipop.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 512e014523be1684bb5980aafda483e1
+    m_Address: Assets/Addressables/Themes/Elegant.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6664ea99b41955c4699e529c97b019ce
+    m_Address: Assets/_Worduel/Addressables/Themes/Egypt.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 806a01e5fe238744a84fe85287e28a4d
+    m_Address: Assets/Addressables/Themes/Space.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82d6911b64e5a4d488928df7b47aa6c6
+    m_Address: Assets/Addressables/Themes/London.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c49ff35181a393428f3556ded188d5e
+    m_Address: Assets/Addressables/Themes/Default.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad9c1bbf401cd8a4cbecbb476ac53015
+    m_Address: Assets/Addressables/Themes/Winter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9d5d74f39aa3524dac709d4a1b0be29
+    m_Address: Assets/Addressables/Themes/Dracula.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf88f5cdb52105944bacc673441bfd1d
+    m_Address: Assets/Addressables/Themes/Quan.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Theme
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a3880b8fb25b90a4cada257dda67b2f5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0d1b672e4afa44341959606d6afeac82, type: 2}
+    - {fileID: 11400000, guid: 67d95f8c5caef344b9b943bdeedc60f3, type: 2}
