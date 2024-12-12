@@ -27,8 +27,17 @@ public class RemoteConfig : SingletonPersistent<RemoteConfig>
     {
         await Initialize();
 
-        RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
+        var fetchCompletion = new TaskCompletionSource<bool>();
+
+        RemoteConfigService.Instance.FetchCompleted += configResponse =>
+        {
+            ApplyRemoteSettings(configResponse);
+            fetchCompletion.SetResult(true);
+        };
+
         RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
+
+        await fetchCompletion.Task;
     }
 
     void ApplyRemoteSettings(ConfigResponse configResponse)
