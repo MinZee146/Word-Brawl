@@ -23,7 +23,7 @@ public class RemoteConfig : SingletonPersistent<RemoteConfig>
         }
     }
 
-    async void FetchData()
+    public async Task FetchData()
     {
         await Initialize();
 
@@ -39,10 +39,5 @@ public class RemoteConfig : SingletonPersistent<RemoteConfig>
         AIDifficulty = RemoteConfigService.Instance.appConfig.GetFloat("AIDifficulty");
 
         UnityEngine.Debug.Log($"InitialCoins: {InitialCoins}, InitialHints: {InitialHints}, RewardCoins: {RewardCoins}, AIDifficulty: {AIDifficulty}");
-    }
-
-    void Start()
-    {
-        FetchData();
     }
 }
