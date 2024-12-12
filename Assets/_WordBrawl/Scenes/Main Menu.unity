@@ -1589,7 +1589,7 @@ Transform:
   m_GameObject: {fileID: 238591206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 398.9523, y: 1301.2803, z: -5.370379}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8889,8 +8889,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2fcd3b13dee228c4fbf33e4513754adc, type: 2}
+  m_sharedMaterial: {fileID: 6179638680314628489, guid: 2fcd3b13dee228c4fbf33e4513754adc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8914,8 +8914,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21948,6 +21948,7 @@ SceneRoots:
   - {fileID: 1145468079}
   - {fileID: 1690725170}
   - {fileID: 1311701082}
+  - {fileID: 238591208}
   - {fileID: 691227119}
   - {fileID: 434112552}
   - {fileID: 1292717609}
@@ -21955,4 +21956,3 @@ SceneRoots:
   - {fileID: 2032216082}
   - {fileID: 795971896}
   - {fileID: 2130907261}
-  - {fileID: 238591208}
