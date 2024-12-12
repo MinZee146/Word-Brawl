@@ -67,23 +67,23 @@ public class Roulette : MonoBehaviour
         switch (section)
         {
             case 0:
-                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 1);
+                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 1);
                 RewardPopUp.Instance.FetchCurrentRewards(1, RewardType.Hint);
                 break;
             case 2:
-                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 2);
+                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 2);
                 RewardPopUp.Instance.FetchCurrentRewards(2, RewardType.Hint);
                 break;
             case 4:
-                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 3);
+                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 3);
                 RewardPopUp.Instance.FetchCurrentRewards(3, RewardType.Hint); ;
                 break;
             case 6:
-                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 4);
+                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 4);
                 RewardPopUp.Instance.FetchCurrentRewards(4, RewardType.Hint);
                 break;
             case 8:
-                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 5);
+                PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 5);
                 RewardPopUp.Instance.FetchCurrentRewards(5, RewardType.Hint);
                 break;
             case 1:

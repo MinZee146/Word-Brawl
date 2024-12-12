@@ -22,17 +22,4 @@ public class GameConstants
     public const string PLAYERPREFS_IS_SFX_ON = "IsSFXOn";
     public const string PLAYERPREFS_IS_MUSIC_ON = "IsMusicOn";
     public const string PLAYERPREFS_CURRENT_THEME = "CurrentTheme";
-
-    public const string PLAYERPREFS_IS_FORCED_ADS_ENABLED = "IsForcedAdsEnabled";
-    public const string PLAYERPREFS_IS_BANNER_ADS_ENABLED = "IsBannerAdsEnabled";
-
-    public const string REMOTE_CONFIG_INTERSTITIAL_INTERVAL = "interstitial_interval";
-    public const string REMOTE_CONFIG_APP_OPEN_AD_ENABLED = "app_open_ad_enabled";
-    public const string REMOTE_CONFIG_CHEATS_ENABLED = "cheats_enabled";
-    public const string REMOTE_CONFIG_INTERNET_CHECK = "internet_check";
-    public const string REMOTE_CONFIG_AI_DIFFICULTY = "ai_difficulty";
-    public const string REMOTE_CONFIG_COINS_PER_GAME = "coins_per_game";
-    public const string REMOTE_CONFIG_HINTS_PER_AD = "hints_per_ad";
-    public const string REMOTE_CONFIG_INITIAL_COINS = "initial_coins";
-    public const string REMOTE_CONFIG_INITIAL_HINTS = "initial_hints";
 }

@@ -13,7 +13,7 @@ public class HintCounter : Singleton<HintCounter>
 
     public void FetchHintPref()
     {
-        _currentHintCounter = PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, 5);
+        _currentHintCounter = PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints);
         _hintText.text = _currentHintCounter != 0 ? _currentHintCounter.ToString() : "+";
     }
 

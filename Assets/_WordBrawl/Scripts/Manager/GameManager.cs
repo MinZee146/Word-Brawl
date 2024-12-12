@@ -27,8 +27,6 @@ public class GameManager : SingletonPersistent<GameManager>
 
     private void Initialize()
     {
-        FetchAdPref();
-
         GameDictionary.Instance.Initialize();
         AudioManager.Instance.Initialize();
         ThemeManager.Instance.Initialize();
@@ -36,19 +34,6 @@ public class GameManager : SingletonPersistent<GameManager>
         CurrencyManager.Instance.Initialize();
         PlayerDataTracker.Instance.Initialize();
         RewardManager.Instance.GrantDailySpin();
-    }
-
-    private void FetchAdPref()
-    {
-        if (!PlayerPrefs.HasKey(GameConstants.PLAYERPREFS_IS_FORCED_ADS_ENABLED))
-        {
-            PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_IS_FORCED_ADS_ENABLED, 1);
-        }
-
-        if (!PlayerPrefs.HasKey(GameConstants.PLAYERPREFS_IS_BANNER_ADS_ENABLED))
-        {
-            PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_IS_BANNER_ADS_ENABLED, 1);
-        }
     }
 
     public void NewGame()

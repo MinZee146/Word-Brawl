@@ -30,7 +30,7 @@ public class AI : Singleton<AI>
         {
             selectedList = shortWords;
         }
-        else if (randomValue <= 0.4f && longWords.Count > 0)
+        else if (randomValue <= RemoteConfig.Instance.AIDifficulty && longWords.Count > 0)
         {
             selectedList = longWords;
         }

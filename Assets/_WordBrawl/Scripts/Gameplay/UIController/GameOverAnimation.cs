@@ -57,7 +57,7 @@ public class GameOverAnimation : MonoBehaviour
         sequence.AppendInterval(0.25f);
         sequence.onComplete += () =>
         {
-            Timing.RunCoroutine(AnimateCoinIncrease(50));
+            Timing.RunCoroutine(AnimateCoinIncrease(RemoteConfig.Instance.RewardCoins + PlayerStatsManager.Instance.ScoreGap()));
         };
     }
 

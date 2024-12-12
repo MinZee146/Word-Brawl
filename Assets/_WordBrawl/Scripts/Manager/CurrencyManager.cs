@@ -17,7 +17,7 @@ public class CurrencyManager : SingletonPersistent<CurrencyManager>
 
     public void FetchPrefs()
     {
-        _currentAmount = PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_COINS, 100);
+        _currentAmount = PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_COINS, RemoteConfig.Instance.InitialCoins);
         PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_COINS, _currentAmount);
 
         UpdateText();
