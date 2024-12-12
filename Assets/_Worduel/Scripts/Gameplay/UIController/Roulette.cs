@@ -68,39 +68,39 @@ public class Roulette : MonoBehaviour
         {
             case 0:
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 1);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(1, RewardType.Hint);
+                RewardPopUp.Instance.FetchCurrentRewards(1, RewardType.Hint);
                 break;
             case 2:
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 2);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(2, RewardType.Hint);
+                RewardPopUp.Instance.FetchCurrentRewards(2, RewardType.Hint);
                 break;
             case 4:
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 3);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(3, RewardType.Hint); ;
+                RewardPopUp.Instance.FetchCurrentRewards(3, RewardType.Hint); ;
                 break;
             case 6:
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 4);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(4, RewardType.Hint);
+                RewardPopUp.Instance.FetchCurrentRewards(4, RewardType.Hint);
                 break;
             case 8:
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER) + 5);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(5, RewardType.Hint);
+                RewardPopUp.Instance.FetchCurrentRewards(5, RewardType.Hint);
                 break;
             case 1:
                 CurrencyManager.Instance.UpdateCoins(10);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(10, RewardType.Coin);
+                RewardPopUp.Instance.FetchCurrentRewards(10, RewardType.Coin);
                 break;
             case 3:
                 CurrencyManager.Instance.UpdateCoins(20);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(20, RewardType.Coin);
+                RewardPopUp.Instance.FetchCurrentRewards(20, RewardType.Coin);
                 break;
             case 7:
                 CurrencyManager.Instance.UpdateCoins(30);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(30, RewardType.Coin);
+                RewardPopUp.Instance.FetchCurrentRewards(30, RewardType.Coin);
                 break;
             case 9:
                 CurrencyManager.Instance.UpdateCoins(40);
-                // DoubleRewardPopUp.Instance.FetchCurrentRewards(40, RewardType.Coin);
+                RewardPopUp.Instance.FetchCurrentRewards(40, RewardType.Coin);
                 break;
             case 5:
                 Debug.Log("No reward this time!");
