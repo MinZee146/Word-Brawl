@@ -4,12 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/_WordBrawl/Scenes/Main Menu.unity
-    guid: cd744c922bb3d744890e03b95de85266
-  - enabled: 0
-    path: Assets/_WordBrawl/Scenes/Gameplay.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  m_Scenes: []
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: de1e7e121a7ee8041b798a713bd57fd9, type: 2}
