@@ -42,6 +42,7 @@ public class UIManager : SingletonPersistent<UIManager>
     public void Initialize()
     {
         NameRegister.Instance.Initialize();
+        LoadingAnimation.Instance.Initialize();
         UpdateSettingsUI();
     }
 
