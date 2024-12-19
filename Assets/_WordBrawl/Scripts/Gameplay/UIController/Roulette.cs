@@ -62,43 +62,51 @@ public class Roulette : MonoBehaviour
     public void Win(int section)
     {
         GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, section * 36);
-        UIManager.Instance.ToggleDoubleRewardPanel(true);
 
         switch (section)
         {
             case 0:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 1);
                 RewardPopUp.Instance.FetchCurrentRewards(1, RewardType.Hint);
                 break;
             case 2:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 2);
                 RewardPopUp.Instance.FetchCurrentRewards(2, RewardType.Hint);
                 break;
             case 4:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 3);
                 RewardPopUp.Instance.FetchCurrentRewards(3, RewardType.Hint); ;
                 break;
             case 6:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 4);
                 RewardPopUp.Instance.FetchCurrentRewards(4, RewardType.Hint);
                 break;
             case 8:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 PlayerPrefs.SetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, PlayerPrefs.GetInt(GameConstants.PLAYERPREFS_HINT_COUNTER, RemoteConfig.Instance.InitialHints) + 5);
                 RewardPopUp.Instance.FetchCurrentRewards(5, RewardType.Hint);
                 break;
             case 1:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 CurrencyManager.Instance.UpdateCoins(10);
                 RewardPopUp.Instance.FetchCurrentRewards(10, RewardType.Coin);
                 break;
             case 3:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 CurrencyManager.Instance.UpdateCoins(20);
                 RewardPopUp.Instance.FetchCurrentRewards(20, RewardType.Coin);
                 break;
             case 7:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 CurrencyManager.Instance.UpdateCoins(30);
                 RewardPopUp.Instance.FetchCurrentRewards(30, RewardType.Coin);
                 break;
             case 9:
+                UIManager.Instance.ToggleDoubleRewardPanel(true);
                 CurrencyManager.Instance.UpdateCoins(40);
                 RewardPopUp.Instance.FetchCurrentRewards(40, RewardType.Coin);
                 break;
